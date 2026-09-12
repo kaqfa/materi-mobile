@@ -1,0 +1,22 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Node / Astro
+node_modules/
+dist/
+.astro/
+
+# Dart / Flutter
+.dart_tool/
+.flutter-plugins*
+build/
+*.iml
+.idea/
+
+# Env & sekret (API key Supabase dsb.)
+.env
+.env.*
+
+# Moodle XML hasil build (sumber: generator script)
+moodle/build/
