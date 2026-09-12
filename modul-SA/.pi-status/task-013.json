@@ -1,0 +1,1 @@
+{"status":"done","verified_by":"Prisa","date":"2026-08-10","checks":["files_complete","deps_in_pubspec","no_secret","check_result_sealed","provider_pattern","screen_has_runall","sqlite_ffi","http_get","image_picker","geolocator","path_provider","no_em_dash","no_emoji"],"caveat":"Host Flutter/Dart SDK unavailable; target-machine runtime verification required."}

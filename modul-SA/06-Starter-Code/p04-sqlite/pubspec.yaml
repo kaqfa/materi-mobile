@@ -1,0 +1,25 @@
+name: p04_sqlite
+description: Remedial Task Tracker — P04 SQLite & offline-first. Local datasource/repository/Provider shell; inti mapper + CRUD sengaja ditinggalkan TODO.
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.4.0
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  provider: ^6.1.2
+  sqflite: ^2.3.3+1
+  path: ^1.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  sqflite_common_ffi: ^2.3.3+1
+
+flutter:
+  uses-material-design: true

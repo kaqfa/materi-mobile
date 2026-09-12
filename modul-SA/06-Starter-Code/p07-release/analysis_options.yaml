@@ -1,0 +1,19 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - "build/**"
+    - ".dart_tool/**"
+  language:
+    # Paksa kedisiplinan const untuk demo P07 "const/rebuild basics".
+    strict-casts: true
+
+linter:
+  rules:
+    prefer_const_constructors: true
+    prefer_const_constructors_in_immutables: true
+    prefer_const_declarations: true
+    prefer_const_literals_to_create_immutables: true
+    avoid_print: true
+    unnecessary_const: true
+    avoid_redundant_argument_values: false

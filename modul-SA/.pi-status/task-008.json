@@ -1,0 +1,1 @@
+{"status":"done","verified_by":"Prisa","date":"2026-08-08","checks":["P04 material/module","starter schema alignment","relative imports","55-minute checkpoints","restart gate","path/boolean/date troubleshooting","git diff --check"],"caveat":"Host Flutter/Dart SDK unavailable; target-machine runtime verification required."}

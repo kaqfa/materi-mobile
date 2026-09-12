@@ -1,0 +1,34 @@
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+.fvm/
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+android/
+ios/
+linux/
+macos/
+windows/
+web/
+*.log
+.DS_Store
+
+# ---- Signing & secrets (P07) — JANGAN PERNAH commit ----------------------
+# Keystore, key.properties, upload/play-service JSON = rahasia. Diseragamkan
+# di-abaikan agar tidak pernah bocor ke repo publik.
+*.jks
+*.keystore
+key.properties
+**/google-services.json
+**/GoogleService-Info.plist
+*.p12
+*.pem
+.env
+secrets.json

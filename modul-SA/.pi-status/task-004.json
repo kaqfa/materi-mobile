@@ -1,0 +1,1 @@
+{"status":"done","verified_by":"Prisa","date":"2026-08-08","checks":["P01 material/module structure","150-minute classroom run","starter references","challenge/observation alignment","intentional-red-test baseline","git diff --check"],"caveat":"Host Flutter/Dart SDK unavailable; runtime verification on target class machine required."}

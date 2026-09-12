@@ -1,0 +1,1 @@
+{"status":"done","verified_by":"Prisa","date":"2026-08-08","checks":["P05 material/module","API contract alignment","mock fallback boundaries","55-minute checkpoints","CRUD example fences","Tugas 2 allocation","secret scan","git diff --check"],"caveat":"Host Flutter/Dart SDK unavailable; runtime verification required on target machine."}

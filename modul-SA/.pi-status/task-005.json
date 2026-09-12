@@ -1,0 +1,1 @@
+{"status":"done","verified_by":"Prisa","date":"2026-08-08","checks":["four teaching docs","three checkpoints each","55-minute guided-lab timing","P02 grid/source alignment","P03 Task 1 kickoff","static content scan","git diff --check"],"caveat":"Host Flutter/Dart SDK unavailable; runtime starter verification remains required on target class machine."}
