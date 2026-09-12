@@ -21,6 +21,7 @@ Semua konten materi disusun **di repo ini** sebagai sumber kebenaran, lalu dipub
 - **Stack bebas untuk mahasiswa.** Dalam mengerjakan assignment dan proyek akhir, mahasiswa boleh memakai bahasa, framework, dan tools apa pun — rubrik menilai *outcome*, bukan stack.
 - **Capstone incremental** sepanjang semester (mulai P04), domain: Local Business Solutions / EdTech / Health & Wellness.
 - **Integrasi AI progresif**: batasan penggunaan AI menyesuaikan fase semester (lihat RPS).
+- **Modul lama dipertahankan, direvisi bertahap.** Materi semester kemarin di `modul-buku/` sudah cukup baik — improve sedikit demi sedikit, bukan rewrite. Acuan capaian tetap **RPS 20251**: materi yang menyimpang dari RPS wajib direvisi.
 
 ---
 
@@ -34,17 +35,16 @@ Semua konten materi disusun **di repo ini** sebagai sumber kebenaran, lalu dipub
 ├── Standar Pengembangan Materi PPB.md   # Standar proses (legacy — akan disederhanakan)
 ├── Standar Tutorial Koding PPB.md       # Standar format tutorial (Progressive Checkpoint)
 │
-├── modul-flutter/                 # [AKTIF] Modul utama 20251 — Markdown/frontmatter untuk website Astro
-├── starter-code/                  # [AKTIF] Starter & sample code Flutter per pertemuan
-├── penugasan/                     # [AKTIF] Brief assignment, rubrik, capstone (publikasi via Moodle)
-├── moodle/                        # [AKTIF] Question bank XML + generator script
+├── modul-buku/                    # [AKTIF] MODUL UTAMA — buku "Pemrograman Mobile dengan Flutter" (14 bab, .md)
 ├── Ujian/                         # [AKTIF] UTS/UAS — soal live coding, rubrik demo
+├── starter-code/                  # [RENCANA] Starter & sample code Flutter per pertemuan
+├── penugasan/                     # [RENCANA] Brief assignment, rubrik, capstone (publikasi via Moodle)
+├── moodle/                        # [RENCANA] Question bank XML + generator script
 │
-├── modul-buku/                    # [REFERENSI] Buku OOP TypeScript (semester lalu) — acuan format frontmatter
 └── modul-SA/                      # [REFERENSI] Paket remedial 7 pertemuan — acuan struktur penugasan & aset Moodle
 ```
 
-Direktori `[REFERENSI]` tidak dikembangkan lagi, hanya jadi pola. Konten baru masuk ke direktori `[AKTIF]`.
+`modul-buku/` berisi salinan konten dari project web Astro (repo terpisah). Repo ini = sumber kebenaran konten; perubahan di sini lalu disalin/sync ke project Astro.
 
 ---
 
@@ -53,7 +53,7 @@ Direktori `[REFERENSI]` tidak dikembangkan lagi, hanya jadi pola. Konten baru ma
 ```mermaid
 graph LR
     A[RPS PPB - 20251.md] --> B[Outline singkat]
-    B --> C[Modul .md - modul-flutter/]
+    B --> C[Buku .md - modul-buku/]
     C --> D[Starter code - starter-code/]
     C --> E[Brief tugas - penugasan/]
     E --> F[Quiz XML - moodle/]
@@ -61,33 +61,43 @@ graph LR
     F --> H[Import ke Moodle]
 ```
 
-1. **RPS dulu.** Setiap modul harus nyambung ke pertemuan + Sub-CPMK di RPS.
-2. **Modul `.md`** mengikuti format frontmatter `modul-buku/` (buku multi-chapter) dan standar tutorial **Progressive Checkpoint** (2–4 checkpoint per pertemuan, setiap checkpoint bisa di-run).
+1. **RPS dulu.** Setiap bab harus nyambung ke pertemuan + Sub-CPMK di RPS. Bab buku **tidak 1:1 dengan pertemuan** — RPS tetap acuan ritme kelas; bab buku = materi belajar mandiri.
+2. **Modul `.md`** di `modul-buku/` mengikuti skema frontmatter yang sudah ada dan standar tutorial **Progressive Checkpoint** (2–4 checkpoint per bab, setiap checkpoint bisa di-run).
 3. **Aset penilaian** (brief tugas, rubrik, bank soal) dibuat di repo, dipublikasikan ke Moodle.
 4. Detail aturan pengembangan: lihat `AGENTS.md` dan dua file standar.
 
 ---
 
-## Roadmap Modul (16 pertemuan)
+## Isi Buku Utama (`modul-buku/`, 14 bab)
 
-| # | Topik | Status |
+| Bab | Judul | Status |
 |---|---|---|
-| P01 | Introduction & Dart Fundamentals | ⬜ |
-| P02 | Dart Deep Dive (OOP, async, null safety) | ⬜ |
-| P03 | Flutter Fundamentals & Widget System | ⬜ |
-| P04 | Build System & Project Structure — **Capstone Start** | ⬜ |
-| P05 | UI Design & Material Design | ⬜ |
-| P06 | Advanced UI & Custom Widgets | ⬜ |
-| P07 | Responsive Design & Adaptive Layouts | ⬜ |
-| — | **UTS** (live coding + demo) | ⬜ |
-| P09 | API Integration & HTTP (Supabase) | ⬜ |
-| P10 | Real-time Features & Offline Sync | ⬜ |
-| P11 | Advanced State Management (Provider/BLoC) | ⬜ |
-| P12 | Testing & Quality Assurance | ⬜ |
-| P13 | Platform Features (camera, location) | ⬜ |
-| P14 | Performance Optimization & Production Prep | ⬜ |
-| P15 | Deployment & Distribution | ⬜ |
-| — | **UAS** (final project presentation) | ⬜ |
+| 01 | Dart Fundamentals | ✅ published |
+| 02 | Dart Deep Dive | ✅ |
+| 03 | Flutter Fundamentals | ✅ |
+| 04 | Build System & Project Structure | ✅ |
+| 05 | Material Design Implementation | ✅ |
+| 06 | Advanced UI & Custom Widgets | ✅ |
+| 07 | State Management & SharedPreferences | ✅ |
+| 08 | Local Storage & Databases | ✅ |
+| 09 | REST API Integration | ✅ |
+| 10 | Offline-First & SQLite | ✅ |
+| 11 | Testing & Quality Assurance | ✅ |
+| 12 | Platform Features & Device Integration | ✅ |
+| 13 | Performance Optimization | ✅ |
+| 14 | Deployment & Distribution | ✅ |
+
+Semua bab berstatus `published` di frontmatter. Revisi berjalan inkremental (perbaikan kecil per bab).
+
+### Gap modul vs RPS (perlu direvisi/dilengkapi)
+
+| Topik RPS | Bab buku saat ini | Catatan |
+|---|---|---|
+| P07 — Responsive & Adaptive Layouts | tidak ada bab khusus (mungkin sebagian di bab 5/6) | audit & lengkapi |
+| P09 — Supabase sebagai backend contoh | bab 9 REST API (backend generik?) | samakan contoh ke Supabase |
+| P10 — Real-time sync (WebSocket/background sync) | bab 10 offline-first (sync lokal↔server ada, realtime?) | cek cakupan |
+| P11 — BLoC/Riverpod sebagai pembanding | index buku eksplisit "tidak dibahas" | keputusan: tambah pembanding singkat vs sesuaikan penekanan RPS |
+| AI Integration per pertemuan (kolom RPS) | belum ada di bab buku | tambah blok AI per bab sesuai fase |
 
 Status: ⬜ belum · 🚧 draf · ✅ siap publish
 
@@ -96,7 +106,7 @@ Status: ⬜ belum · 🚧 draf · ✅ siap publish
 ## Konvensi
 
 - **Bahasa**: konten Indonesia, istilah teknis Inggris dibiarkan (widget, state, dsb.).
-- **Penamaan berkas**: modul `NN-slug.md` (kebab-case, `NN` = nomor pertemuan); aset penilaian pakai prefiks `P0X_`. Saat publish ke web Astro, script publish me-rename ke `.mdx`.
+- **Penamaan berkas**: bab buku `NN-slug.md` (kebab-case, `NN` = nomor bab); aset penilaian pakai prefiks `P0X_`. Saat publish ke web Astro, script publish me-rename ke `.mdx`.
 - **Contoh kode Flutter**: harus lolos `flutter analyze`, null safety aktif.
 - **Git**: commit kecil dengan pesan deskriptif; hasil build, `node_modules/`, `.DS_Store` tidak di-commit (lihat `.gitignore`).
 
@@ -104,5 +114,5 @@ Status: ⬜ belum · 🚧 draf · ✅ siap publish
 
 - RPS lengkap (Sub-CPMK, breakdown nilai, strategi AI): `RPS PPB - 20251.md`
 - Format tutorial: `Standar Tutorial Koding PPB.md`
-- Contoh modul jadi: `modul-buku/01-paradigma-oop-setup.md`
+- Contoh modul jadi: `modul-buku/01-dart-fundamentals.md`
 - Contoh alur Moodle: `modul-SA/05-Assessment/Panduan-Import-Moodle.md`
