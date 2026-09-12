@@ -38,7 +38,7 @@ Semua konten materi disusun **di repo ini** sebagai sumber kebenaran, lalu dipub
 ├── modul-buku/                    # [AKTIF] MODUL UTAMA — buku "Pemrograman Mobile dengan Flutter" (14 bab, .md)
 ├── Ujian/                         # [AKTIF] UTS/UAS — soal live coding, rubrik demo
 ├── starter-code/                  # [RENCANA] Starter & sample code Flutter per pertemuan
-├── penugasan/                     # [RENCANA] Brief assignment, rubrik, capstone (publikasi via Moodle)
+├── penugasan/                     # [AKTIF] Kalender penugasan + brief assignment, rubrik, capstone (publikasi via Moodle)
 ├── moodle/                        # [RENCANA] Question bank XML + generator script
 │
 └── modul-SA/                      # [REFERENSI] Paket remedial 7 pertemuan — acuan struktur penugasan & aset Moodle

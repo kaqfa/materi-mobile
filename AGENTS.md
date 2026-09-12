@@ -9,7 +9,7 @@ Panduan kerja untuk AI coding agent di repo materi perkuliahan **Pemrograman Mob
 | `RPS PPB - 20251.md` | **Sumber kebenaran kurikulum** (16 pertemuan, Sub-CPMK, penilaian, strategi AI) | ❌ Jangan ubah tanpa instruksi eksplisit user |
 | `modul-buku/` | **Modul utama** — buku "Pemrograman Mobile dengan Flutter" (14 bab, `.md`), salinan konten dari project web Astro (repo terpisah) | ✅ Area kerja utama |
 | `starter-code/` | [RENCANA] Starter/sample code Flutter per pertemuan | ✅ (belum ada, buat baru) |
-| `penugasan/` | [RENCANA] Brief assignment, rubrik, capstone | ✅ (belum ada, buat baru) |
+| `penugasan/` | Kalender penugasan + pemetaan bobot RPS (`README.md`); brief individu/capstone/peer-review menyusul | ✅ |
 | `moodle/` | [RENCANA] Question bank XML + generator script | ✅ (belum ada, buat baru) |
 | `Ujian/` | UTS/UAS (live coding, rubrik demo) | ✅ |
 | `modul-SA/` | Referensi paket remedial (struktur penugasan, aset Moodle) | ❌ Hanya baca |
@@ -141,6 +141,9 @@ Sertakan blok "AI Integration" di brief tugas bila relevan.
 - [ ] Commit hasil konversi `.mdx` → `.md` + dokumen repo
 - [ ] Sederhanakan `Standar Pengembangan Materi PPB.md` jadi satu halaman ringkas
 - [ ] Setup `starter-code/` (template StudyTracker per bab)
-- [ ] Buat struktur `penugasan/` (8 assignment RPS + capstone milestones)
+- [x] Kalender penugasan + pemetaan bobot RPS (`penugasan/README.md`)
+- [ ] Brief `penugasan/capstone/README.md` (panduan umum + bobot per milestone)
+- [ ] Brief tugas individu P02 + P03 (rubrik)
+- [ ] Brief milestone capstone M0 (proposal) — prioritas, dipakai P04
 - [ ] Generator bank soal `moodle/`
 - [ ] Siapkan soal UTS di `Ujian/UTS/`
