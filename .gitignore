@@ -18,5 +18,8 @@ build/
 .env
 .env.*
 
+# Python
+__pycache__/
+
 # Moodle XML hasil build (sumber: generator script)
 moodle/build/

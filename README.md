@@ -37,9 +37,9 @@ Semua konten materi disusun **di repo ini** sebagai sumber kebenaran, lalu dipub
 │
 ├── modul-buku/                    # [AKTIF] MODUL UTAMA — buku "Pemrograman Mobile dengan Flutter" (14 bab, .md)
 ├── Ujian/                         # [AKTIF] UTS/UAS — soal live coding, rubrik demo
-├── starter-code/                  # [RENCANA] Starter & sample code Flutter per pertemuan
+├── starter-code/                  # [AKTIF] Starter & sample code Flutter per pertemuan (14 project)
 ├── penugasan/                     # [AKTIF] Kalender penugasan + brief assignment, rubrik, capstone (publikasi via Moodle)
-├── moodle/                        # [RENCANA] Question bank XML + generator script
+├── moodle/                        # [AKTIF] Generator bank soal (140 soal) + kunci dosen + aktivitas Moodle per pertemuan
 │
 └── modul-SA/                      # [REFERENSI] Paket remedial 7 pertemuan — acuan struktur penugasan & aset Moodle
 ```
@@ -107,7 +107,12 @@ Bab buku tidak 1:1 dengan pertemuan; sejak P11 penomorannya bergeser satu langka
 
 Semua gap hasil audit sudah ditutup; riwayat temuan dan alasan tiap keputusan tersimpan di [`AUDIT-Gap-Modul-vs-RPS.md`](AUDIT-Gap-Modul-vs-RPS.md). Blok **"Bekerja dengan AI di Bab Ini"** kini ada di keempat belas bab.
 
-Yang masih terbuka di repo: `starter-code/`, bank soal `moodle/`, dan penyederhanaan `Standar Pengembangan Materi PPB.md`.
+Yang masih terbuka di repo: penyederhanaan `Standar Pengembangan Materi PPB.md`.
+
+## Starter Code & Bank Soal
+
+- **`starter-code/`** — 14 project Flutter (P01–P07, P09–P15), tanpa folder platform (mahasiswa menjalankan `flutter create .` sekali; pola `modul-SA/06-Starter-Code`). Semua lolos `flutter pub get` + `flutter analyze` (0 issue), baseline Flutter 3.38 / lints ^4. Sebagian test sengaja merah (p02, p12) sebagai bahan TDD.
+- **`moodle/`** — generator `build_moodle_xml.py` + sumber `bank_soal.py`: 140 soal praktis (10 × 14 pertemuan, kategori `PPB/P01`…`PPB/P15`), potongan kode di soal/jawaban, kunci divalidasi tidak lebih panjang dari distraktor. Output: XML (build, tergitignore) + `Kunci-Jawaban.md` (dosen) + `activities/` (narasi & aktivitas Moodle per pertemuan, siap copas).
 
 ## Penilaian
 

@@ -8,9 +8,9 @@ Panduan kerja untuk AI coding agent di repo materi perkuliahan **Pemrograman Mob
 |---|---|---|
 | `RPS PPB - 20251.md` | **Sumber kebenaran kurikulum** (16 pertemuan, Sub-CPMK, penilaian, strategi AI) | ❌ Jangan ubah tanpa instruksi eksplisit user |
 | `modul-buku/` | **Modul utama** — buku "Pemrograman Mobile dengan Flutter" (14 bab, `.md`), salinan konten dari project web Astro (repo terpisah) | ✅ Area kerja utama |
-| `starter-code/` | [RENCANA] Starter/sample code Flutter per pertemuan | ✅ (belum ada, buat baru) |
+| `starter-code/` | Starter/sample code Flutter per pertemuan (14 project, tanpa folder platform) | ✅ |
 | `penugasan/` | Kalender, pemetaan bobot, brief capstone G1–G4, tugas individu P02–P03, peer review | ✅ |
-| `moodle/` | [RENCANA] Question bank XML + generator script | ✅ (belum ada, buat baru) |
+| `moodle/` | Generator bank soal (140 soal, kategori `PPB/PXX`) + kunci dosen + aktivitas Moodle per pertemuan | ✅ |
 | `Ujian/` | UTS/UAS (live coding, rubrik demo) | ✅ |
 | `modul-SA/` | Referensi paket remedial (struktur penugasan, aset Moodle) | ❌ Hanya baca |
 | `Standar Pengembangan Materi PPB.md` | Prinsip + alur kerja revisi, satu halaman | ⚠️ Jangan tambah kompleksitas |
@@ -141,10 +141,10 @@ Konsekuensi untuk penulisan materi:
 - [x] Audit gap modul vs RPS — hasil di `AUDIT-Gap-Modul-vs-RPS.md` (tindak lanjutnya kerjakan dari tabel prioritas di sana, bukan dari tabel gap README yang sudah usang)
 - [ ] Commit hasil konversi `.mdx` → `.md` + dokumen repo
 - [x] Sederhanakan `Standar Pengembangan Materi PPB.md` jadi satu halaman ringkas
-- [ ] Setup `starter-code/` (template StudyTracker per bab)
+- [x] Setup `starter-code/` (template StudyTracker per bab) — 14 project P01–P07 & P09–P15, lolos analyze
 - [x] Kalender penugasan + pemetaan bobot RPS (`penugasan/README.md`)
 - [x] Paket penugasan lengkap: `capstone/` (panduan + G1–G4), `individu/` (P02–P03), `peer-review/`
 - [x] Revisi modul sesuai audit: bab 05, 07, 09, 10 + blok AI di 14 bab
 - [x] RPS diselaraskan: Firebase/WorkManager dihapus, AI Strategy jadi dua rezim
-- [ ] Generator bank soal `moodle/`
+- [x] Generator bank soal `moodle/` — 140 soal (14 × 10), kategori `PPB/PXX`, + kunci dosen + aktivitas Moodle P01–P16
 - [x] Soal UTS live coding (5 berkas di `Ujian/UTS/`)

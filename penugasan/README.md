@@ -97,4 +97,4 @@ Rincian lengkap: [`capstone/README.md`](capstone/README.md).
 - [x] `individu/P03_Flutter-Mini-App.md` (brief + rubrik)
 - [x] `capstone/G2_Data.md`, `G3_Arsitektur-Kualitas.md`, `G4_Rilis.md`
 - [x] `peer-review/README.md` — form review 2 siklus
-- [ ] Quiz bank → `../moodle/` (generator, kategori `PPB/PXX`)
+- [x] Quiz bank → `../moodle/` (generator, kategori `PPB/PXX` — 140 soal + kunci + aktivitas per pertemuan)
