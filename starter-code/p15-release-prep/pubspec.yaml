@@ -1,0 +1,27 @@
+name: study_tracker_p15
+description: 'Starter P15 — persiapan rilis: versioning, logging aman, release checklist, obfuscation.'
+publish_to: 'none'
+# ──────────────────────────────────────────────────────────────
+# Versioning (semantic):
+#   version: MAJOR.MINOR.PATCH+BUILD
+# Naikkan PATCH: perbaikan kecil; MINOR: fitur baru; MAJOR: perubahan besar.
+# Play Store menolak BUILD yang sama — selalu naikkan +N untuk upload baru.
+# ──────────────────────────────────────────────────────────────
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.4.0
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

@@ -1,0 +1,35 @@
+name: study_tracker_p04
+description: Starter P04 — build system, pubspec, struktur folder, named routes (capstone scaffolding).
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.4.0
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  # ---------------------------------------------------------------
+  # TODO(student) P04-1: aktifkan dependensi SATU PER SATU, setiap
+  # kali jalankan `flutter pub get`. Urutan sesuai kebutuhan modul:
+  #
+  # provider: ^6.1.2        # P11 — state management
+  # http: ^1.2.1            # P09  — REST client
+  # sqflite: ^2.3.3         # P10  — SQLite lokal
+  # path: ^1.9.0            # P10  — lokasi database
+  # image_picker: ^1.1.2    # P13  — kamera & galeri
+  # geolocator: ^13.0.1     # P13  — lokasi GPS
+  #
+  # Perhatikan: yang ditulis di sini adalah constraints (versi min +
+  # kompatibilitas), bukan versi persis. Cek versi terbaru di pub.dev.
+  # ---------------------------------------------------------------
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
