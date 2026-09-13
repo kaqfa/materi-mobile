@@ -99,6 +99,8 @@ Semua bab berstatus `published` di frontmatter. Revisi berjalan inkremental (per
 | P11 — BLoC/Riverpod sebagai pembanding | index buku eksplisit "tidak dibahas" | keputusan: tambah pembanding singkat vs sesuaikan penekanan RPS |
 | AI Integration per pertemuan (kolom RPS) | belum ada di bab buku | tambah blok AI per bab sesuai fase |
 
+> Tabel di atas sudah tidak akurat sepenuhnya. Hasil audit terverifikasi (termasuk peta RPS ↔ bab dan urutan prioritas) ada di [`AUDIT-Gap-Modul-vs-RPS.md`](AUDIT-Gap-Modul-vs-RPS.md).
+
 Status: ⬜ belum · 🚧 draf · ✅ siap publish
 
 ---

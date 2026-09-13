@@ -137,7 +137,7 @@ Sertakan blok "AI Integration" di brief tugas bila relevan.
 
 ## 10. Todo Repo
 
-- [ ] Audit gap modul vs RPS (daftar di README) — responsive/adaptive, Supabase, realtime, BLoC/Riverpod, blok AI per bab
+- [x] Audit gap modul vs RPS — hasil di `AUDIT-Gap-Modul-vs-RPS.md` (tindak lanjutnya kerjakan dari tabel prioritas di sana, bukan dari tabel gap README yang sudah usang)
 - [ ] Commit hasil konversi `.mdx` → `.md` + dokumen repo
 - [ ] Sederhanakan `Standar Pengembangan Materi PPB.md` jadi satu halaman ringkas
 - [ ] Setup `starter-code/` (template StudyTracker per bab)
