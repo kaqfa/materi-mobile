@@ -6,7 +6,7 @@ Sumber kebenaran penugasan mata kuliah. Brief lengkap + rubrik dibuat di sini, d
 
 1. **Tugas individu hanya di awal** (P02–P03): pastikan skill Dart/Flutter dasar tiap mahasiswa solid sebelum bebas memilih stack di capstone.
 2. **Capstone individual, termasuk progresnya.** RPS tidak pernah menyebut tim; kolaborasi dipenuhi lewat peer review, bukan lewat pembagian kerja.
-3. **Yang dinilai repo, bukan laporan tentang repo.** Tidak ada dokumen penyerahan terpisah. Empat gate berjarak tiga minggu, bentuk penyerahannya identik: tag + satu blok CHANGELOG + demo yang disampel.
+3. **Yang dinilai repo, bukan laporan tentang repo.** Tidak ada dokumen penyerahan terpisah. Empat gate berjarak tiga minggu, bentuk penyerahannya identik: tag + satu blok CHANGELOG + video 5 menit.
 4. **Akuntabilitas mingguan lewat quiz unlock** (auto-grade Moodle): syarat masuk gate, bukan komponen nilai tersendiri.
 5. **Stack bebas**: mahasiswa boleh pakai bahasa/framework/tools apa pun untuk capstone (rubrik menilai outcome, bukan stack). Modul (`modul-buku/`) tetap Flutter.
 6. **AI: deklarasi, bukan larangan.** Pembatasan fase hanya di P02–P03 (tugas individu, bisa diverifikasi langsung). Di capstone AI bebas dipakai tetapi wajib dideklarasikan, dan diverifikasi lewat demo — bukan lewat aturan yang tidak bisa ditegakkan. Lihat `capstone/README.md`.
@@ -42,13 +42,13 @@ penugasan/
 | **P10** | Capstone **G2 — Data**: REST API + penyimpanan lokal + offline | individu | ✅ 10% |
 | **P13** | Capstone **G3 — Arsitektur & Kualitas**: state terpusat + test + ≥2 fitur perangkat | individu | ✅ 12% |
 | **P15** | Capstone **G4 — Rilis**: profiling + signed build + dokumentasi | individu | ✅ 10% |
-| — | **UAS**: presentasi 20' + technical demo + Q&A | individu | ✅ 20% |
+| — | **UAS**: video presentasi final + demo & Q&A di kelas | individu | ✅ 20% |
 | tiap minggu | Quiz unlock modul (Moodle, ~10 soal, unlimited attempt) | individu | ❌ syarat masuk gate |
 | sebelum G1 & G3 | Peer code review terstruktur (2 siklus) | individu | ✅ 5% |
 
 Progres antar-gate tidak dinilai terpisah. Syarat masuk gate: ada commit di minimal tiga minggu berbeda sejak gate sebelumnya (dicek dari grafik contributor, bukan dari isi commit).
 
-Demo lisan **disampel**: tiap gate sekitar sepertiga kelas dipanggil, diundi di tempat saat sesi dimulai. Semua harus siap setiap gate; setiap mahasiswa dipanggil minimal sekali sepanjang semester. Sisanya dinilai dari repo + CHANGELOG.
+Demo berbentuk **video 5 menit** (YouTube unlisted, tautan di CHANGELOG) dari semua mahasiswa tiap gate — bisa dinilai kapan saja dan tidak memakan jam praktikum. Kualitas produksi tidak dinilai. Tanya jawab dilakukan di kelas setelah tenggat, secukup waktu yang tersedia, dengan pertanyaan diambil dari video dan commit masing-masing.
 
 ## Pemetaan Bobot RPS
 
@@ -93,8 +93,8 @@ Rincian lengkap: [`capstone/README.md`](capstone/README.md).
 - [x] Kalender + pemetaan bobot (dokumen ini)
 - [x] `capstone/README.md` — panduan umum, rubrik 4 dimensi, aturan AI
 - [x] `capstone/G1_Fondasi.md`
-- [ ] `individu/P02_Dart-OOP-Challenge.md` (brief + rubrik)
-- [ ] `individu/P03_Flutter-Mini-App.md` (brief + rubrik)
-- [ ] `capstone/G2`, `G3`, `G4` (dibuat min. 2 minggu sebelum dipakai)
-- [ ] `peer-review/README.md` — form review 2 siklus
+- [x] `individu/P02_Dart-OOP-Challenge.md` (brief + rubrik)
+- [x] `individu/P03_Flutter-Mini-App.md` (brief + rubrik)
+- [x] `capstone/G2_Data.md`, `G3_Arsitektur-Kualitas.md`, `G4_Rilis.md`
+- [x] `peer-review/README.md` — form review 2 siklus
 - [ ] Quiz bank → `../moodle/` (generator, kategori `PPB/PXX`)

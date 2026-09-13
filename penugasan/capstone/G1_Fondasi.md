@@ -29,8 +29,11 @@ Jalankan daftar ini, jangan diserahkan, cukup dipakai:
 - [ ] Skala teks sistem dinaikkan ke 150%, tata letak masih terbaca
 - [ ] `CHANGELOG.md` sudah berisi blok `gate-1` dengan empat butir
 - [ ] Tag `gate-1` sudah dibuat dan dikirim ke remote
+- [ ] Video 5 menit sudah diunggah unlisted, tautannya ada di blok CHANGELOG
 
-Butir skala teks paling sering terlewat, dan paling sering jadi temuan saat demo.
+Butir skala teks paling sering terlewat, dan paling sering jadi temuan saat tanya jawab.
+
+Untuk video G1: tunjukkan alur utama dijalankan penuh, lalu putar perangkat ke landscape sambil aplikasi tetap berjalan. Dua hal itu saja sudah membuktikan sebagian besar target gate ini.
 
 ## Peer Review (siklus 1)
 

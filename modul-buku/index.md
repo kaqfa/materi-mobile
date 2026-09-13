@@ -32,7 +32,7 @@ Buku ini menuntun pembaca membangun aplikasi mobile untuk Android dan iOS dari n
 
 Seluruh bab implementasi memakai satu aplikasi acuan yang sama, semacam pencatat tugas dan jadwal belajar (Task/Study Tracker). Aplikasi ini tumbuh dari bab ke bab: awalnya hanya antarmuka statis, kemudian diberi state, penyimpanan lokal, koneksi ke API, dukungan offline, pengujian, dan akhirnya dibangun versi rilisnya. Dengan satu aplikasi yang terus berkembang, pembaca melihat bagaimana setiap konsep baru menempel pada kode yang sudah dikenal, bukan pada contoh yang berganti-ganti.
 
-Buku ini jujur soal cakupannya. Fokus utamanya adalah state management dengan Provider, penyimpanan lokal, REST API, pengujian, fitur perangkat umum seperti kamera dan lokasi, optimasi performa, dan deployment ke Play Store. Topik lanjutan seperti Riverpod, BLoC, push notification, dan internasionalisasi tidak dibahas sebagai materi inti; keduanya hanya disinggung sebagai pembanding arah pengembangan selanjutnya.
+Buku ini jujur soal cakupannya. Fokus utamanya adalah state management dengan Provider, penyimpanan lokal, REST API, pengujian, fitur perangkat umum seperti kamera dan lokasi, optimasi performa, dan deployment ke Play Store. Riverpod dan BLoC tidak diajarkan sebagai materi inti, tetapi dibahas sebagai pembanding berkode di bab 7 agar pembaca punya dasar memilih saat aplikasinya tumbuh. Push notification dan internasionalisasi tidak dibahas sama sekali.
 
 ## Prasyarat
 

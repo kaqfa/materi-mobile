@@ -40,9 +40,15 @@ Tiga hal, tidak pernah berubah. Setelah G1 Anda tidak perlu membaca ulang aturan
    - **Macet** — apa yang dicoba tapi belum berhasil, dan dugaan penyebabnya
    - **Keputusan** — satu keputusan teknis yang diambil beserta alasannya, dan apa alternatif yang ditolak
    - **AI** — lihat "Aturan AI"
-3. **Demo lisan 7 menit** — *disampel*. Tiap gate, sekitar sepertiga kelas dipanggil, diundi di tempat saat sesi dimulai. Semua mahasiswa harus siap setiap gate; setiap mahasiswa dipanggil minimal sekali sepanjang semester. Yang tidak terpanggil dinilai dari repo dan CHANGELOG.
+3. **Video demo 5 menit**, diunggah ke YouTube sebagai *unlisted*, tautannya ditaruh di blok CHANGELOG gate tersebut. Isinya: aplikasi berjalan di perangkat/emulator, satu alur utama dijalankan penuh, lalu narasi singkat satu keputusan teknis yang Anda ambil.
 
-Butir "Macet" bukan formalitas. Gate yang jujur melaporkan kegagalan bernilai lebih tinggi daripada gate yang mengaku semuanya lancar lalu tidak bisa didemokan.
+   **Kualitas produksi tidak dinilai sama sekali.** Rekaman layar dengan suara sudah cukup. Tidak perlu editing, intro, musik, atau subtitle. Video yang rapi tapi aplikasinya tidak jalan bernilai lebih rendah daripada rekaman seadanya yang aplikasinya jalan.
+
+Selain ketiganya, ada **tanya jawab di kelas** pada sesi praktikum setelah tenggat, sebanyak waktu yang tersedia. Pertanyaan diambil dari video dan commit Anda sendiri. Siapa yang ditanya tidak diumumkan sebelumnya.
+
+Butir "Macet" bukan formalitas. Gate yang jujur melaporkan kegagalan bernilai lebih tinggi daripada gate yang mengaku semuanya lancar lalu tidak terbukti di video.
+
+Empat video ini juga menjadi rekam jejak yang bisa Anda pakai melamar kerja: perkembangan satu aplikasi dari layar kosong sampai rilis, dinarasikan sendiri oleh pembuatnya. Itu lebih meyakinkan daripada satu video final yang mengilap.
 
 ## Syarat Masuk Gate
 
@@ -65,7 +71,7 @@ Empat dimensi yang sama sepanjang semester, dengan tuntutan yang naik. Anda bisa
 
 Tiap dimensi dinilai 4 tingkat: **belum (0) · sebagian (1) · memenuhi (2) · melampaui (3)**. Nilai gate = rata-rata empat dimensi.
 
-Satu aturan yang berlaku di atas semua angka: **kalau Anda tidak bisa menjelaskan kode Anda sendiri saat ditanya, dimensi Arsitektur dan Ketahanan otomatis nol.** Ini berlaku terlepas dari siapa atau apa yang menulis kodenya.
+Satu aturan yang berlaku di atas semua angka: **kalau Anda tidak bisa menjelaskan kode Anda sendiri saat ditanya, dimensi Arsitektur dan Ketahanan turun satu tingkat penuh.** Ini berlaku terlepas dari siapa atau apa yang menulis kodenya. Gugup bukan masalah dan tidak dihitung; yang dinilai adalah apakah Anda mengenali kode itu, bukan apakah Anda lancar berbicara.
 
 ## Aturan AI
 
@@ -103,4 +109,4 @@ Butir 4 yang paling berguna. Proposal yang semua bagiannya sudah dikuasai penuli
 | Peer code review | 5% | dua siklus, menempel pada G1 dan G3 |
 | AI Integration Portfolio | 5% | dikumpulkan dari butir AI keempat CHANGELOG, tanpa dokumen tambahan |
 | UTS | 15% | live coding + demo progres capstone sampai G1 |
-| UAS | 20% | presentasi + demo final, wajib bagi semua |
+| UAS | 20% | video presentasi final + demo dan tanya jawab di kelas |
