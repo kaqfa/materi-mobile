@@ -1,0 +1,82 @@
+# Moodle — Bank Soal & Aktivitas PPB 20251
+
+> **Status:** v1.0. Sumber teks soal: `bank_soal.py` (+ generator `build_moodle_xml.py`).
+> **Untuk:** dosen/admin kelas.
+
+## Isi direktori
+
+| Berkas | Fungsi |
+|---|---|
+| `bank_soal.py` | **Sumber kebenaran teks soal** (140 soal = 14 pertemuan × 10). Kunci selalu opsi pertama; validator menjaga panjang kunci ≤ semua distraktor. |
+| `build_moodle_xml.py` | Generator + validator. Output XML (di `build/`, tergitignore) & kunci dosen. |
+| `pack_starters.py` | Zip tiap starter `../starter-code/pNN-*` → `build/starter-zips/starter-pNN-*.zip` untuk diunggah ke Moodle (bukan via link repo). |
+| `build/Moodle-Question-Bank.xml` | Hasil build untuk di-import (dibangun ulang via script). |
+| `build/starter-zips/` | Zip starter per pertemuan, siap unggah sebagai aktivitas **File** (dibangun ulang via script). |
+| `Kunci-Jawaban.md` | **Dokumen dosen** — kunci + penjelasan per soal. Jangan diunggah ke ruang mahasiswa. |
+| `activities/` | Daftar aktivitas Moodle per pertemuan (P01–P16), teks siap copas. |
+
+## Kategori question bank
+
+| Kategori Moodle | Soal | Dipakai untuk |
+|---|---:|---|
+| `PPB/P01` … `PPB/P07` | 10 × 7 | Quiz unlock minggu 1–7 |
+| `PPB/P09` … `PPB/P15` | 10 × 7 | Quiz unlock minggu 9–15 |
+| **Total** | **140** | P08 (UTS) & P16 (UAS) tidak ber-quiz |
+
+Semua soal `multichoice`, satu jawaban benar, `shuffleanswers` aktif, `penalty` 0, bobot 1.
+
+## Build ulang
+
+```bash
+python3 build_moodle_xml.py
+```
+
+Zip starter siap unggah:
+
+```bash
+python3 pack_starters.py
+```
+
+Skrip memvalidasi sebelum menulis: tepat 10 soal/pertemuan, 4 opsi, satu kunci, opsi unik,
+dan **panjang teks kunci ≤ setiap distraktor** (mencegah jawaban benar tertebak dari panjangnya).
+Import ulang ke kategori yang sama = **menambah** soal baru, bukan menimpa; hapus soal lama dulu bila mengganti.
+
+## Distribusi starter code (kebijakan)
+
+- Starter **tidak dibagikan via URL repo/GitHub** — di-zip per pertemuan (`pack_starters.py`) dan diunggah ke section minggunya sebagai aktivitas **File**.
+- Restrict access tiap file starter: **Grade ≥ 80% pada quiz pertemuan sebelumnya** — mahasiswa membuka starter P0N setelah lulus Quiz P0(N−1). Pengecualian: starter P01 terbuka sejak awal; starter P09 dibuka Quiz P07 (P08 = UTS, tanpa quiz).
+- Zip berisi folder `pNN-<slug>/` (lib, pubspec, test, README), tanpa `.dart_tool`/`.flutter-plugins*`; `pubspec.lock` ikut agar dependensi deterministik.
+- Rebuild zip setelah revisi starter, lalu hapus+unggah ulang file di Moodle (Moodle tidak menimpa berkas lama otomatis).
+
+## Import ke Moodle
+
+1. Course → **Question bank** → **Import** → format **Moodle XML format** → unggah `build/Moodle-Question-Bank.xml`.
+2. Biarkan **"Get category from file"** tercentang → 14 kategori `PPB/PXX` terbentuk otomatis.
+3. Cek ringkasan "140 questions imported".
+
+## Menyusun quiz unlock per minggu
+
+Mengikuti kebijakan `../penugasan/README.md` (quiz = syarat masuk gate, tanpa bobot nilai):
+
+1. **Add an activity → Quiz**, nama: `Quiz P0N — <topik>` (lihat `activities/P0N-*.md`).
+2. **Timing**: tanpa batas waktu. **Layout**: satu halaman disarankan.
+3. **Grade**: *Attempts allowed* = **Unlimited**, *Grading method* = **Highest grade**, *Grade to pass* = **8** (dari 10).
+4. **Question behaviour**: *Shuffle within questions* = Yes.
+5. **Review options**: tampilkan *Whether correct* + *General feedback* **hanya setelah attempt ditutup** — mahasiswa belajar dari umpan balik tanpa menyalin kunci saat unlimited attempt.
+6. **Edit quiz → Add → from question bank** → kategori `PPB/P0N` → tambahkan semua 10 soal (total nilai 10).
+
+## Mengaktifkan gerbang (restrict access)
+
+Pada aktivitas **minggu berikutnya** (mis. materi P10 atau gate G2):
+
+1. **Edit settings → Restrict access → Add restriction → Grade**.
+2. Pilih quiz minggu sebelumnya, **must be ≥ 80** (%).
+3. Klik ikon mata agar syarat terlihat (mahasiswa tahu apa yang membuka).
+
+Rantai yang dituju: quiz P0N ≥ 80% membuka materi P(N+1); akumulasi quiz menjadi syarat masuk gate capstone (G1 P07, G2 P10, G3 P13, G4 P15) sesuai `../penugasan/README.md`.
+
+## Catatan integritas
+
+- Attempt tak terbatas disengaja (tujuan penguasaan); pengacakan opsi mengurangi hafalan posisi.
+- Semester berikutnya: perbesar pool soal per kategori lalu pakai **Random question**, bukan 10 soal tetap.
+- `Kunci-Jawaban.md` dan folder `solution-reference` di starter-code = dokumen dosen; jangan pernah ikut dipublikasikan di course.
