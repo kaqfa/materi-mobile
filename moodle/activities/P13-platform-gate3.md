@@ -20,7 +20,7 @@ Deskripsi:
 **4. Peer Review siklus 2** (Assignment, bagian 5%)
 Deskripsi:
 
-> Review repo satu teman (beda dari siklus 1), fokus lapisan data, error handling, dan test. Format sama: 3 hal baik, 2 masalah konkret, 1 saran. Form: lampiran `peer-review/README.md`.
+> Review repo satu teman (beda dari siklus 1), fokus lapisan data, error handling, dan test. Format sama: tiga butir (1 hal bagus, 1 hal yang akan menyusahkan, 1 pertanyaan). Form: lampiran `peer-review/README.md`.
 
 **5. Quiz P13 — Device & Permission** (Quiz, kategori `PPB/P13`)
 Deskripsi:

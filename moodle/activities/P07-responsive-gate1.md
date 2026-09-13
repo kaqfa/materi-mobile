@@ -20,7 +20,7 @@ Deskripsi:
 **4. Peer Review siklus 1** (Assignment, bagian 5%)
 Deskripsi:
 
-> Review repo satu teman: 3 hal yang berfungsi baik, 2 masalah konkret (sebut file/baris), 1 saran prioritas. Form: lampiran `peer-review/README.md`.
+> Review repo satu teman, fokus fungsionalitas inti G1. Format: tiga butir (1 hal bagus, 1 hal yang akan menyusahkan, 1 pertanyaan). Form: lampiran `peer-review/README.md`.
 
 **5. Quiz P07 — Responsif & Adaptive** (Quiz, kategori `PPB/P07`)
 Deskripsi:

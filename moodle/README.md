@@ -1,6 +1,7 @@
 # Moodle — Bank Soal & Aktivitas PPB 20251
 
-> **Status:** v1.0. Sumber teks soal: `bank_soal.py` (+ generator `build_moodle_xml.py`).
+> **Status:** v1.1 (2026-09-14) — course Kulino (id=21) **sudah dibangun penuh secara otomatis**;
+> lihat [Status deployment](#status-deployment-kulino) untuk yang sudah jadi vs langkah manual tersisa.
 > **Untuk:** dosen/admin kelas.
 
 ## Isi direktori
@@ -24,6 +25,8 @@
 | **Total** | **140** | P08 (UTS) & P16 (UAS) tidak ber-quiz |
 
 Semua soal `multichoice`, satu jawaban benar, `shuffleanswers` aktif, `penalty` 0, bobot 1.
+Setiap soal ber-tag: `ppb-20251`, kode pertemuan (`p01`…), dan tag topik kebab-case —
+digenerate `build_moodle_xml.py`, dipakai memfilter soal di question bank.
 
 ## Build ulang
 
@@ -50,6 +53,10 @@ Import ulang ke kategori yang sama = **menambah** soal baru, bukan menimpa; hapu
 
 ## Import ke Moodle
 
+> ✅ **Sudah dikerjakan (2026-09-13/14)**: 140 soal versi ber-tag ter-import, kategori `PPB/P01`–`PPB/P15`
+> terbentuk di bank course (10 soal/kategori), 14 quiz masing-masing menarik 10 soal dari kategorinya.
+> Instruksi di bawah untuk re-import/semester berikutnya.
+
 1. Course → **Question bank** → **Import** → format **Moodle XML format** → unggah `build/Moodle-Question-Bank.xml`.
 2. Biarkan **"Get category from file"** tercentang → 14 kategori `PPB/PXX` terbentuk otomatis.
 3. Cek ringkasan "140 questions imported".
@@ -62,8 +69,10 @@ Mengikuti kebijakan `../penugasan/README.md` (quiz = syarat masuk gate, tanpa bo
 2. **Timing**: tanpa batas waktu. **Layout**: satu halaman disarankan.
 3. **Grade**: *Attempts allowed* = **Unlimited**, *Grading method* = **Highest grade**, *Grade to pass* = **8** (dari 10).
 4. **Question behaviour**: *Shuffle within questions* = Yes.
-5. **Review options**: tampilkan *Whether correct* + *General feedback* **hanya setelah attempt ditutup** — mahasiswa belajar dari umpan balik tanpa menyalin kunci saat unlimited attempt.
+5. **Review options**: *Whether correct* + *General feedback* ditampilkan **hanya setelah attempt ditutup**; *Right answer* **tidak pernah** — mahasiswa belajar dari umpan balik tanpa menyalin kunci saat unlimited attempt.
 6. **Edit quiz → Add → from question bank** → kategori `PPB/P0N` → tambahkan semua 10 soal (total nilai 10).
+
+> ✅ 14 quiz sudah dibuat + config terverifikasi (task-009: 14/14 cocok).
 
 ## Mengaktifkan gerbang (restrict access)
 
@@ -74,6 +83,31 @@ Pada aktivitas **minggu berikutnya** (mis. materi P10 atau gate G2):
 3. Klik ikon mata agar syarat terlihat (mahasiswa tahu apa yang membuka).
 
 Rantai yang dituju: quiz P0N ≥ 80% membuka materi P(N+1); akumulasi quiz menjadi syarat masuk gate capstone (G1 P07, G2 P10, G3 P13, G4 P15) sesuai `../penugasan/README.md`.
+
+> ✅ Rantai 13/13 terpasang & terverifikasi (starter P0N ← quiz P0(N−1) ≥80%, syarat visible/showc; P01 terbuka, P09 ← Quiz P07).
+
+## Status deployment Kulino (2026-09-14)
+
+Course `id=21`, audit penuh di `.kanban-evidence/task-009/` (matrix 69/69 aktivitas ada).
+
+**Sudah dikerjakan otomatis:**
+
+- [x] 16 section P01–P16 + summary per `activities/PXX-*.md`; duplikat/section kosong dibersihkan (17 section final)
+- [x] Import 140 soal ber-tag (14 kategori `PPB/PXX`) — versi lama tanpa tag sudah dihapus dulu
+- [x] 14 quiz P0N + config standar (unlimited/highest/pass 8/shuffle/no time limit/1 halaman)
+- [x] Aktivitas non-quiz: 14 URL materi, 14 File starter zip, Forum, Choice, Feedback P16
+- [x] Assignment: Tugas P02/P03/P04, gate G1–G4, UTS, UAS (brief penugasan terlampir)
+- [x] Peer review P07 & P13 (format tiga butir) + attach form
+- [x] Restrict access berantai 13/13 (quiz → starter minggu berikutnya)
+- [x] Aktivitas semester lama di-hide; section minggu mendatang hidden (P01–P02 visible)
+
+**Langkah manual tersisa (dosen):**
+
+- [ ] Import/isi kalender — event deadline gate G1–G4, UTS, UAS ke kalender course (bisa dari kalender Kulino atau import `.ics`)
+- [ ] Pengaturan gradebook — kategori & bobot sesuai `../penugasan/README.md`: Weekly 15%, Capstone 40%, Peer review 5%, UTS 15%, UAS 20%, AI portfolio 5% (quiz = 0, hanya syarat gate)
+- [ ] Buka section tiap minggu berjalan (Eye icon) — saat ini P03+ hidden by design
+- [ ] `git push` repo ini ke GitHub (manual oleh user)
+- [ ] Bila starter code direvisi: rebuild zip (`python3 pack_starters.py`) lalu hapus+unggah ulang File starter terkait
 
 ## Catatan integritas
 

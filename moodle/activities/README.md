@@ -33,9 +33,18 @@ Siap copas. Tiap file = satu pertemuan: summary section + daftar aktivitas denga
 
 ## Checklist dosen awal semester
 
-1. Import bank soal (140 soal, 14 kategori).
-2. Jalankan `python3 ../pack_starters.py`; unggah zip per section + set restrict.
-3. Buat 16 section, tempel summary + aktivitas per file.
-4. Set quiz config + restrict berantai.
-5. Lampirkan brief penugasan ke assignment terkait.
-6. Sembunyikan section minggu mendatang sampai minggu berjalan.
+Status per 2026-09-14 — pengerjaan otomatis sudah selesai (audit: `.kanban-evidence/task-009/`, matrix 69/69):
+
+1. ~~Import bank soal (140 soal, 14 kategori).~~ ✅ done — 140 soal ber-tag, kategori `PPB/P01`–`PPB/P15`
+2. ~~Jalankan `python3 ../pack_starters.py`; unggah zip per section + set restrict.~~ ✅ done — 14 zip terunggah, restrict 13/13 terpasang
+3. ~~Buat 16 section, tempel summary + aktivitas per file.~~ ✅ done — 17 section final (incl. General), aktivitas sesuai file PXX
+4. ~~Set quiz config + restrict berantai.~~ ✅ done — 14/14 config standar terverifikasi
+5. ~~Lampirkan brief penugasan ke assignment terkait.~~ ✅ done — P02/P03/P04, G1–G4, UTS/UAS, peer review P07/P13
+6. ~~Sembunyikan section minggu mendatang sampai minggu berjalan.~~ ✅ done — P01–P02 visible, sisanya hidden
+
+**Tersisa manual (di luar otomasi):**
+
+- [ ] Import/isi kalender course — deadline gate G1–G4, UTS, UAS
+- [ ] Gradebook: kategori + bobot nilai (lihat `../../penugasan/README.md`; quiz 0%)
+- [ ] Buka section tiap minggu berjalan
+- [ ] Push repo (manual user)

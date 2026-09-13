@@ -66,6 +66,13 @@ def fmt(text: str) -> str:
     return "".join(bagian)
 
 
+def slug_judul(judul: str) -> str:
+    """Tag topik dari judul pertemuan: lowercase, kebab-case, <=40 char."""
+    s = judul.lower()
+    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+    return s[:40].rstrip("-")
+
+
 def question_xml(kode: str, nomor: int, pertanyaan: str, opsi: tuple[str, ...], umpan: str) -> str:
     kunci, *salah = opsi
     jawaban = "".join(
@@ -91,6 +98,11 @@ def question_xml(kode: str, nomor: int, pertanyaan: str, opsi: tuple[str, ...], 
         "    <shuffleanswers>true</shuffleanswers>\n"
         "    <answernumbering>abc</answernumbering>\n"
         f"    {jawaban}\n"
+        "    <tags>\n"
+        f"      <tag><text>{html.escape(kode.lower())}</text></tag>\n"
+        f"      <tag><text>{html.escape(slug_judul(JUDUL[kode]))}</text></tag>\n"
+        f"      <tag><text>ppb-20251</text></tag>\n"
+        "    </tags>\n"
         "  </question>\n"
     )
 
