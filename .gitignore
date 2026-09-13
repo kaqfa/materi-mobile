@@ -23,3 +23,18 @@ __pycache__/
 
 # Moodle XML hasil build (sumber: generator script)
 moodle/build/
+.kanban-evidence/
+.pi-status/
+.pi-logs/
+
+# Skrip otomasi Kulino sekali-pakai (lokal; yang reusable: kulino_client.py, probe_lib.py)
+/.tmp_*
+/.stage*/
+/.stage*.*
+/.fix_*
+/.cleanup_*
+/.import_*
+/.make_board.py
+/.probe_kulino.py
+/.ws_test.py
+/.moodle_plan.json
