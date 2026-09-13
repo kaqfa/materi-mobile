@@ -470,6 +470,14 @@ if (epoch != _epoch) return;             // buang hasil basi
 order=created_at.desc,id.desc            // urutan stabil + pemecah seri
 ```
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** menanyakan cara membaca hasil profil yang belum Anda pahami, dan meminta penjelasan kenapa sebuah widget dibangun ulang.
+
+**Tulis sendiri:** memutuskan apa yang dioptimalkan. Optimasi tanpa pengukuran adalah tebakan yang menambah kerumitan; AI tidak bisa mengukur aplikasi Anda dan karenanya tidak bisa tahu apa yang lambat. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI mengoptimalkan satu layar Anda tanpa memberinya data profil. Catat sarannya, lalu ukur layar itu sungguhan. Bandingkan: berapa banyak saran yang menyentuh bagian yang benar-benar lambat? Latihan ini sekali saja biasanya cukup mengubah kebiasaan seseorang soal optimasi selamanya.
+
 ## Referensi Lanjutan
 
 - Kerangka ukur-diagnosis-perbaiki dan daftar praktik resmi: https://docs.flutter.dev/perf

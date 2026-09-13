@@ -596,6 +596,14 @@ await db.transaction((txn) async {
 
 Versi skema berkas bisa dicek kapan saja: `await db.getVersion()`.
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** menanyakan sintaks SQL yang jarang dipakai, dan meminta penjelasan kenapa sebuah kueri lambat.
+
+**Tulis sendiri:** merancang skema dan rencana migrasi. Skema yang salah masih bisa diperbaiki minggu ini, tetapi migrasi yang salah merusak data pengguna yang sudah terpasang, dan itu tidak bisa ditarik kembali. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI menulis migrasi dari skema Anda sekarang ke skema yang menambah satu kolom. Periksa dua hal: apakah ia menangani pengguna yang melompati versi, dan apakah ia menghapus data yang sudah ada. Jalankan pada salinan basis data yang sudah berisi baris, bukan pada basis data kosong. Kebanyakan migrasi yang salah terlihat benar pada basis data kosong.
+
 ## Referensi Lanjutan
 
 - Dokumentasi paket `sqflite`, termasuk dukungan platform dan opsi `openDatabase`: https://pub.dev/packages/sqflite

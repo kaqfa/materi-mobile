@@ -619,6 +619,14 @@ flutter symbolize -d build/symbols   # membaca trace terobfuscate
 flutter install --release --flavor dev
 ```
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** menyusun draf README, catatan rilis, dan deskripsi aplikasi, lalu Anda periksa dan betulkan sendiri.
+
+**Tulis sendiri:** checklist keamanan rilis. Keputusan tentang apa yang boleh masuk ke berkas rilis, kunci apa yang tidak boleh ikut, dan data apa yang dikumpulkan aplikasi adalah tanggung jawab hukum Anda, bukan tanggung jawab alat. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI meninjau `build.gradle.kts` dan konfigurasi rilis Anda, cari rahasia yang tertinggal. Perlakukan hasilnya sebagai daftar kecurigaan, bukan vonis: periksa sendiri setiap temuannya, dan periksa juga riwayat commit, karena kunci yang sudah dihapus dari berkas masih hidup di sana. AI membaca keadaan sekarang, bukan riwayatnya.
+
 ## Referensi Lanjutan
 
 - Panduan deployment Android resmi Flutter (Kotlin DSL, signing, R8): https://docs.flutter.dev/deployment/android

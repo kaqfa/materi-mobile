@@ -89,19 +89,31 @@ graph LR
 
 Semua bab berstatus `published` di frontmatter. Revisi berjalan inkremental (perbaikan kecil per bab).
 
-### Gap modul vs RPS (perlu direvisi/dilengkapi)
+### Pemetaan RPS ↔ Bab
 
-| Topik RPS | Bab buku saat ini | Catatan |
-|---|---|---|
-| P07 — Responsive & Adaptive Layouts | tidak ada bab khusus (mungkin sebagian di bab 5/6) | audit & lengkapi |
-| P09 — Supabase sebagai backend contoh | bab 9 REST API (backend generik?) | samakan contoh ke Supabase |
-| P10 — Real-time sync (WebSocket/background sync) | bab 10 offline-first (sync lokal↔server ada, realtime?) | cek cakupan |
-| P11 — BLoC/Riverpod sebagai pembanding | index buku eksplisit "tidak dibahas" | keputusan: tambah pembanding singkat vs sesuaikan penekanan RPS |
-| AI Integration per pertemuan (kolom RPS) | belum ada di bab buku | tambah blok AI per bab sesuai fase |
+Bab buku tidak 1:1 dengan pertemuan; sejak P11 penomorannya bergeser satu langkah. Tabel ini acuannya.
 
-Status: ⬜ belum · 🚧 draf · ✅ siap publish
+| Pertemuan RPS | Topik | Bab | Status |
+|---|---|---|---|
+| P01–P06 | Dart, widget, build system, Material 3, custom widget | 01–06 | ✅ |
+| P07 | Responsive & adaptive layout | 05 (Checkpoint 2–3) | ✅ |
+| P09 | API integration (Supabase via REST) | 09 | ✅ |
+| P10 | Real-time & advanced API | 10 | ✅ |
+| P11 | Advanced state management | 07 (bagian "Arah Setelah Provider") | ✅ |
+| P12 | Testing & QA | 11 | ✅ |
+| P13 | Platform features | 12 | ✅ |
+| P14 | Performance optimization | 13 | ✅ |
+| P15 | Deployment | 14 | ✅ |
 
----
+Semua gap hasil audit sudah ditutup; riwayat temuan dan alasan tiap keputusan tersimpan di [`AUDIT-Gap-Modul-vs-RPS.md`](AUDIT-Gap-Modul-vs-RPS.md). Blok **"Bekerja dengan AI di Bab Ini"** kini ada di keempat belas bab.
+
+Yang masih terbuka di repo: `starter-code/`, bank soal `moodle/`, dan penyederhanaan `Standar Pengembangan Materi PPB.md`.
+
+## Penilaian
+
+Capstone **individual** sepanjang semester, empat gate berjarak tiga minggu (P07, P10, P13, P15). Bentuk penyerahan tiap gate identik: tag di repo, satu blok `CHANGELOG.md`, dan video demo lima menit. Tidak ada laporan terpisah.
+
+Aturan AI: pembatasan hanya di tugas individu P02–P03; di capstone AI bebas dipakai tetapi wajib dideklarasikan, dan diverifikasi lewat demo. Rincian di [`penugasan/`](penugasan/README.md).
 
 ## Konvensi
 

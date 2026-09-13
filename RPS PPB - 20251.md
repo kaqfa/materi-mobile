@@ -149,8 +149,8 @@ Mata kuliah ini dirancang dengan pendekatan incremental development melalui caps
 - Android Studio / VS Code
 - Git version control
 - Postman untuk API testing
-- Firebase services
-- AI Coding Assistants (GitHub Copilot, ChatGPT)
+- Supabase (backend contoh, diakses lewat REST)
+- AI Coding Assistants (GitHub Copilot, Claude, ChatGPT)
 
 ### **Perangkat Keras:**
 - Komputer/laptop dengan spesifikasi minimum
@@ -269,18 +269,18 @@ Mata kuliah ini dirancang dengan pendekatan incremental development melalui caps
 - **Praktikum**: Mahasiswa mengintegrasikan StudyTracker dengan Supabase backend melalui pure REST API calls menggunakan http package. Praktikum dimulai dengan setup Supabase project, konfigurasi database tables (tasks, users), dan implementasi authentication flow dengan email/password. Mahasiswa belajar HTTP methods (GET, POST, PUT, DELETE) untuk CRUD operations, proper header management dengan API keys dan JWT tokens, dan error handling untuk different HTTP status codes (200, 401, 403, 404, 422). Implementasi mencakup SupabaseService class dengan methods untuk signIn, signUp, getAllTasks, createTask, updateTask, dan deleteTask. Practical exercise meliputi testing API calls dengan Postman, handling network errors dengan try-catch blocks, dan implementing loading states untuk better UX. AI assistance digunakan untuk optimizing API call patterns dan batch operations.
 
 ### **Pertemuan 10: Real-time Features & Advanced API Integration**
-- **Materi**: WebSocket implementation, Firebase services, **CAPSTONE:** Real-time features integration
+- **Materi**: Sinkronisasi dua arah, pemicu real-time (Supabase Realtime/WebSocket), **CAPSTONE:** Real-time features integration
 - **Sub-CPMK**: Sub-CPMK53.2
 - **Kemampuan Akhir**: Mampu mengintegrasikan data persistence dan API eksternal dalam aplikasi mobile
 - **Indikator**: Advanced API integration dengan real-time features
 - **Bentuk Pembelajaran**: Kuliah, Praktikum
 - **Metode**: Pembelajaran Berbasis Proyek
-- **Tugas**: WebSocket/Firebase integration
+- **Tugas**: Sinkronisasi offline-first + pemicu real-time
 - **AI Integration**: Architecture design feedback dari AI
-- **Praktikum**: Mahasiswa mengimplementasikan data synchronization antara local SQLite database dan Supabase server dengan conflict resolution strategies. Real-time integration workshop fokus pada offline-first approach dimana app tetap functional tanpa internet connection dan sync data ketika connection restored. Praktikum mencakup implementasi sync service yang menghandle: pending local changes upload ke server, server changes download ke local, conflict resolution untuk simultaneous edits, dan sync status indicators untuk user feedback. Mahasiswa juga belajar background sync menggunakan WorkManager untuk periodic data synchronization, handling authentication token refresh, dan implementing retry mechanisms untuk failed requests. Advanced features include bulk operations untuk efisiensi, data pagination untuk large datasets, dan caching strategies untuk improved performance. AI digunakan untuk review architecture design dan suggesting optimal sync patterns.
+- **Praktikum**: Mahasiswa mengimplementasikan data synchronization antara local SQLite database dan Supabase server dengan conflict resolution strategies. Real-time integration workshop fokus pada offline-first approach dimana app tetap functional tanpa internet connection dan sync data ketika connection restored. Praktikum mencakup implementasi sync service yang menghandle: pending local changes upload ke server, server changes download ke local, conflict resolution untuk simultaneous edits, dan sync status indicators untuk user feedback. Mahasiswa juga belajar pemicu sinkronisasi di sisi aplikasi (pemulihan koneksi, pemicu manual, dan langganan perubahan server secara real-time), handling authentication token refresh, dan implementing retry mechanisms untuk failed requests. Advanced features include bulk operations untuk efisiensi, data pagination untuk large datasets, dan caching strategies untuk improved performance. AI digunakan untuk review architecture design dan suggesting optimal sync patterns.
 
 ### **Pertemuan 11: Advanced State Management**
-- **Materi**: BLoC/Riverpod patterns, Scalable architecture, **CAPSTONE:** State management refactoring
+- **Materi**: Arsitektur state yang scalable, BLoC/Riverpod sebagai pembanding, **CAPSTONE:** State management refactoring
 - **Sub-CPMK**: Sub-CPMK53.2
 - **Kemampuan Akhir**: Mampu mengintegrasikan data persistence dan API eksternal dalam aplikasi mobile
 - **Indikator**: State management architecture implementation
@@ -404,27 +404,25 @@ Mahasiswa memilih salah satu domain untuk dikembangkan sepanjang semester:
 
 ## AI INTEGRATION STRATEGY
 
-### **Progressive AI Limitation Timeline:**
+Tujuan strategi ini bukan mengurangi pemakaian AI, melainkan memastikan mahasiswa tetap menjadi pihak yang bertanggung jawab atas kode yang mereka serahkan. Aturan yang tidak dapat ditegakkan tidak dipakai, karena aturan semacam itu hanya mengajarkan mahasiswa menyembunyikan pemakaian AI, bukan mempertanggungjawabkannya.
 
-**Weeks 1-4 (Learning Phase):**
-- AI digunakan untuk syntax help dan concept explanation
-- Mandatory: Mahasiswa harus memahami setiap AI suggestion
-- Assessment: Quiz tentang pemahaman konsep yang di-generate AI
+### **Dua Rezim**
 
-**Weeks 5-8 (Restriction Phase):**
-- AI hanya untuk debugging assistance
-- Core logic harus ditulis manual
-- Assessment: Code review untuk memastikan original thinking
+**Rezim pembatasan — minggu 1–3, hanya pada tugas individu (P02 dan P03).**
+Tujuannya membangun refleks membaca dan menulis kode dari nol. AI boleh dipakai untuk sintaks, penjelasan konsep, dan menafsirkan pesan error; tidak boleh dipakai untuk menuliskan artefak yang diserahkan. Pembatasan ini dapat ditegakkan karena tugasnya kecil dan diverifikasi langsung: mahasiswa diminta mengubah karyanya sendiri di kelas, tanpa bantuan, dalam waktu terbatas.
 
-**Weeks 9-12 (Optimization Phase):**
-- AI untuk optimization dan architecture feedback
-- Mahasiswa design arsitektur sendiri dulu
-- Assessment: Architecture decision documentation
+**Rezim deklarasi — minggu 4–16, pada capstone project.**
+AI bebas dipakai dan pemakaiannya tidak mengurangi nilai sedikit pun. Sebagai gantinya berlaku tiga kewajiban:
 
-**Weeks 13-16 (Integration Phase):**
-- Free AI usage dengan mandatory documentation
-- Setiap AI interaction harus didokumentasikan
-- Assessment: AI usage reflection dan learning portfolio
+1. **Deklarasi.** Setiap gate capstone memuat catatan: bagian mana yang dibantu AI, satu prompt kunci apa adanya, dan apa yang diubah secara manual sesudahnya.
+2. **Pertanggungjawaban.** Mahasiswa yang tidak dapat menjelaskan kode yang ia serahkan kehilangan nilai pada dimensi arsitektur dan ketahanan, terlepas dari siapa atau apa yang menulis kode tersebut. Verifikasi dilakukan lewat video demo dan tanya jawab, bukan lewat pengawasan proses.
+3. **Penilaian kritis.** Mulai gate ketiga, mahasiswa wajib menunjukkan satu saran AI yang mereka tolak beserta alasan kekeliruannya pada konteks aplikasi mereka. Kemampuan menilai keluaran AI adalah keterampilan yang dituju mata kuliah ini, bukan kemampuan menghindarinya.
+
+**Yang dilarang hanya satu**: menyembunyikan pemakaian AI. Pemakaian yang tidak dideklarasikan diperlakukan sebagai pelanggaran akademik; pemakaian yang dideklarasikan tidak pernah menjadi masalah.
+
+### **Asesmen**
+
+AI Integration Portfolio (5%) tidak menuntut dokumen tersendiri. Nilainya dihimpun dari catatan deklarasi di setiap gate capstone dan refleksi penutup di gate terakhir.
 
 ### **Methodology Implementation:**
 

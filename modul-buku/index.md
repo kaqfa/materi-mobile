@@ -4,7 +4,7 @@ description: 'Pengantar bertahap pengembangan aplikasi mobile lintas platform de
 author: 'Kaqfa'
 coverImage: '/flutter-book-cover.png'
 publishDate: 2024-09-18
-updateDate: 2026-09-03
+updateDate: 2026-09-13
 category: 'Programming'
 difficulty: 'intermediate'
 tags: ['flutter', 'dart', 'mobile', 'programming']
@@ -32,7 +32,7 @@ Buku ini menuntun pembaca membangun aplikasi mobile untuk Android dan iOS dari n
 
 Seluruh bab implementasi memakai satu aplikasi acuan yang sama, semacam pencatat tugas dan jadwal belajar (Task/Study Tracker). Aplikasi ini tumbuh dari bab ke bab: awalnya hanya antarmuka statis, kemudian diberi state, penyimpanan lokal, koneksi ke API, dukungan offline, pengujian, dan akhirnya dibangun versi rilisnya. Dengan satu aplikasi yang terus berkembang, pembaca melihat bagaimana setiap konsep baru menempel pada kode yang sudah dikenal, bukan pada contoh yang berganti-ganti.
 
-Buku ini jujur soal cakupannya. Fokus utamanya adalah state management dengan Provider, penyimpanan lokal, REST API, pengujian, fitur perangkat umum seperti kamera dan lokasi, optimasi performa, dan deployment ke Play Store. Topik lanjutan seperti Riverpod, BLoC, push notification, dan internasionalisasi tidak dibahas sebagai materi inti; keduanya hanya disinggung sebagai pembanding arah pengembangan selanjutnya.
+Buku ini jujur soal cakupannya. Fokus utamanya adalah state management dengan Provider, penyimpanan lokal, REST API, pengujian, fitur perangkat umum seperti kamera dan lokasi, optimasi performa, dan deployment ke Play Store. Riverpod dan BLoC tidak diajarkan sebagai materi inti, tetapi dibahas sebagai pembanding berkode di bab 7 agar pembaca punya dasar memilih saat aplikasinya tumbuh. Push notification dan internasionalisasi tidak dibahas sama sekali.
 
 ## Prasyarat
 
@@ -54,6 +54,8 @@ Bab 1 dan 2 memakai contoh kecil berbasis teks agar fokus tertuju pada bahasanya
 ## Cara Menggunakan Buku Ini
 
 Baca secara berurutan pada penjelajahan pertama; urutan bab mengikuti ketergantungan konsep, dan bab-bab akhir memakai kode yang dibangun di bab sebelumnya. Setiap bab berisi penjelasan konsep, contoh terbimbing langkah demi langkah, dan ringkasan. Kerjakan contoh dengan mengetik sendiri, bukan menyalin-tempel, karena sebagian besar pembelajaran terjadi ketika compiler menolak kode Anda.
+
+Setiap bab ditutup blok "Bekerja dengan AI di Bab Ini": apa yang wajar didelegasikan ke AI untuk topik itu, apa yang sebaiknya Anda tulis sendiri, dan satu latihan menilai keluaran AI. Blok itu tidak mengatur kapan Anda boleh memakai AI, karena buku bisa dibaca kapan saja; aturan penilaian ada di LMS.
 
 Siapkan lingkungan kerja sejak awal: Flutter SDK, editor seperti VS Code atau Android Studio, dan emulator atau perangkat fisik untuk menjalankan aplikasi. Instruksi instalasi lengkap ada di dokumentasi resmi Flutter. Tiap bab diakhiri latihan konsep ringan untuk mengecek pemahaman; tugas terstruktur mata kuliah dikerjakan di LMS, bukan di buku ini.
 

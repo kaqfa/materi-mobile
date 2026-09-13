@@ -9,11 +9,11 @@ Panduan kerja untuk AI coding agent di repo materi perkuliahan **Pemrograman Mob
 | `RPS PPB - 20251.md` | **Sumber kebenaran kurikulum** (16 pertemuan, Sub-CPMK, penilaian, strategi AI) | ❌ Jangan ubah tanpa instruksi eksplisit user |
 | `modul-buku/` | **Modul utama** — buku "Pemrograman Mobile dengan Flutter" (14 bab, `.md`), salinan konten dari project web Astro (repo terpisah) | ✅ Area kerja utama |
 | `starter-code/` | [RENCANA] Starter/sample code Flutter per pertemuan | ✅ (belum ada, buat baru) |
-| `penugasan/` | Kalender penugasan + pemetaan bobot RPS (`README.md`); brief individu/capstone/peer-review menyusul | ✅ |
+| `penugasan/` | Kalender, pemetaan bobot, brief capstone G1–G4, tugas individu P02–P03, peer review | ✅ |
 | `moodle/` | [RENCANA] Question bank XML + generator script | ✅ (belum ada, buat baru) |
 | `Ujian/` | UTS/UAS (live coding, rubrik demo) | ✅ |
 | `modul-SA/` | Referensi paket remedial (struktur penugasan, aset Moodle) | ❌ Hanya baca |
-| `Standar Pengembangan Materi PPB.md` | Standar proses lama — **terlalu rumit, akan disederhanakan** | ⚠️ Jangan tambah kompleksitas |
+| `Standar Pengembangan Materi PPB.md` | Prinsip + alur kerja revisi, satu halaman | ⚠️ Jangan tambah kompleksitas |
 | `Standar Tutorial Koding PPB.md` | Standar aktif untuk format tutorial | Baca sebelum menulis modul |
 
 ## 2. Kebijakan Revisi Modul
@@ -23,7 +23,7 @@ Materi semester kemarin di `modul-buku/` **sudah cukup baik** — jangan rewrite
 1. **RPS 20251 = acuan capaian.** Bila isi bab menyimpang dari RPS (topik hilang, urutan beda, penekanan beda), bab tersebut perlu direvisi agar selaras.
 2. **Bab buku ≠ pertemuan 1:1.** Buku = materi belajar mandiri (14 bab); ritme kelas, praktikum, dan penilaian ikut RPS (16 pertemuan). Jangan paksa 1 bab = 1 pertemuan.
 
-Daftar gap modul vs RPS saat ini ada di `README.md` (section "Gap modul vs RPS") — kerjakan dari sana.
+Hasil audit gap beserta urutan pengerjaannya ada di `AUDIT-Gap-Modul-vs-RPS.md` — kerjakan dari tabel prioritas di sana. Peta pemetaan RPS ↔ bab ada di `README.md`.
 
 ## 3. Sumber Kebenaran & Prioritas
 
@@ -31,7 +31,7 @@ Saat menulis/merevisi konten, urutan kepatuhan:
 
 1. **RPS** — topik, Sub-CPMK, praktikum, dan batasan AI per pertemuan harus konsisten dengan RPS.
 2. **Standar Tutorial Koding** (Progressive Checkpoint pattern).
-3. **Standar Pengembangan Materi** — ambil prinsipnya saja (alignment RPS, kode teruji, kompleksitas progresif); abaikan pipeline outline→handout→modul 3-file yang berat. Buku multi-bab di `modul-buku/` menggantikan pipeline itu.
+3. **Standar Pengembangan Materi** — lima prinsip + alur kerja revisi + definisi selesai.
 4. Konvensi di file ini.
 
 Konflik antar dokumen? Ikuti yang lebih tinggi, lalu sebutkan konfliknya ke user.
@@ -103,7 +103,7 @@ Catatan: bab-bab lama mungkin belum mengikuti pola checkpoint penuh — saat rev
 ## 6. Flutter & Dart
 
 - Standar pengajaran: **Flutter stable + Dart 3, null safety aktif**. Contoh kode harus lolos `flutter analyze`.
-- Reference app: **StudyTracker** (task/study tracker) — dipakai dari bab 3 sampai 14. Backend contoh: **Supabase** via REST (`http`/`dio`), local DB: `sqflite` + `shared_preferences`, state: `setState` → Provider (BLoC/Riverpod hanya pembanding, sesuai RPS P11).
+- Reference app: **StudyTracker** (task/study tracker) — dipakai dari bab 3 sampai 14. Backend contoh: **Supabase** via REST (`http`/`dio`), local DB: `sqflite` + `shared_preferences`, state: `setState` → Provider (BLoC/Riverpod sebagai pembanding berkode di bab 7, sesuai RPS P11).
 - Baseline versi & catatan deployment mengikuti section "Baseline Versi" di `modul-buku/index.md`.
 - Struktur project contoh: `lib/models|services|screens|widgets|utils`.
 - **Mahasiswa boleh pakai stack apa pun** untuk tugas/capstone. Modul tetap mengajarkan Flutter; brief tugas & rubrik jangan melarang stack lain — nilai outcome (fungsionalitas, arsitektur, kualitas), bukan pilihan teknologi.
@@ -117,16 +117,17 @@ Catatan: bab-bab lama mungkin belum mengikuti pola checkpoint penuh — saat rev
 
 ## 8. Integrasi AI dalam Materi (dari RPS)
 
-Materi harus mencerminkan fase AI per periode:
+RPS memakai dua rezim, bukan timeline pembatasan per minggu:
 
-| Minggu | Kebijakan AI di materi/tugas |
-|---|---|
-| 1–4 | AI untuk syntax & konsep; mahasiswa wajib pahami setiap saran AI |
-| 5–8 | AI hanya debugging; core logic manual |
-| 9–12 | AI untuk optimasi & arsitektur; desain tetap manual dulu |
-| 13–16 | AI bebas + dokumentasi wajib (interaction log) |
+| Rezim | Berlaku di | Aturan |
+|---|---|---|
+| Pembatasan | tugas individu P02–P03 | AI untuk sintaks/konsep/error saja; artefak ditulis sendiri; diverifikasi lewat perubahan di kelas tanpa bantuan |
+| Deklarasi | capstone P04–P16 | AI bebas; wajib dideklarasikan di CHANGELOG tiap gate; diverifikasi lewat video + tanya jawab; mulai G3 wajib menunjukkan satu saran AI yang ditolak |
 
-Sertakan blok "AI Integration" di brief tugas bila relevan.
+Konsekuensi untuk penulisan materi:
+
+- **Di bab buku**: blok `## Bekerja dengan AI di Bab Ini` di akhir bab, sebelum "Referensi Lanjutan", 15–20 baris, tiga butir: apa yang wajar didelegasikan, apa yang harus ditulis manual, dan satu latihan konkret dari kode bab itu. **Jangan menyebut nomor minggu atau kebijakan penilaian** — bab dibaca kapan saja, termasuk saat mengulang.
+- **Di brief penugasan**: kebijakan yang terikat waktu dan nilai hidup di sini, bukan di buku.
 
 ## 9. Konvensi Umum
 
@@ -137,13 +138,13 @@ Sertakan blok "AI Integration" di brief tugas bila relevan.
 
 ## 10. Todo Repo
 
-- [ ] Audit gap modul vs RPS (daftar di README) — responsive/adaptive, Supabase, realtime, BLoC/Riverpod, blok AI per bab
+- [x] Audit gap modul vs RPS — hasil di `AUDIT-Gap-Modul-vs-RPS.md` (tindak lanjutnya kerjakan dari tabel prioritas di sana, bukan dari tabel gap README yang sudah usang)
 - [ ] Commit hasil konversi `.mdx` → `.md` + dokumen repo
-- [ ] Sederhanakan `Standar Pengembangan Materi PPB.md` jadi satu halaman ringkas
+- [x] Sederhanakan `Standar Pengembangan Materi PPB.md` jadi satu halaman ringkas
 - [ ] Setup `starter-code/` (template StudyTracker per bab)
 - [x] Kalender penugasan + pemetaan bobot RPS (`penugasan/README.md`)
-- [ ] Brief `penugasan/capstone/README.md` (panduan umum + bobot per milestone)
-- [ ] Brief tugas individu P02 + P03 (rubrik)
-- [ ] Brief milestone capstone M0 (proposal) — prioritas, dipakai P04
+- [x] Paket penugasan lengkap: `capstone/` (panduan + G1–G4), `individu/` (P02–P03), `peer-review/`
+- [x] Revisi modul sesuai audit: bab 05, 07, 09, 10 + blok AI di 14 bab
+- [x] RPS diselaraskan: Firebase/WorkManager dihapus, AI Strategy jadi dua rezim
 - [ ] Generator bank soal `moodle/`
-- [ ] Siapkan soal UTS di `Ujian/UTS/`
+- [x] Soal UTS live coding (5 berkas di `Ujian/UTS/`)

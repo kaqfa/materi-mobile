@@ -988,6 +988,14 @@ Info.plist          : NSCameraUsageDescription
 MethodChannel       : 'app.tracker/battery' - nama sama di 3 sisi
 ```
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** membaca dokumentasi izin per platform yang berubah-ubah antarversi, dan menanyakan paket mana yang masih terawat untuk kebutuhan Anda.
+
+**Tulis sendiri:** jalur kegagalan. Kamera tidak tersedia, izin ditolak permanen, lokasi dimatikan seluruh sistem: apa yang dilihat pengguna pada setiap keadaan itu adalah rancangan Anda, dan bagian inilah yang paling sering dilewatkan kode contoh. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI menulis pengambilan foto lengkap. Lalu hitung berapa keadaan dunia nyata yang ia tangani. Biasanya satu: jalan lancar. Tambahkan sendiri izin ditolak, izin ditolak permanen, dan perangkat tanpa kamera. Perbandingan jumlahnya adalah pelajaran bab ini.
+
 ## Referensi Lanjutan
 
 - Dokumentasi `image_picker`, termasuk bagian Android photo picker dan lost data: https://pub.dev/packages/image_picker

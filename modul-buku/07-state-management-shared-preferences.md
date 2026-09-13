@@ -23,6 +23,7 @@ parentBook: 'pemrograman-flutter'
 objectives:
   - 'Membedakan state lokal yang cukup ditangani setState dan app state yang dipakai bersama banyak layar'
   - 'Membangun ChangeNotifier sebagai satu sumber kebenaran dengan update immutable dan dependency injection lewat constructor'
+  - 'Menilai kapan berpindah ke Riverpod atau BLoC dengan membandingkan controller yang sama di ketiga pustaka'
   - 'Menghubungkan state ke widget tree dengan ChangeNotifierProvider serta Consumer, context.watch, dan context.read'
   - 'Mempersempit wilayah rebuild dengan Selector dan memilih mode akses yang tepat untuk data versus aksi'
   - 'Menyimpan preferensi nonrahasia dengan SharedPreferencesAsync dan mengujinya dengan store dalam memori'
@@ -69,7 +70,7 @@ Layar daftar memegang daftar, menyalin satu tugas ke layar detail lewat construc
 
 Solusinya strukturnya sederhana diucapkan: pindahkan kepemilikan data ke satu tempat di luar semua layar, beri tahu siapa pun yang peduli saat data berubah, dan biarkan layar menjadi pembaca murni. Flutter menyediakan mekanisme penyebaran data ke bawah widget tree sejak lama: `InheritedWidget`, widget yang bisa ditemukan lewat `context` oleh semua keturunannya, dan itulah fondasi yang dipakai `Theme.of(context)` sejak bab 5. Yang tidak disediakan adalah mekanisme pemberitahuan yang nyaman: `InheritedWidget` menyebarkan data, tetapi mendeteksi perubahan dan membangun ulang pendengar tetap pekerjaan manual. Paket `provider` mengisi kekosongan itu dengan menggabungkan `InheritedWidget` (penyebaran) dan `ChangeNotifier` (pemberitahuan) menjadi satu pola yang bisa ditulis dalam hitungan baris.
 
-Buku ini memakai `provider` sebagai satu-satunya pustaka state management inti. Riverpod dan BLoC adalah arah pengembangan yang sah setelahnya, keduanya menyelesaikan masalah yang lebih besar (dependency graph, event streaming), tetapi keduanya dibangun di atas keputusan yang sama: state terpusat, perubahan diberitahukan, UI bereaksi. Kuasai polanya di sini, alat berikutnya tinggal soal sintaks.
+Buku ini memakai `provider` sebagai satu-satunya pustaka state management inti. Riverpod dan BLoC adalah arah pengembangan yang sah setelahnya, keduanya menyelesaikan masalah yang lebih besar (dependency graph, event streaming), tetapi keduanya dibangun di atas keputusan yang sama: state terpusat, perubahan diberitahukan, UI bereaksi. Kuasai polanya di sini; bagian "Arah Setelah Provider" di akhir bab ini menunjukkan controller yang sama ditulis ulang dalam keduanya, supaya Anda bisa menilai sendiri apa yang Anda dapat dan apa yang Anda bayar.
 
 ## Checkpoint 1: ChangeNotifier dan Provider
 
@@ -457,6 +458,150 @@ Perhatikan pembagian tugas `watch` dan `read` di satu widget yang sama: `watch` 
 - Hapus aplikasi (bukan sekadar menutup): kembali ke "Sistem", file preferences ikut terhapus bersama aplikasi.
 - Di pengujian (proyek gate): `SharedPreferencesAsyncPlatform.instance = InMemorySharedPreferencesAsync.empty()` sebelum membangun aplikasi; pilih tema; `getString('themeMode')` pada store menunjukkan `'dark'`. Store dalam memori ini pula yang dipakai unit test `SettingsController` tanpa perangkat sama sekali.
 
+## Arah Setelah Provider
+
+Provider bukan akhir, dan bukan pula batu loncatan yang harus ditinggalkan. Ia adalah pilihan yang tepat untuk aplikasi seukuran Tracker, dan tetap tepat untuk banyak aplikasi yang jauh lebih besar. Tetapi Anda akan bertemu Riverpod dan BLoC di lowongan kerja, di kode warisan, dan di perdebatan yang tidak pernah selesai di internet. Bagian ini menulis ulang `TaskListController` yang sama dalam keduanya, supaya perbandingannya dilakukan atas dasar kode, bukan atas dasar selera.
+
+Aturan mainnya: fitur yang dibandingkan identik, jadi yang tersisa untuk dilihat hanyalah bentuknya.
+
+### Riverpod: provider sebagai grafik, bukan sebagai widget
+
+Keluhan paling sah terhadap `provider` adalah ketergantungannya pada `BuildContext`. Controller hanya bisa dijangkau dari tempat yang punya `context`, dan salah menaruh `Provider.of` di atas widget penyedianya menghasilkan error yang baru ketahuan saat dijalankan. Riverpod memindahkan penyediaan keluar dari widget tree: provider menjadi variabel global, dan siapa yang butuh tinggal membacanya.
+
+```dart
+// lib/state/task_list_provider.dart
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../models/task.dart';
+import '../models/task_repository.dart';
+
+/// Repository diisi saat aplikasi dirakit (override di ProviderScope),
+/// atau ditukar repository palsu di pengujian.
+final taskRepositoryProvider = Provider<TaskRepository>(
+  (ref) => throw UnimplementedError('override di ProviderScope'),
+);
+
+final taskListProvider =
+    AsyncNotifierProvider<TaskListNotifier, List<Task>>(TaskListNotifier.new);
+
+class TaskListNotifier extends AsyncNotifier<List<Task>> {
+  @override
+  Future<List<Task>> build() => ref.watch(taskRepositoryProvider).all();
+
+  Future<void> toggle(Task task) => save(task.copyWith(done: !task.done));
+
+  Future<void> save(Task task) async {
+    final repository = ref.read(taskRepositoryProvider);
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() async {
+      await repository.save(task);
+      return repository.all();
+    });
+  }
+}
+```
+
+Di layar:
+
+```dart
+ref.watch(taskListProvider).when(
+  loading: () => const Center(child: CircularProgressIndicator()),
+  error: (e, _) => Center(child: Text('Gagal memuat tugas: $e')),
+  data: (tasks) => TaskListView(tasks: tasks),
+);
+```
+
+Perhatikan apa yang **hilang** dari versi ini: `TaskListState`, `TaskListLoading`, `TaskListReady`, `TaskListError`, seluruh berkas `task_list_state.dart`, dan `notifyListeners()`. `AsyncValue` bawaan Riverpod sudah merupakan sealed class dengan tiga kemungkinan yang persis sama, dan `AsyncValue.guard` sudah membungkus try-catch yang kita tulis manual. Sealed class yang kita bangun sendiri di Checkpoint 1 bukan pekerjaan sia-sia, justru sebaliknya: karena Anda pernah menulisnya, Anda tahu apa yang sebenarnya diberikan `AsyncValue`, alih-alih menerimanya sebagai sihir.
+
+Yang Anda bayar: satu paket besar dengan kosakata sendiri (`ref`, `watch`, `read`, `ProviderScope`, `AsyncValue`, keluarga `Notifier`), dan provider global yang membuat "siapa memiliki apa" menjadi kurang kasatmata dibanding `MultiProvider` yang berdiri terang-terangan di `main.dart`.
+
+### BLoC: perubahan sebagai peristiwa yang bisa dicatat
+
+BLoC menolak gagasan bahwa UI memanggil metode. UI mengirim **peristiwa**, BLoC memancarkan **state**, dan tidak ada jalan lain di antara keduanya.
+
+```dart
+// lib/state/task_list_bloc.dart
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../models/task.dart';
+import '../models/task_repository.dart';
+import 'task_list_state.dart';
+
+sealed class TaskListEvent {}
+
+final class LoadRequested extends TaskListEvent {}
+
+final class TaskToggled extends TaskListEvent {
+  TaskToggled(this.task);
+
+  final Task task;
+}
+
+class TaskListBloc extends Bloc<TaskListEvent, TaskListState> {
+  TaskListBloc(this.repository) : super(TaskListLoading()) {
+    on<LoadRequested>(_onLoadRequested);
+    on<TaskToggled>(_onTaskToggled);
+  }
+
+  final TaskRepository repository;
+
+  Future<void> _onLoadRequested(
+    LoadRequested event,
+    Emitter<TaskListState> emit,
+  ) async {
+    try {
+      emit(TaskListReady(await repository.all()));
+    } catch (e) {
+      emit(TaskListError('Gagal memuat tugas: $e'));
+    }
+  }
+
+  Future<void> _onTaskToggled(
+    TaskToggled event,
+    Emitter<TaskListState> emit,
+  ) async {
+    await repository.save(event.task.copyWith(done: !event.task.done));
+    emit(TaskListReady(await repository.all()));
+  }
+}
+```
+
+Di layar, `context.read<TaskListBloc>().add(TaskToggled(task))` menggantikan pemanggilan metode, dan `BlocBuilder<TaskListBloc, TaskListState>` menggantikan `Consumer`.
+
+`TaskListState` bab ini dipakai apa adanya, tanpa satu baris pun berubah. Itu bukan kebetulan: sealed class state memang bentuk yang dituju BLoC, dan inilah bukti paling jelas bahwa keputusan di Checkpoint 1 sudah benar sejak awal.
+
+Yang Anda dapat: setiap perubahan state punya nama dan sebab yang terekam. Ketika ada laporan bug "datanya tiba-tiba kosong", Anda bisa mencatat urutan peristiwa dan memutarnya ulang. Provider tidak bisa melakukan itu, karena pada Provider penyebab perubahan adalah pemanggilan metode yang tidak meninggalkan jejak.
+
+Yang Anda bayar: satu class event untuk setiap hal yang bisa dilakukan pengguna. Tracker punya empat aksi, maka empat class. Aplikasi dengan tiga puluh aksi punya tiga puluh class, dan sebagian besar hanya membungkus satu argumen.
+
+### Perbandingan
+
+| | Provider | Riverpod | BLoC |
+|---|---|---|---|
+| Baris untuk fitur yang sama | paling sedikit | sedikit, sebagian digantikan bawaan | paling banyak |
+| Ketergantungan `BuildContext` | ya | tidak | ya, untuk mengirim peristiwa |
+| Salah pakai ketahuan saat | dijalankan | dikompilasi | dikompilasi |
+| Riwayat perubahan | tidak ada | tidak ada | ada, itu intinya |
+| Pengujian | suntik lewat constructor | override provider | kirim event, periksa urutan state |
+| Kosakata baru yang harus dipelajari | sedikit | banyak | sedang |
+| Cocok saat | state sedikit, kepemilikan jelas | banyak state saling bergantung | perubahan perlu dilacak atau dibatalkan |
+
+### Kapan Berpindah
+
+Jangan berpindah karena sebuah pustaka sedang populer. Berpindahlah ketika Anda menemui salah satu dari tiga tanda ini, dan tuliskan tandanya di catatan keputusan arsitektur Anda:
+
+1. **Beberapa bagian state saling bergantung**, dan Anda mulai memanggil `notifyListeners()` dari satu controller agar controller lain ikut menyesuaikan. Riverpod memang dibangun untuk ketergantungan semacam ini; `ProxyProvider` bisa, tetapi terasa seperti memaksa.
+2. **Anda perlu tahu kenapa state berubah**, bukan sekadar bahwa ia berubah: fitur batal-ulangi, jejak audit, atau bug yang hanya muncul pada urutan tindakan tertentu. Ini wilayah BLoC.
+3. **Tim Anda membesar** dan setiap orang meletakkan state di tempat yang berbeda. Kerangka yang lebih kaku membeli keseragaman dengan harga sedikit boilerplate, dan pada tim besar itu pertukaran yang menguntungkan.
+
+Kalau tidak satu pun dari ketiganya berlaku, Provider yang Anda tulis di bab ini sudah merupakan jawaban yang benar. Berpindah tanpa alasan hanya memindahkan kerumitan dari kepala Anda ke dalam `pubspec.yaml`.
+
+### Satu Hal yang Tidak Diselesaikan Ketiganya
+
+Tidak ada satu pun dari ketiga pustaka ini yang menyelamatkan state Anda ketika sistem operasi mematikan proses aplikasi di latar belakang, lalu pengguna kembali dan mengira aplikasinya masih terbuka. State di memori lenyap bersama proses, apa pun pustakanya.
+
+Yang menyelamatkannya adalah penyimpanan, dan itu topik Checkpoint 2 bab ini serta bab 8: apa pun yang tidak boleh hilang harus ditulis ke suatu tempat sebelum aplikasi kehilangan kesempatan. Pertanyaan yang benar bukan "pustaka mana yang menjaga state saya", melainkan "bagian mana dari state saya yang tidak boleh hilang".
+
 ## Batas Penyimpanan: Tiga Tempat yang Berbeda
 
 Satu kesalahan paling umum seputar penyimpanan lokal adalah memakai satu alat untuk semua pekerjaan. Tiga alat dalam buku ini punya wilayah masing-masing:
@@ -490,6 +635,7 @@ Dua jalur keluar dari controller: pemberitahuan ke UI (kanan atas) dan penulisan
 - `setState` tepat untuk state lokal satu widget; app state yang dipakai banyak layar butuh satu pemilik di luar widget tree.
 - `ChangeNotifier` adalah pemilik state: field privat, getter publik, perubahan lewat metode yang berakhir di `notifyListeners()`, update immutable lewat `copyWith`.
 - Repository dan preferences disuntikkan lewat constructor, dependency injection paling sederhana yang membuat controller bisa diuji dan implementasinya bisa ditukar.
+- Riverpod dan BLoC menyelesaikan masalah yang sama dengan bentuk berbeda: Riverpod melepas ketergantungan pada `BuildContext` dan menyediakan `AsyncValue` sebagai pengganti sealed state buatan sendiri; BLoC menukar boilerplate event dengan riwayat perubahan yang bisa dilacak. Berpindah hanya bila salah satu dari tiga tandanya muncul, bukan karena populer.
 - `ChangeNotifierProvider` menyambungkan controller ke widget tree lewat `InheritedWidget`; `MultiProvider` untuk lebih dari satu.
 - `Consumer`/`context.watch` untuk data, `context.read` untuk aksi, `Selector`/`context.select` untuk mempersempit rebuild; `watch` hanya di `build`, `read` hanya di aksi.
 - `SharedPreferencesAsync` untuk preferensi nonrahasia: nilai kecil, string nama enum, pembacaan balik defensif, UI diberi tahu sebelum disk. `SharedPreferences.getInstance()` adalah API lawas, bukan rekomendasi kode baru.
@@ -517,6 +663,14 @@ await prefs.remove('themeMode');
 ```
 
 Tipe yang didukung: `bool`, `int`, `double`, `String`, `List<String>`. Tipe lain (termasuk `DateTime` dan objek apa pun) harus diserialisasi dulu, dan bau serialisasi berulang adalah sinyal data itu seharusnya di database, bukan di preferences.
+
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** menanyakan perbedaan `Consumer`, `Selector`, dan `context.select`, dan meminta pembanding pustaka pengelolaan state untuk kasus Anda.
+
+**Tulis sendiri:** memutuskan di mana state Anda tinggal. Keputusan "state ini milik siapa" adalah inti bab ini dan inti arsitektur aplikasi Anda; AI tidak tahu bagian mana dari aplikasi Anda yang akan tumbuh. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI memindahkan satu layar Anda dari `setState` ke Provider. Lalu periksa satu hal: apakah ada widget yang membangun ulang padahal datanya tidak berubah. Perbaiki cakupan pendengarnya sendiri. Pemindahan yang benar secara sintaks sering kali salah secara cakupan, dan hanya terlihat kalau Anda memeriksanya.
 
 ## Referensi Lanjutan
 

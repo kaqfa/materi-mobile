@@ -4,11 +4,12 @@ Sumber kebenaran penugasan mata kuliah. Brief lengkap + rubrik dibuat di sini, d
 
 ## Filosofi
 
-1. **Tugas individu hanya di awal** (P02–P03): pastikan skill Dart/Flutter dasar tiap mahasiswa solid sebelum bebas memilih stack di capstone — mencegah free-rider terdeteksi terlambat.
-2. **Setelah P04, capstone mengambil alih**: pekerjaan mingguan mahasiswa = capstone incremental. Graded gate tiap ~2 minggu (sesuai "Quality Gates" RPS), progres antar-gate dicek ringan lewat commit.
-3. **Akuntabilitas mingguan lewat quiz kecil** (auto-grade Moodle, pola unlock quiz): memaksa belajar modul tanpa menambah beban penilaian manual.
-4. **Stack bebas**: mahasiswa boleh pakai bahasa/framework/tools apa pun untuk capstone (rubrik menilai outcome, bukan stack). Modul (`modul-buku/`) tetap Flutter.
-5. **Aturan AI mengikuti fase RPS**: P1–4 syntax/konsep · P5–8 debugging saja · P9–12 optimasi/arsitektur · P13–16 bebas + wajib interaction log.
+1. **Tugas individu hanya di awal** (P02–P03): pastikan skill Dart/Flutter dasar tiap mahasiswa solid sebelum bebas memilih stack di capstone.
+2. **Capstone individual, termasuk progresnya.** RPS tidak pernah menyebut tim; kolaborasi dipenuhi lewat peer review, bukan lewat pembagian kerja.
+3. **Yang dinilai repo, bukan laporan tentang repo.** Tidak ada dokumen penyerahan terpisah. Empat gate berjarak tiga minggu, bentuk penyerahannya identik: tag + satu blok CHANGELOG + video 5 menit.
+4. **Akuntabilitas mingguan lewat quiz unlock** (auto-grade Moodle): syarat masuk gate, bukan komponen nilai tersendiri.
+5. **Stack bebas**: mahasiswa boleh pakai bahasa/framework/tools apa pun untuk capstone (rubrik menilai outcome, bukan stack). Modul (`modul-buku/`) tetap Flutter.
+6. **AI: deklarasi, bukan larangan.** Pembatasan fase hanya di P02–P03 (tugas individu, bisa diverifikasi langsung). Di capstone AI bebas dipakai tetapi wajib dideklarasikan, dan diverifikasi lewat demo — bukan lewat aturan yang tidak bisa ditegakkan. Lihat `capstone/README.md`.
 
 ## Struktur Direktori
 
@@ -19,19 +20,13 @@ penugasan/
 │   ├── P02_Dart-OOP-Challenge.md
 │   └── P03_Flutter-Mini-App.md
 ├── capstone/
-│   ├── README.md             # panduan umum: domain, tim, stack bebas, quality gates
-│   ├── M0_Proposal.md        # P04
-│   ├── M1_UI-Foundation.md   # P05–P06 (UI Design System + Custom Widgets)
-│   ├── M2_Responsive.md      # P07
-│   ├── M3_Backend.md         # P09
-│   ├── M4_Offline-Sync.md    # P10
-│   ├── M5_State-Arch.md      # P11
-│   ├── M6_Testing-QA.md      # P12
-│   ├── M7_Native-Features.md # P13
-│   ├── M8_Release-Ready.md   # P14
-│   └── M9_Deploy-Final.md    # P15
+│   ├── README.md             # panduan umum: domain, gate, rubrik, aturan AI
+│   ├── G1_Fondasi.md         # P07 — UI + responsif
+│   ├── G2_Data.md            # P10 — REST + lokal + offline
+│   ├── G3_Arsitektur-Kualitas.md  # P13 — state + test + fitur perangkat
+│   └── G4_Rilis.md           # P15 — optimasi + signed build + dokumentasi
 └── peer-review/
-    └── README.md             # 3 siklus review + form
+    └── README.md             # 2 siklus review (menempel G1 & G3) + form
 ```
 
 ## Kalender Penugasan
@@ -41,35 +36,32 @@ penugasan/
 | P01 | Checklist environment + quiz diagnostik | individu | ❌ (gate masuk kelas) |
 | **P02** | **Dart OOP Challenge** — model domain Dart: class, inheritance, mixin, null safety | individu | ✅ |
 | **P03** | **Flutter Mini App** — app 3 screen: navigasi, StatefulWidget, setState | individu | ✅ |
-| P04 | Capstone **M0**: proposal (domain, wireframe, user flow, struktur folder) + initial structure | tim | ✅ gate |
-| P05–P06 | Capstone **M1**: UI foundation — design system, custom widget library | tim | progres |
-| P07 | Capstone **M2**: responsive showcase (3 konfigurasi layar) | tim | ✅ gate |
-| — | **UTS**: live coding 60' + demo StudyTracker + progress capstone | individu | ✅ 15% |
-| P09 | Capstone **M3**: backend integration sprint — REST API + auth + error handling | tim | ✅ gate |
-| P10 | Capstone **M4**: offline-first + sync + conflict resolution | tim | progres |
-| P11 | Capstone **M5**: refactor state management (arsitektur scalable) | tim | ✅ gate |
-| P12 | Capstone **M6**: test suite — unit + widget, coverage ≥70% | tim | ✅ gate |
-| P13 | Capstone **M7**: native features ≥2 (kamera/lokasi/sensor) + permission handling | tim | ✅ gate |
-| P14 | Capstone **M8**: profiling + optimasi + signed release build terdokumentasi | tim | ✅ gate |
-| P15 | Capstone **M9**: deployment prep + dokumentasi teknis + demo script | tim | ✅ gate |
-| — | **UAS**: presentasi 20' + technical demo + Q&A | tim+individu | ✅ 20% |
-| tiap minggu | Quiz unlock modul (Moodle, ~10 soal, unlimited attempt) | individu | ✅ kumulatif |
-| setelah M1, M3, M5 | Peer code review terstruktur (3 siklus) | individu | ✅ 5% |
+| P04 | Capstone: **Deklarasi Proyek** (1 halaman) | individu | ❌ syarat ikut G1 |
+| **P07** | Capstone **G1 — Fondasi**: UI utuh, navigasi, 3 konfigurasi layar | individu | ✅ 8% |
+| — | **UTS**: live coding 60' + demo StudyTracker + progres capstone | individu | ✅ 15% |
+| **P10** | Capstone **G2 — Data**: REST API + penyimpanan lokal + offline | individu | ✅ 10% |
+| **P13** | Capstone **G3 — Arsitektur & Kualitas**: state terpusat + test + ≥2 fitur perangkat | individu | ✅ 12% |
+| **P15** | Capstone **G4 — Rilis**: profiling + signed build + dokumentasi | individu | ✅ 10% |
+| — | **UAS**: video presentasi final + demo & Q&A di kelas | individu | ✅ 20% |
+| tiap minggu | Quiz unlock modul (Moodle, ~10 soal, unlimited attempt) | individu | ❌ syarat masuk gate |
+| sebelum G1 & G3 | Peer code review terstruktur (2 siklus) | individu | ✅ 5% |
 
-Progress antar-gate: demo singkat/commit check di praktikum (tidak masuk nilai terpisah, tapi syarat ikut gate berikutnya).
+Progres antar-gate tidak dinilai terpisah. Syarat masuk gate: ada commit di minimal tiga minggu berbeda sejak gate sebelumnya (dicek dari grafik contributor, bukan dari isi commit).
+
+Demo berbentuk **video 5 menit** (YouTube unlisted, tautan di CHANGELOG) dari semua mahasiswa tiap gate — bisa dinilai kapan saja dan tidak memakan jam praktikum. Kualitas produksi tidak dinilai. Tanya jawab dilakukan di kelas setelah tenggat, secukup waktu yang tersedia, dengan pertanyaan diambil dari video dan commit masing-masing.
 
 ## Pemetaan Bobot RPS
 
 | Komponen RPS | Bobot | Realisasi di sini |
 |---|---|---|
-| Weekly Assignments | 15% | 2 tugas individu (2×5%) + quiz mingguan (5%) |
-| Capstone Development | 40% | M0 (4%) + M1–M9 gates (proporsional, rincian di `capstone/README.md`) |
-| Peer Code Review | 5% | 3 siklus (`peer-review/README.md`) |
+| Weekly Assignments | 15% | 2 tugas individu (P02 + P03), masing-masing 7,5% |
+| Capstone Development | 40% | G1 8% + G2 10% + G3 12% + G4 10% (rincian di `capstone/README.md`) |
+| Peer Code Review | 5% | 2 siklus (`peer-review/README.md`) |
 | UTS | 15% | soal di `../Ujian/UTS/` |
 | UAS | 20% | presentasi final + `../Ujian/UAS/` |
-| AI Integration Portfolio | 5% | interaction log terkumpul dari tugas individu + capstone |
+| AI Integration Portfolio | 5% | butir "AI" di CHANGELOG tiap gate — tanpa dokumen tambahan |
 
-Pembagian internal (mis. 2×5% + 5%) = proposal awal, bisa disesuaikan sebelum P02.
+Quiz mingguan tidak lagi memegang bobot; fungsinya (memaksa baca modul) tetap tercapai sebagai syarat masuk gate, tanpa 16 ritual bernilai.
 
 ## Relasi ke 8 Assignment Resmi RPS
 
@@ -77,29 +69,32 @@ Pembagian internal (mis. 2×5% + 5%) = proposal awal, bisa disesuaikan sebelum P
 |---|---|---|
 | Dart OOP Challenge (Sub-CPMK53.1) | 3×50' | `individu/P02` |
 | Flutter Mini App (Sub-CPMK53.1) | 3×50' | `individu/P03` |
-| UI Design System (Sub-CPMK92.1) | 3×50' | capstone M1 |
-| Responsive Layout Showcase (Sub-CPMK92.1) | 3×50' | capstone M2 |
-| Backend Integration Sprint (Sub-CPMK53.2) | 3×50' | capstone M3 |
-| Release-Ready Build (Sub-CPMK53.2) | 3×50' | capstone M8 |
-| Native Feature Integration (Sub-CPMK92.2) | 3×50' | capstone M7 |
-| Quality Assurance Portfolio (Sub-CPMK92.2) | 3×50' | capstone M6 |
+| UI Design System (Sub-CPMK92.1) | 3×50' | capstone G1 |
+| Responsive Layout Showcase (Sub-CPMK92.1) | 3×50' | capstone G1 |
+| Backend Integration Sprint (Sub-CPMK53.2) | 3×50' | capstone G2 |
+| Native Feature Integration (Sub-CPMK92.2) | 3×50' | capstone G3 |
+| Quality Assurance Portfolio (Sub-CPMK92.2) | 3×50' | capstone G3 |
+| Release-Ready Build (Sub-CPMK53.2) | 3×50' | capstone G4 |
 
-Semua assignment capstone direalisasikan sebagai milestone tim — estimasi 3×50' per anggota.
+Delapan assignment RPS dipadatkan ke empat gate: G1 dan G3 masing-masing menampung dua assignment yang sejalan. Estimasi total tetap 3×50' per gate per mahasiswa.
 
 ## Aturan Umum Capstone (ringkas)
 
-- Tim 3–4 orang; domain salah satu dari: Local Business Solutions / EdTech / Health & Wellness (RPS).
+- **Individual**; domain salah satu dari: Local Business Solutions / EdTech / Health & Wellness (RPS).
 - Topik capstone **berbeda** dari StudyTracker (modul) — capstone menilai transfer of learning.
-- Stack bebas; keputusan teknologi didokumentasikan di proposal + dibenarkan saat gate.
-- Setiap anggota wajib bisa menjelaskan bagian mana pun saat demo (pertanyaan acak).
-- AI: ikuti fase RPS; setiap interaksi tercatat di interaction log (template: `modul-SA/01-Orientasi/Template-AI-Interaction-Log.md`).
+- Stack bebas; keputusan teknologi dideklarasikan di P04 dan dibenarkan saat gate.
+- Tidak bisa menjelaskan kode sendiri saat ditanya → dimensi Arsitektur dan Ketahanan nol, terlepas dari siapa yang menulisnya.
+- AI bebas dipakai di capstone, wajib dideklarasikan di CHANGELOG. Pembatasan fase hanya berlaku di P02–P03.
+
+Rincian lengkap: [`capstone/README.md`](capstone/README.md).
 
 ## Status
 
 - [x] Kalender + pemetaan bobot (dokumen ini)
-- [ ] `capstone/README.md` — panduan umum + rincian bobot per milestone
-- [ ] `individu/P02_Dart-OOP-Challenge.md` (brief + rubrik)
-- [ ] `individu/P03_Flutter-Mini-App.md` (brief + rubrik)
-- [ ] M0–M9 briefs (mulai dari M0, dibuat min. 2 minggu sebelum dipakai)
-- [ ] `peer-review/README.md` — form review 3 siklus
+- [x] `capstone/README.md` — panduan umum, rubrik 4 dimensi, aturan AI
+- [x] `capstone/G1_Fondasi.md`
+- [x] `individu/P02_Dart-OOP-Challenge.md` (brief + rubrik)
+- [x] `individu/P03_Flutter-Mini-App.md` (brief + rubrik)
+- [x] `capstone/G2_Data.md`, `G3_Arsitektur-Kualitas.md`, `G4_Rilis.md`
+- [x] `peer-review/README.md` — form review 2 siklus
 - [ ] Quiz bank → `../moodle/` (generator, kategori `PPB/PXX`)

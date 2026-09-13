@@ -528,6 +528,14 @@ Kapan memakai exception, kapan `Result`? Exception tetap tepat untuk kondisi yan
 
 Model `Task` beserta `TaskRepository`, `TaskListState`, dan `Result` dari bab ini adalah basis kode yang dipegang sepanjang buku. Bab 3 mulai menampilkan semuanya di layar lewat widget Flutter.
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** meminta contoh perbandingan antara dua cara memodelkan hal yang sama, misalnya pewarisan versus komposisi untuk kasus Anda sendiri.
+
+**Tulis sendiri:** keputusan pemodelan: kelas apa yang ada, apa yang boleh null, dan apa yang menjadi enum. AI memberi model yang masuk akal secara umum, sedangkan yang Anda butuhkan adalah model yang cocok dengan aturan domain Anda, dan aturan itu hanya Anda yang tahu. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Berikan tiga aturan domain Anda kepada AI dan minta ia membuat sealed class untuk state layar. Lalu cari keadaan mustahil yang masih bisa dibuat dari hasilnya, misalnya dua field yang seharusnya tidak pernah terisi bersamaan. Perbaiki sendiri, dan catat apa yang terlewat.
+
 ## Referensi Lanjutan
 
 - Classes, enum, dan class modifiers: https://dart.dev/language

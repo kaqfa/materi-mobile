@@ -468,6 +468,14 @@ Future<int> countTopLevelFields(String jsonPath) {
 
 Bab berikutnya memperdalam Dart: OOP penuh, generics, dan pola transformasi koleksi untuk data aplikasi.
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** menanyakan padanan sintaks dari bahasa yang sudah Anda kuasai ("bagaimana menulis ini dalam Dart?"), dan meminta penjelasan pesan error compiler yang belum Anda kenali.
+
+**Tulis sendiri:** setiap latihan di bab ini, sampai selesai, tanpa menyalin jawaban. Bab ini sengaja kecil; mengerjakannya sendiri butuh menit, sementara kerugian melewatkannya terasa sepanjang tiga belas bab berikutnya. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI menulis fungsi yang mengembalikan daftar tugas yang tenggatnya sudah lewat. Sebelum menjalankannya, tebak lebih dulu apa yang terjadi jika daftarnya kosong, dan apakah tanggal hari ini termasuk "lewat". Baru jalankan, dan bandingkan tebakan Anda dengan hasilnya.
+
 ## Referensi Lanjutan
 
 - Dart language tour: https://dart.dev/language

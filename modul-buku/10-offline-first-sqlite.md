@@ -741,7 +741,7 @@ class SyncController extends ChangeNotifier {
 }
 ```
 
-Produksi menambahkan dua pemicu di sisi ini: tombol sinkron di app bar dan pendengar `connectivity_plus` yang memanggil `sync()` saat jaringan muncul kembali. Keduanya memanggil method yang sama, pemicu hanyalah selera. Satu keputusan wiring lain yang wajib: **keluar akun membersihkan database lokal** (`database` baru atau `DELETE FROM` atas keempat tabel), karena baris akun lama tidak berhak terbaca oleh sesi akun berikutnya di perangkat yang sama.
+Pemicu sinkronisasi di sisi ini, tombol manual, pemulihan koneksi, timer, dan langganan perubahan server, dibahas tersendiri di bagian "Pemicu Sinkronisasi" menjelang akhir bab.
 
 ## Menguji Tanpa Perangkat
 
@@ -850,6 +850,90 @@ Kelompok lengkapnya di fixture repositori contoh:
 
 Tujuh belas test baru menjalani jalur yang sama dengan 67 test bab-bab sebelumnya, tanpa perangkat, tanpa akun sungguhan, dalam hitungan detik. Test tombstone layak dibaca ulang karena paling sering dijual murah: ia membuktikan dua fase (gagal lalu pulih) sekaligus, baris tetap mati di lokal ketika push belum sampai, dan tetap mati setelah server mengonfirmasi.
 
+## Pemicu Sinkronisasi
+
+`SyncEngine` tahu cara menyinkronkan, tetapi tidak tahu kapan. Sejauh ini `sync()` dipanggil dari pengujian dan dari tangan Anda sendiri. Produksi memakai tiga pemicu, dan ketiganya memanggil method yang sama; pemicu memang hanyalah selera, sedangkan protokolnya sudah selesai.
+
+Tambahkan `connectivity_plus` ke `pubspec.yaml`, lalu:
+
+```dart
+// lib/sync/sync_triggers.dart
+import 'dart:async';
+
+import 'package:connectivity_plus/connectivity_plus.dart';
+
+import 'sync_engine.dart';
+
+/// Memutuskan kapan sync() dipanggil. Tidak tahu apa-apa soal outbox
+/// maupun protokol; satu-satunya wewenangnya adalah menekan tombol.
+class SyncTriggers {
+  SyncTriggers(this._engine);
+
+  final SyncEngine _engine;
+  StreamSubscription<List<ConnectivityResult>>? _connectivity;
+  Timer? _periodic;
+
+  void start() {
+    // 1. Koneksi pulih. Pemicu paling berguna: antrean biasanya
+    //    menumpuk justru karena jaringan tadi mati.
+    _connectivity = Connectivity().onConnectivityChanged.listen((results) {
+      final online = results.any((r) => r != ConnectivityResult.none);
+      if (online) unawaited(_engine.sync());
+    });
+
+    // 2. Jaring pengaman. Menangkap kasus jaringan tidak pernah benar
+    //    -benar putus tetapi permintaan gagal, misalnya server sedang
+    //    sibuk dan percobaan ulang sudah menyerah.
+    _periodic = Timer.periodic(
+      const Duration(minutes: 15),
+      (_) => unawaited(_engine.sync()),
+    );
+  }
+
+  // 3. Tombol di app bar memanggil _engine.sync() langsung.
+
+  void dispose() {
+    _connectivity?.cancel();
+    _periodic?.cancel();
+  }
+}
+```
+
+`sync()` aman dipanggil berkali-kali: replay bersifat idempoten karena bergantung pada upsert `on_conflict=id`, dan `SyncEngine` menolak putaran kedua selama putaran pertama masih berjalan. Ketiga pemicu boleh menyala bersamaan tanpa saling merusak, dan sifat itu bukan kebetulan, melainkan hasil dari keputusan protokol di Checkpoint 3.
+
+Satu keputusan wiring lain yang wajib: **keluar akun membersihkan database lokal**, `database` baru atau `DELETE FROM` atas keempat tabel. Baris milik akun lama tidak berhak terbaca oleh sesi akun berikutnya di perangkat yang sama.
+
+## Dari Menarik Menjadi Didorong
+
+Ketiga pemicu di atas punya satu sifat yang sama: aplikasi menebak kapan sebaiknya bertanya ke server. Pada aplikasi satu pengguna, tebakan itu memadai. Pada aplikasi yang datanya berubah dari tempat lain, misalnya tugas yang sama dibuka di ponsel dan di laptop, tebakan yang baik pun terasa lambat: perubahan di laptop baru muncul di ponsel pada putaran berikutnya.
+
+Jawabannya adalah membalik arah. Alih-alih aplikasi menanyai server, server memberi tahu aplikasi. Supabase menyediakannya lewat langganan perubahan tabel; di baliknya ada WebSocket yang tetap terbuka.
+
+```dart
+// Pemicu keempat: server memberi tahu, aplikasi menyinkronkan.
+final channel = supabase
+    .channel('public:tasks')
+    .onPostgresChanges(
+      event: PostgresChangeEvent.all,
+      schema: 'public',
+      table: 'tasks',
+      callback: (payload) => unawaited(_engine.sync()),
+    )
+    .subscribe();
+```
+
+Perhatikan apa yang **tidak** berubah. Callback tidak menyentuh SQLite, tidak menulis baris dari payload, tidak menyalip antrean. Ia memanggil `sync()`, persis seperti tombol di app bar. Seluruh arsitektur bab ini, outbox, tombstone, push sebelum pull, kebijakan konflik, tetap menjadi satu-satunya jalan data masuk.
+
+Godaan untuk "menghemat satu putaran" dengan menulis payload langsung ke tabel lokal sangat kuat, dan hampir selalu keliru: payload itu tidak melewati kebijakan konflik Anda, sehingga ia bisa menimpa perubahan lokal yang masih mengantre, dan Anda memperoleh kembali penyakit pertama yang dibasmi bab ini, yaitu refresh yang menimpa. Realtime adalah **pemicu yang lebih baik**, bukan jalur data yang kedua.
+
+## Batas Bab Ini
+
+Dua hal sengaja tidak dibahas.
+
+**Sinkronisasi di latar belakang saat aplikasi tertutup.** Menjalankan pekerjaan berkala saat aplikasi tidak dibuka menuntut penjadwal sistem, dan di Android modern ia berhadapan dengan Doze, pembatasan per pabrikan, dan aturan target API yang dianut bab 14. Biayanya besar, perilakunya berbeda-beda antarperangkat, dan nyaris tidak ada aplikasi produktivitas yang benar-benar membutuhkannya: sinkronisasi saat aplikasi dibuka sudah menyelesaikan masalah penggunanya. Bila Anda memang membutuhkannya, masuki lewat `workmanager` dan bacalah dokumentasi batasan platformnya lebih dulu, bukan contoh kodenya.
+
+**Delta pull.** `sync()` menarik seluruh baris milik pengguna setiap putaran. Untuk ribuan baris ini boros. Perbaikannya lurus, yaitu menarik hanya yang `updated_at` melampaui `last_synced_at` yang sudah Anda simpan di `sync_meta`, tetapi menuntut jaminan jam server yang tidak ingin dicampurkan bab ini ke dalam penjelasan protokolnya.
+
 ## Ringkasan
 
 - Offline-first bukan "simpan lokal plus coba kirim": empat penyakitnya, refresh menimpa, hapus tanpa kabar, semua error dianggap offline, replay yang tak pernah dipakai, disembuhkan oleh empat keputusan: outbox transaksional, tombstone, push sebelum pull, kebijakan konflik eksplisit.
@@ -860,6 +944,7 @@ Tujuh belas test baru menjalani jalur yang sama dengan 67 test bab-bab sebelumny
 - Kegagalan dipetakan: jaringan dan tekanan server diulang dengan jeda eksponensial; sesi habis berhenti dengan antrean aman; payload ditolak berhenti tanpa pengulangan buta.
 - Kebijakan konflik tiga kalimat, operasi menggantung menang, delete menang, sisanya server, hidup di kode merge dan dibuktikan oleh test, bukan oleh keberuntungan.
 - Sesi dan token tetap persis bab 9: blob JSON di penyimpanan aman; tidak ada yang pindah ke preferences.
+- Pemicu sinkronisasi, termasuk langganan perubahan server secara real-time, hanya menekan tombol `sync()` yang sama; menulis payload realtime langsung ke tabel lokal akan melewati kebijakan konflik dan memulangkan penyakit refresh-yang-menimpa.
 
 Tracker kini utuh sebagai aplikasi: UI bab 3–7, penyimpanan bab 8, jaringan bab 9, dan sinkronisasi bab ini. Bab 11 beralih dari fitur ke ketahanan, menguji semua lapisan ini secara sistematis.
 
@@ -893,6 +978,14 @@ switch (report.status) {
 ```
 
 Jeda percobaan ulang: `initialDelay * 2^(attempt-1)`, dipatok `maxDelay`, plus jitter di produksi.
+
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** menanyakan pola sinkronisasi yang umum dipakai, dan meminta pembanding strategi penyelesaian konflik.
+
+**Tulis sendiri:** kebijakan konflik Anda. "Siapa yang menang saat dua perangkat mengubah baris yang sama" adalah keputusan produk yang berakibat pada data pengguna; jawaban umum yang sopan dari AI tidak menanggung akibat itu. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Ceritakan arsitektur outbox bab ini kepada AI dan minta ia mengusulkan penyederhanaan. Kemungkinan besar ia menawarkan penulisan langsung ke server dengan cadangan lokal, yang lebih pendek dan lebih mudah dibaca. Telusuri usul itu terhadap tiga penyakit di awal bab dan tunjukkan penyakit mana yang kembali. Ini latihan menolak saran yang benar-benar lebih sederhana, tetapi salah.
 
 ## Referensi Lanjutan
 
