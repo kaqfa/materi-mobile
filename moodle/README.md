@@ -8,6 +8,7 @@
 
 | Berkas | Fungsi |
 |---|---|
+| `PROSEDUR-EDIT.md` | **Runbook edit konten course** (soal, intro, gate, section, starter) untuk revisi pasca-deployment. |
 | `bank_soal.py` | **Sumber kebenaran teks soal** (140 soal = 14 pertemuan × 10). Kunci selalu opsi pertama; validator menjaga panjang kunci ≤ semua distraktor. |
 | `build_moodle_xml.py` | Generator + validator. Output XML (di `build/`, tergitignore) & kunci dosen. |
 | `pack_starters.py` | Zip tiap starter `../starter-code/pNN-*` → `build/starter-zips/starter-pNN-*.zip` untuk diunggah ke Moodle (bukan via link repo). |
