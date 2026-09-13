@@ -553,6 +553,14 @@ Untuk aplikasi yang tumbuh, `MaterialApp` juga menerima peta `routes` agar layar
 
 Versi akhir Tracker di bab ini masih menyimpan data di memori: restart aplikasi menghapus semua tugas. Bab 4 membedah struktur proyek dan build system yang menopang aplikasi ini, bab 5-6 memperkaya tampilannya dengan Material 3 dan custom widget, dan bab 7 memindahkan state daftar ke tempat yang lebih terstruktur. Aplikasinya tetap yang sama.
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** menanyakan properti widget yang belum Anda kenal, dan menanyakan arti pesan constraints seperti "RenderFlex overflowed".
+
+**Tulis sendiri:** menyusun widget tree layar Anda sendiri. Kemampuan membayangkan susunan widget dari tampilan yang diinginkan adalah keterampilan inti Flutter, dan ia hanya tumbuh dari mencoba serta gagal. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Rusak sengaja satu layar Anda: bungkus `Column` dengan `Row`, atau hapus `Expanded` dari salah satu anaknya. Baca pesan errornya sampai Anda bisa menebak penyebabnya, baru tanyakan ke AI untuk mengonfirmasi. Urutannya penting: tebak dulu, konfirmasi kemudian.
+
 ## Referensi Lanjutan
 
 - Pengantar widget dan komposisi: https://docs.flutter.dev/ui/widgets-intro

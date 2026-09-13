@@ -675,6 +675,14 @@ Dan pola lama yang kini makin sering muncul: setiap `await` di dalam State memis
 
 Tracker kini punya kartu yang tersusun dari bagian-bagian kecil, form yang menghormati penggunanya, dan gerakan halus di tempat yang tepat, masih tanpa satu pun paket pihak ketiga. Bab 7 mengangkat masalah yang selama ini disembunyikan kesederhanaan `setState`: state yang sama dipakai banyak layar, dan data yang hilang setiap aplikasi dimulai ulang.
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** meminta contoh animasi implisit untuk efek yang Anda bayangkan, dan menanyakan widget bawaan mana yang sudah melakukan apa yang hendak Anda tulis sendiri.
+
+**Tulis sendiri:** merancang kontrak widget Anda: parameter apa yang diterima, callback apa yang dipancarkan, dan apa yang sengaja tidak diketahuinya. Kontrak yang buruk baru terasa dua minggu kemudian, saat widget itu dipakai di tempat kedua. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI membuat satu custom widget untuk aplikasi Anda. Periksa satu hal saja: apakah widget itu mengambil datanya sendiri dari suatu tempat, atau menerimanya lewat constructor. Jika mengambil sendiri, ia tidak bisa dipakai ulang dan tidak bisa diuji. Perbaiki, dan catat kenapa AI cenderung melakukan ini.
+
 ## Referensi Lanjutan
 
 - Diagnostik error layout seperti RenderFlex overflow: https://docs.flutter.dev/testing/common-errors serta https://docs.flutter.dev/resources/architectural-overview#widgets

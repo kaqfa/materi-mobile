@@ -408,6 +408,14 @@ Kebutuhan yang tidak bisa dipenuhi `--dart-define` adalah **dua aplikasi berbeda
 
 Tracker Anda berakhir di bab ini tanpa satu baris konfigurasi platform yang disentuh, dan itu kabar baik. Bab 5 memperkaya tampilannya dengan sistem Material 3, bab 6 merakit custom widget, dan semuanya berdiri di atas struktur yang tadi diputuskan sekali: sederhana dulu, naik saat perlu.
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** menanyakan arti berkas konfigurasi Gradle atau entri `pubspec.yaml` yang tidak Anda kenali, dan menafsirkan kegagalan build yang pesannya panjang.
+
+**Tulis sendiri:** keputusan struktur folder. Struktur yang benar bergantung pada bentuk aplikasi Anda dan cara Anda mencari berkas; struktur yang disalin dari jawaban umum akan terasa asing setiap kali Anda membukanya. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Tempelkan satu kegagalan build lengkap ke AI dan minta ia menunjuk baris yang benar-benar menyebabkannya. Kegagalan build biasanya berisi ratusan baris dengan penyebab sebenarnya terselip di tengah. Sesudahnya, temukan sendiri baris itu di log tanpa melihat jawaban AI, dan bandingkan.
+
 ## Referensi Lanjutan
 
 - Anatomi proyek dan perintah Flutter CLI: https://docs.flutter.dev/reference/flutter-cli

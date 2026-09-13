@@ -4,7 +4,9 @@ Dokumen kerja untuk menutup todo AGENTS.md §10 butir 1. Ruang lingkup: 14 bab `
 
 Metode: penelusuran konten per bab (heading, kata kunci teknis, frontmatter), bukan pembacaan kesan. Setiap temuan menyebut lokasi buktinya.
 
-**Ringkasan**: dari 5 gap yang tercatat di README, **1 sudah beres** (Supabase), **2 ternyata sebagian tertutup** (responsive, realtime), **1 adalah gap struktural yang lebih besar dari yang tertulis** (P11), dan **1 benar-benar kosong** (blok AI). Ditambah 2 temuan baru soal konsistensi RPS.
+> **Status 13 September 2026: kelima gap sudah ditutup.** Dokumen ini dipertahankan sebagai catatan temuan dan alasan tiap keputusan. Tabel prioritas di bagian akhir menunjukkan apa yang dikerjakan dan apa yang sengaja ditolak.
+
+**Ringkasan temuan awal**: dari 5 gap yang tercatat di README, **1 sudah beres** (Supabase), **2 ternyata sebagian tertutup** (responsive, realtime), **1 adalah gap struktural yang lebih besar dari yang tertulis** (P11), dan **1 benar-benar kosong** (blok AI). Ditambah 2 temuan baru soal konsistensi RPS.
 
 ---
 
@@ -186,15 +188,18 @@ Tanpa menyebut nomor minggu, tanpa menyebut kebijakan penilaian. Sekitar 15–20
 
 Diurutkan menurut risiko terhadap penilaian, bukan menurut besar pekerjaan.
 
-| # | Pekerjaan | Gap | Biaya | Kenapa urutan ini |
-|---|---|---|---|---|
-| 1 | ~~Panduan capstone + brief G1~~ ✅ · sisa: brief individu P02/P03 | T3 | sedang | dipakai P02–P04, tenggatnya paling dekat |
-| 2 | Bab 07: "Arah Setelah Provider" | 4 | ±200 baris | satu-satunya gate (M5) tanpa bahan bacaan |
-| 3 | Bab 05: Checkpoint struktur adaptif + checklist 3 konfigurasi | 1 | ±180 baris | menopang gate M2 |
-| 4 | Bab 10: pemicu sinkronisasi + realtime + batas bab | 3 | ±100 baris | menutup kata "real-time" RPS |
-| 5 | Blok AI di 8 bab bergate | 5 | ±20 baris × 8 | menopang 5% AI Portfolio |
-| 6 | Perbaiki README (peta RPS↔bab, hapus baris Supabase) + `index.md` baris 35 | 2, T1 | kecil | menghentikan pelacakan gap yang keliru |
-| 7 | Blok AI di 6 bab sisanya | 5 | ±20 baris × 6 | kelengkapan |
-| 8 | Keputusan konsistensi RPS (Postman/Firebase/WorkManager) | T2, 3d | keputusan | butuh persetujuan, bukan waktu kerja |
+| # | Pekerjaan | Gap | Status |
+|---|---|---|---|
+| 1 | Paket penugasan lengkap: capstone G1–G4, individu P02–P03, peer review | T3 | ✅ |
+| 2 | Bab 07: bagian "Arah Setelah Provider" (Provider/Riverpod/BLoC berdampingan) | 4 | ✅ |
+| 3 | Bab 05: Checkpoint 3 struktur adaptif + daftar periksa 3 konfigurasi | 1 | ✅ |
+| 4 | Bab 10: pemicu sinkronisasi, realtime sebagai pemicu, batas bab | 3 | ✅ |
+| 5 | Bab 09: alasan REST-bukan-SDK + verifikasi server lewat `curl` | 2 | ✅ |
+| 6 | Blok "Bekerja dengan AI di Bab Ini" di 14 bab | 5 | ✅ |
+| 7 | README peta RPS↔bab, `index.md`, AGENTS.md | 2, T1 | ✅ |
+| 8 | RPS: Firebase & WorkManager dihapus, AI Strategy ditulis ulang jadi dua rezim | T2, 3d | ✅ |
+| — | WorkManager / background sync | 3c | ❌ ditolak, alasannya ditulis di "Batas Bab Ini" bab 10 |
+| — | Adaptif per-platform (Cupertino) | 1 | ❌ ditolak, alasannya ditulis di "Batas Bab Ini" bab 05 |
+| — | Bab 15 terpisah untuk state management | 4 (Opsi B) | ❌ ditolak, diselesaikan lewat Opsi A |
 
-Butir 1 tidak menyentuh modul sama sekali, jadi bisa berjalan paralel dengan butir 2–5.
+Sisa pekerjaan repo di luar lingkup audit ini: `starter-code/`, bank soal `moodle/`, dan penyederhanaan `Standar Pengembangan Materi PPB.md`.

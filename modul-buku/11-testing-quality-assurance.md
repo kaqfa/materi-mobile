@@ -1038,6 +1038,14 @@ flutter test --update-goldens <file>  # regenerasi acuan golden (review diff!)
 flutter test integration_test/        # butuh emulator/perangkat aktif
 ```
 
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** meminta daftar kasus batas yang mungkin terlewat, dan menanyakan cara menguji satu perilaku yang membingungkan Anda.
+
+**Tulis sendiri:** memutuskan apa yang pantas diuji. AI sangat produktif menghasilkan test, dan sebagian besar di antaranya menguji hal yang tidak akan pernah rusak. Test yang tidak pernah bisa gagal hanya memperlambat build. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI membuat test untuk satu kelas Anda. Lalu untuk setiap test, rusak satu baris kode yang seharusnya membuatnya gagal. Test yang tetap hijau saat kodenya rusak tidak menguji apa pun, dan sebaiknya dihapus. Hitung berapa banyak yang lolos saringan ini; angkanya biasanya mengejutkan.
+
 ## Referensi Lanjutan
 
 - Dokumentasi resmi testing Flutter, tempat piramida dan batas tiap jenis dijelaskan oleh pembuatnya: https://docs.flutter.dev/testing/overview

@@ -143,8 +143,8 @@ Konsekuensi untuk penulisan materi:
 - [ ] Sederhanakan `Standar Pengembangan Materi PPB.md` jadi satu halaman ringkas
 - [ ] Setup `starter-code/` (template StudyTracker per bab)
 - [x] Kalender penugasan + pemetaan bobot RPS (`penugasan/README.md`)
-- [ ] Brief `penugasan/capstone/README.md` (panduan umum + bobot per milestone)
-- [ ] Brief tugas individu P02 + P03 (rubrik)
-- [ ] Brief milestone capstone M0 (proposal) — prioritas, dipakai P04
+- [x] Paket penugasan lengkap: `capstone/` (panduan + G1–G4), `individu/` (P02–P03), `peer-review/`
+- [x] Revisi modul sesuai audit: bab 05, 07, 09, 10 + blok AI di 14 bab
+- [x] RPS diselaraskan: Firebase/WorkManager dihapus, AI Strategy jadi dua rezim
 - [ ] Generator bank soal `moodle/`
-- [ ] Siapkan soal UTS di `Ujian/UTS/`
+- [x] Soal UTS live coding (5 berkas di `Ujian/UTS/`)

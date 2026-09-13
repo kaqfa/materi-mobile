@@ -79,6 +79,26 @@ JSON menjadi format isi kedua arah. Bab 2 sudah membangun pemetaan `Task` dua ar
 
 Satu konsekuensi arsitektural penting sebelum menulis kode: seluruh tabel ini hidup di server, tetapi **ID tetap milik klien**. Tabel `tasks` memakai `id text primary key`, bukan `serial` yang dibangkitkan server, karena model `Task` bab 2 sudah membawa ID sejak awal dan bab 10 akan menciptakan tugas saat perangkat offline, penomoran dua sumber kebenaran adalah resep konflik sinkronisasi. Upsert PostgREST (`on_conflict=id`) membuat keputusan ini bekerja: kirim baris dengan ID apa adanya; bila sudah ada, gabungkan.
 
+### Kenapa REST, padahal ada SDK
+
+Supabase menyediakan paket Dart resmi yang membuat seluruh bab ini muat dalam beberapa baris. Buku ini tidak memakainya, dan itu keputusan yang disengaja.
+
+Supabase di sini dipakai sebagai **server PostgREST yang kebetulan gratis dan cepat disiapkan**, bukan sebagai platform. Yang dilatih bab ini adalah keterampilan yang tersisa ketika Anda pindah: menyusun header, memilih metode, membaca status code dan membedakan artinya, menyegarkan token sebelum kedaluwarsa, dan membatalkan permintaan yang tidak lagi dibutuhkan. Backend perusahaan tempat Anda bekerja nanti hampir pasti berbicara REST, dan hampir pasti tidak menyediakan SDK semewah ini.
+
+SDK-nya sendiri bukan musuh. Setelah bab ini Anda justru berada pada posisi yang tepat untuk memakainya, karena Anda tahu apa yang disembunyikannya.
+
+### Periksa server sebelum menulis Dart
+
+Sebelum baris Dart pertama, pastikan proyek Supabase Anda memang menjawab. Satu perintah sudah cukup:
+
+```bash
+curl -i "$SUPABASE_URL/rest/v1/tasks?select=*" \
+  -H "apikey: $SUPABASE_ANON_KEY" \
+  -H "Authorization: Bearer $SUPABASE_ANON_KEY"
+```
+
+Balasan `200` dengan array kosong berarti tabel ada dan kunci diterima. `401` berarti kunci salah. `404` berarti nama tabelnya salah. Melakukan ini lebih dulu memisahkan dua jenis kegagalan yang sangat berbeda tetapi terlihat sama dari dalam aplikasi: konfigurasi yang keliru, dan kode yang keliru. Postman bekerja sama baiknya bila Anda lebih suka antarmuka.
+
 ## Dua Kunci, Satu Rahasia
 
 Supabase mengenal dua jenis kunci proyek, dan membedakannya adalah soal keamanan, bukan formalitas.
@@ -1235,6 +1255,14 @@ try {
   // TooManyRequests, ServerError, dan lainnya: tampilkan e.message
 }
 ```
+
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** meminta kerangka pemetaan JSON ke kelas Dart, dan menanyakan arti status code atau header yang belum Anda kenali.
+
+**Tulis sendiri:** hierarki error dan keputusan menyegarkan-lalu-mengulang. Memetakan kegagalan ke tindakan adalah keputusan produk, bukan keputusan teknis: apa yang dilihat pengguna saat token habis di tengah pekerjaan hanya bisa Anda yang putuskan. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI menulis fungsi yang memanggil endpoint Anda. Hampir pasti ia membungkus semuanya dalam satu `try-catch` dan mengembalikan pesan tunggal. Pisahkan sendiri menjadi tiga jalur: jaringan mati, sesi habis, dan data ditolak. Lalu tanyakan pada diri Anda kenapa AI cenderung menyatukan ketiganya, padahal pengguna mengalaminya sebagai tiga kejadian yang sangat berbeda.
 
 ## Referensi Lanjutan
 

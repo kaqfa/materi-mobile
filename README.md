@@ -96,16 +96,18 @@ Bab buku tidak 1:1 dengan pertemuan; sejak P11 penomorannya bergeser satu langka
 | Pertemuan RPS | Topik | Bab | Status |
 |---|---|---|---|
 | P01–P06 | Dart, widget, build system, Material 3, custom widget | 01–06 | ✅ |
-| P07 | Responsive & adaptive layout | 05 (Checkpoint 2–3) | ⚠️ perlu pola dua kolom & landscape |
+| P07 | Responsive & adaptive layout | 05 (Checkpoint 2–3) | ✅ |
 | P09 | API integration (Supabase via REST) | 09 | ✅ |
-| P10 | Real-time & advanced API | 10 | ⚠️ perlu pemicu sinkronisasi & realtime |
-| P11 | Advanced state management | 07 (bagian "Arah Setelah Provider") | ⚠️ perlu pembanding berkode |
+| P10 | Real-time & advanced API | 10 | ✅ |
+| P11 | Advanced state management | 07 (bagian "Arah Setelah Provider") | ✅ |
 | P12 | Testing & QA | 11 | ✅ |
 | P13 | Platform features | 12 | ✅ |
 | P14 | Performance optimization | 13 | ✅ |
 | P15 | Deployment | 14 | ✅ |
 
-Pekerjaan revisi yang tersisa, beserta urutannya, ada di [`AUDIT-Gap-Modul-vs-RPS.md`](AUDIT-Gap-Modul-vs-RPS.md). Satu hal yang berlaku di semua bab: blok **"Bekerja dengan AI di Bab Ini"** belum ada di bab mana pun.
+Semua gap hasil audit sudah ditutup; riwayat temuan dan alasan tiap keputusan tersimpan di [`AUDIT-Gap-Modul-vs-RPS.md`](AUDIT-Gap-Modul-vs-RPS.md). Blok **"Bekerja dengan AI di Bab Ini"** kini ada di keempat belas bab.
+
+Yang masih terbuka di repo: `starter-code/`, bank soal `moodle/`, dan penyederhanaan `Standar Pengembangan Materi PPB.md`.
 
 ## Penilaian
 

@@ -4,7 +4,7 @@ description: 'Pengantar bertahap pengembangan aplikasi mobile lintas platform de
 author: 'Kaqfa'
 coverImage: '/flutter-book-cover.png'
 publishDate: 2024-09-18
-updateDate: 2026-09-03
+updateDate: 2026-09-13
 category: 'Programming'
 difficulty: 'intermediate'
 tags: ['flutter', 'dart', 'mobile', 'programming']
@@ -54,6 +54,8 @@ Bab 1 dan 2 memakai contoh kecil berbasis teks agar fokus tertuju pada bahasanya
 ## Cara Menggunakan Buku Ini
 
 Baca secara berurutan pada penjelajahan pertama; urutan bab mengikuti ketergantungan konsep, dan bab-bab akhir memakai kode yang dibangun di bab sebelumnya. Setiap bab berisi penjelasan konsep, contoh terbimbing langkah demi langkah, dan ringkasan. Kerjakan contoh dengan mengetik sendiri, bukan menyalin-tempel, karena sebagian besar pembelajaran terjadi ketika compiler menolak kode Anda.
+
+Setiap bab ditutup blok "Bekerja dengan AI di Bab Ini": apa yang wajar didelegasikan ke AI untuk topik itu, apa yang sebaiknya Anda tulis sendiri, dan satu latihan menilai keluaran AI. Blok itu tidak mengatur kapan Anda boleh memakai AI, karena buku bisa dibaca kapan saja; aturan penilaian ada di LMS.
 
 Siapkan lingkungan kerja sejak awal: Flutter SDK, editor seperti VS Code atau Android Studio, dan emulator atau perangkat fisik untuk menjalankan aplikasi. Instruksi instalasi lengkap ada di dokumentasi resmi Flutter. Tiap bab diakhiri latihan konsep ringan untuk mengecek pemahaman; tugas terstruktur mata kuliah dikerjakan di LMS, bukan di buku ini.
 

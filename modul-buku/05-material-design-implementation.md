@@ -1,6 +1,6 @@
 ---
 title: 'Material 3 dan Antarmuka yang Adaptif'
-description: 'Membangun sistem tema Material 3 dengan ColorScheme, TaskCard kanonik yang reusable, layout responsif berbasis ruang, serta fondasi aksesibilitas: text scaling, semantics, kontras, dan target sentuh'
+description: 'Membangun sistem tema Material 3 dengan ColorScheme, TaskCard kanonik yang reusable, layout responsif dan adaptif berbasis ruang termasuk dua kolom di layar lebar, serta fondasi aksesibilitas: text scaling, semantics, kontras, dan target sentuh'
 author: 'Kaqfa'
 publishDate: 2024-12-21
 category: 'Programming'
@@ -16,7 +16,7 @@ tags:
     'mobile-development',
   ]
 accessLevel: 'free'
-estimatedReadTime: 35
+estimatedReadTime: 45
 status: 'published'
 chapterNumber: 5
 chapterSlug: '05-material-design-implementation'
@@ -25,6 +25,7 @@ objectives:
   - 'Membangun tema terpusat dengan ColorScheme.fromSeed dan memilih peran warna yang tepat untuk tiap elemen'
   - 'Membangun TaskCard kanonik yang reusable dan terdokumentasi kontraknya'
   - 'Merancang layout adaptif berbasis constraints dan ruang tersedia, bukan jenis perangkat'
+  - 'Mengubah struktur tata letak di ruang lebar: dua kolom dan NavigationRail, beserta konsekuensinya pada navigasi'
   - 'Menangani text scaling dengan Wrap, Expanded, dan maxLines tanpa menonaktifkan skala'
   - 'Menerapkan fondasi aksesibilitas: semantics, kontras, target sentuh, dan state interaksi'
   - 'Menambahkan interaksi geser-untuk-hapus dengan konfirmasi'
@@ -41,10 +42,11 @@ Bab ini mengisi lapisan tampilan itu secara sistematis. Kata kuncinya _sistem_, 
 1. Membangun tema Material 3 terpusat dengan `ColorScheme.fromSeed` dan memilih peran warna yang tepat untuk setiap elemen.
 2. Merakit `TaskCard`, komponen kanonik buku ini, dengan kontrak yang jelas untuk dipakai ulang.
 3. Membuat layout adaptif berbasis ruang yang tersedia, bukan menebak jenis perangkat.
-4. Menangani pengguna yang memperbesar ukuran teks tanpa merusak layout.
-5. Menerapkan fondasi aksesibilitas: semantics, kontras, target sentuh, dan state interaksi.
+4. Mengubah struktur tata letak di ruang lebar, bukan sekadar melonggarkan margin.
+5. Menangani pengguna yang memperbesar ukuran teks tanpa merusak layout.
+6. Menerapkan fondasi aksesibilitas: semantics, kontras, target sentuh, dan state interaksi.
 
-Estimasi: baca sekitar 50 menit, praktik sekitar 90 menit, terbagi dalam tiga checkpoint.
+Estimasi: baca sekitar 60 menit, praktik sekitar 130 menit, terbagi dalam empat checkpoint.
 
 ## Material 3: Sistem, Bukan Katalog Warna
 
@@ -439,7 +441,135 @@ Ketiganya juga otomatis mengurus satu kasus yang sama sering diabaikan: teks bah
 - Di emulator, set pengaturan sistem **Settings > Accessibility > Display size and text > Font size** ke maksimal: kartu menumpuk rapi label turun-baris, tidak ada garis kuning-hitam overflow.
 - `flutter analyze` tetap bersih.
 
-## Checkpoint 3: Interaksi dan Aksesibilitas
+## Checkpoint 3: Struktur yang Berubah, Bukan Sekadar Margin
+
+**Target:** di ruang lebar, Tracker tidak hanya melonggarkan margin, tetapi menampilkan daftar dan detail berdampingan. **Estimasi: 40 menit.**
+
+**Sudah ada:** tema terpusat, `TaskCard`, margin dan lebar baca yang mengikuti ruang, layout yang bertahan saat teks membesar.
+**Yang ditambahkan:** satu titik percabangan tata letak, dan konsekuensinya pada cara "memilih tugas" bekerja.
+
+### Responsif berhenti di margin, adaptif mengubah bentuk
+
+Checkpoint sebelumnya menyelesaikan masalah "teks terbentang selebar tablet" dengan `Center` dan `ConstrainedBox`. Itu jawaban yang benar, tetapi hanya untuk satu pertanyaan. Pertanyaan keduanya belum dijawab: pada layar selebar 1000 dp, dua pertiga layar dibiarkan kosong sementara detail tugas tetap dibuka sebagai layar penuh yang menutupi daftar. Ruangnya ada, tetapi tidak dipakai.
+
+Di sinilah batas antara dua istilah yang sering dipakai bergantian. **Responsif** berarti tata letak yang sama menyesuaikan ukurannya. **Adaptif** berarti tata letak yang berbeda dipilih menurut ruang yang tersedia. Sampai sekarang Tracker baru responsif.
+
+### Dua cabang, satu ambang
+
+```dart
+// lib/screens/task_home_screen.dart
+class TaskHomeScreen extends StatefulWidget {
+  const TaskHomeScreen({super.key});
+
+  @override
+  State<TaskHomeScreen> createState() => _TaskHomeScreenState();
+}
+
+class _TaskHomeScreenState extends State<TaskHomeScreen> {
+  String? _selectedId;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Ambang yang sama dengan Checkpoint 2: di bawah ini satu
+        // kolom sudah memakai seluruh lebar yang nyaman dibaca.
+        final wide = constraints.maxWidth >= 600;
+        return wide ? _buildWide(context) : _buildNarrow(context);
+      },
+    );
+  }
+}
+```
+
+Cabang sempit adalah aplikasi yang sudah Anda punya: daftar memenuhi layar, `BottomNavigationBar` di bawah, dan memilih tugas berarti mendorong layar baru.
+
+```dart
+  Widget _buildNarrow(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Tugas')),
+      body: TaskListView(
+        onSelect: (task) => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => TaskDetailScreen(id: task.id)),
+        ),
+      ),
+      bottomNavigationBar: const TrackerBottomNav(),
+    );
+  }
+```
+
+Cabang lebar menukar dua hal sekaligus: navigasi bawah menjadi `NavigationRail` di samping, dan detail berhenti menjadi layar terpisah.
+
+```dart
+  Widget _buildWide(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        children: [
+          const TrackerNavigationRail(),
+          const VerticalDivider(width: 1),
+          SizedBox(
+            width: 360,
+            child: TaskListView(
+              selectedId: _selectedId,
+              onSelect: (task) => setState(() => _selectedId = task.id),
+            ),
+          ),
+          const VerticalDivider(width: 1),
+          Expanded(
+            child: _selectedId == null
+                ? const Center(child: Text('Pilih tugas untuk melihat detail'))
+                : TaskDetailView(id: _selectedId!),
+          ),
+        ],
+      ),
+    );
+  }
+```
+
+### Pelajaran yang sebenarnya: memilih itu dua hal yang berbeda
+
+Perhatikan `onSelect` pada kedua cabang. Di layar sempit, memilih tugas berarti `Navigator.push`. Di layar lebar, memilih tugas berarti `setState` mengubah `_selectedId`. Perbuatan penggunanya sama, artinya bagi aplikasi berbeda.
+
+Konsekuensi inilah alasan `TaskDetailScreen` dan `TaskDetailView` dipisah menjadi dua. `TaskDetailView` adalah isinya: menerima `id`, menampilkan detail, tidak tahu apa-apa soal `Scaffold` maupun tombol kembali. `TaskDetailScreen` hanyalah pembungkus tipis yang menambahkan `Scaffold` dan `AppBar` di sekeliling `TaskDetailView` untuk keperluan layar sempit. Satu isi, dua cara menyajikan.
+
+Kalau Anda melewatkan pemisahan ini dan langsung menempelkan layar penuh ke dalam `Row`, akibatnya segera terlihat: dua `AppBar` bertumpuk, dan tombol kembali yang tidak punya tujuan untuk dituju.
+
+Itulah sebabnya adaptif bukan soal widget. Widgetnya gampang; yang menuntut pemikiran adalah menyadari bahwa satu perbuatan pengguna bisa berarti dua hal berbeda, dan menyusun kode supaya keduanya tidak saling menyandera.
+
+### Orientasi bukan jawaban, ruang yang jawaban
+
+Godaan berikutnya adalah memakai orientasi sebagai penentu:
+
+```dart
+// Hindari ini sebagai keputusan utama tata letak.
+final wide = MediaQuery.orientationOf(context) == Orientation.landscape;
+```
+
+Ponsel dalam landscape memang lebih lebar, tetapi juga jauh lebih pendek. Dua kolom di ponsel landscape menghasilkan dua kolom sempit yang keduanya terlalu pendek untuk berguna. Sebaliknya, tablet dalam potret punya ruang berlimpah untuk dua kolom padahal orientasinya potret. Orientasi berkorelasi dengan ruang, tetapi bukan ruang itu sendiri, dan yang Anda butuhkan adalah ruangnya.
+
+`OrientationBuilder` tetap berguna untuk keputusan yang memang tentang bentuk, bukan tentang luas: jumlah kolom pada kisi foto, atau apakah gambar sampul ditampilkan lebar dan pendek atau sempit dan tinggi. Untuk memilih struktur navigasi, ambang lebar dari `LayoutBuilder` adalah jawaban yang benar.
+
+### Daftar Periksa Checkpoint 3
+
+Jalankan pada tiga konfigurasi, dan tandai satu per satu. Daftar ini pula yang dipakai menilai gate capstone pertama.
+
+- [ ] **Ponsel potret**: tampilan persis seperti sebelum checkpoint ini; tidak ada yang berubah, tidak ada yang rusak
+- [ ] **Ponsel landscape**: tetap satu kolom, tidak ada meluap, bilah bawah tetap terjangkau
+- [ ] **Tablet atau jendela lebar**: dua kolom muncul, `NavigationRail` menggantikan bilah bawah
+- [ ] Memilih tugas di layar lebar **tidak** mendorong layar baru
+- [ ] Hanya ada satu `AppBar` di layar lebar
+- [ ] Jendela diperkecil pelan-pelan melewati ambang 600 dp: tata letak berpindah tanpa crash, dan tugas yang sedang dipilih tidak hilang
+- [ ] Skala teks dinaikkan ke 150% pada ketiga konfigurasi, tidak ada yang meluap
+
+Butir keenam paling sering gagal, dan paling mudah diuji di desktop atau di emulator tablet dengan jendela yang bisa diubah ukurannya.
+
+### Batas Bab Ini
+
+Buku ini memakai satu makna "adaptif": tata letak yang menyesuaikan **ruang yang tersedia**. Ada makna kedua yang tidak dibahas, yaitu menyesuaikan **konvensi platform**, misalnya menampilkan widget bergaya Cupertino di iOS dan Material di Android.
+
+Alasannya bukan karena tidak penting, melainkan karena biayanya tidak sebanding di sini: Tracker dikembangkan dan dirilis ke Android sampai bab 14, dan setiap widget bergaya ganda melipatduakan permukaan yang harus diuji tanpa mengajarkan konsep baru. Bila Anda kelak merilis ke iOS, masuki topik itu lewat dokumentasi `Theme.of(context).platform` dan konstruktor `.adaptive` yang disediakan sebagian widget Material.
+
+## Checkpoint 4: Interaksi dan Aksesibilitas
 
 **Target:** interaksi geser-hapus dengan konfirmasi, dan fondasi aksesibilitas yang menyertainya.
 **Waktu:** sekitar 20 menit.
@@ -597,6 +727,7 @@ Dua janji yang mengikat bab-bab selanjutnya: **tidak ada penulisan ulang** kartu
 - Material 3 aktif bawaan sejak Flutter 3.16; pekerjaan Anda memilih **peran** warna (`primary`, `surface`, `error`, pasangan container/`on`Container), bukan nilai warna, dan seluruhnya diturunkan dari satu benih lewat `ColorScheme.fromSeed`.
 - `theme.dart` adalah satu sumber kebenaran tampilan; mengganti benih mengubah seluruh aplikasi.
 - `withOpacity()` usang sejak Flutter 3.27; ganti dengan `withValues(alpha:)`.
+- Responsif berhenti pada penyesuaian ukuran; adaptif memilih struktur yang berbeda menurut ruang. Di ruang lebar Tracker menampilkan daftar dan detail berdampingan, dan konsekuensi terbesarnya bukan pada widget melainkan pada makna "memilih tugas" yang berbeda di tiap cabang.
 - Layout Flutter berjalan lewat constraints turun dan ukuran naik; pertanyaan yang benar adalah "berapa ruang tersedia", dijawab `LayoutBuilder` dan `ConstrainedBox`, `Center` + `maxWidth: 600` menyelesaikan teks terbentang selebar tablet tanpa cabang if.
 - Text scale milik pengguna dan tidak pernah dinonaktifkan; `Expanded`, `Wrap`, dan `maxLines` membuat layout bertahan saat teks membesar.
 - Interaksi memakai widget Material (`InkWell`, `Checkbox`, `FilledButton`) sehingga state visual dan semantiknya gratis; `GestureDetector` adalah pilihan terakhir.
@@ -604,6 +735,14 @@ Dua janji yang mengikat bab-bab selanjutnya: **tidak ada penulisan ulang** kartu
 - Aksesibilitas fondasinya: semantik bawaan dipertahankan, ikon dekoratif di-`ExcludeSemantics`, ikon bermakna diberi `tooltip`, kontras lewat peran warna, target sentuh 48 dp.
 
 Tracker kini punya wajah: tema terpusat, kartu kanonik, layout yang mengikuti ruang, dan interaksi yang ramah pembaca layar, masih tanpa satu pun paket pihak ketiga. Bab 6 mengangkat komponen ini ke level berikutnya: komposisi custom widget lanjutan, form, dan animasi, semuanya sebagai delta di atas kontrak yang baru saja Anda tetapkan.
+
+## Bekerja dengan AI di Bab Ini
+
+**Pantas didelegasikan:** menanyakan peran warna Material 3 mana yang pantas untuk sebuah elemen, dan meminta penjelasan model constraints saat perilaku layout Anda tidak terduga.
+
+**Tulis sendiri:** menetapkan ambang adaptif Anda sendiri. Angka 600 di bab ini punya alasan; angka di aplikasi Anda harus punya alasannya sendiri, dan alasan itu datang dari melihat layout Anda rusak di lebar tertentu. Bagian ini yang menentukan apakah bab ini benar-benar Anda kuasai.
+
+**Latihan:** Minta AI membuat layout responsif untuk satu layar Anda. Kemungkinan besar jawabannya memakai `MediaQuery.of(context).size.width` dan mengalikannya dengan pecahan untuk ukuran font. Temukan kedua hal itu, jelaskan kenapa keduanya keliru menurut bab ini, lalu tulis ulang dengan `LayoutBuilder`. Ini latihan menolak saran yang kelihatan benar.
 
 ## Referensi Lanjutan
 
