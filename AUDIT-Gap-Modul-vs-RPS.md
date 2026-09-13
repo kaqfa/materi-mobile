@@ -111,7 +111,9 @@ Yang kurang, diukur terhadap kalimat RPS P10:
 
 **3c. Tolak WorkManager, dan katakan alasannya di bab.** Background execution Android modern (Doze, batasan target API 36 yang sudah dianut bab 14) terlalu mahal untuk satu pertemuan, tidak dinilai di rubrik mana pun, dan gagal diam-diam di banyak perangkat — mahasiswa akan menghabiskan sesi praktikum mengejar hantu OEM. Cukup satu paragraf "Batas Bab Ini" yang menyebut background sync sebagai arah lanjutan.
 
-**3d. Keputusan Bapak diperlukan**: RPS P10 menyebut **Firebase** dua kali (materi dan tugas) padahal seluruh buku memakai Supabase. Ini inkonsistensi di dokumen resmi, bukan di modul. Pilihan: (i) revisi RPS P10 → "Supabase Realtime" dan hapus Firebase dari Media Pembelajaran, atau (ii) biarkan sebagai alternatif tak-diajarkan. Saya menyarankan (i) — mencampur dua backend dalam satu mata kuliah 16 minggu hanya menambah beban setup, bukan pemahaman. Tapi RPS kemungkinan sudah tervalidasi prodi, jadi saya tidak menyentuhnya tanpa perintah.
+**3d. Diputuskan (13 Sep): Firebase dihapus dari RPS.** Supabase dipakai sebagai *PostgREST server yang kebetulan gratis*, bukan sebagai SDK — yang dilatih adalah menyusun header, memetakan status code, dan menangani refresh token, karena itulah yang tersisa saat mahasiswa pindah ke backend perusahaan. Alasan ini perlu ditulis di bab 09 (bagian "Kontrak di Balik Jaringan"), bukan hanya diketahui dosen.
+
+Catatan asal usul: RPS P10 menyebut **Firebase** dua kali (materi dan tugas) padahal seluruh buku memakai Supabase. Ini inkonsistensi di dokumen resmi, bukan di modul. Pilihan: (i) revisi RPS P10 → "Supabase Realtime" dan hapus Firebase dari Media Pembelajaran, atau (ii) biarkan sebagai alternatif tak-diajarkan. Saya menyarankan (i) — mencampur dua backend dalam satu mata kuliah 16 minggu hanya menambah beban setup, bukan pemahaman. Tapi RPS kemungkinan sudah tervalidasi prodi, jadi saya tidak menyentuhnya tanpa perintah.
 
 ---
 
@@ -186,7 +188,7 @@ Diurutkan menurut risiko terhadap penilaian, bukan menurut besar pekerjaan.
 
 | # | Pekerjaan | Gap | Biaya | Kenapa urutan ini |
 |---|---|---|---|---|
-| 1 | Brief capstone M0 + individu P02/P03 | T3 | sedang | dipakai P02–P04, tenggatnya paling dekat |
+| 1 | ~~Panduan capstone + brief G1~~ ✅ · sisa: brief individu P02/P03 | T3 | sedang | dipakai P02–P04, tenggatnya paling dekat |
 | 2 | Bab 07: "Arah Setelah Provider" | 4 | ±200 baris | satu-satunya gate (M5) tanpa bahan bacaan |
 | 3 | Bab 05: Checkpoint struktur adaptif + checklist 3 konfigurasi | 1 | ±180 baris | menopang gate M2 |
 | 4 | Bab 10: pemicu sinkronisasi + realtime + batas bab | 3 | ±100 baris | menutup kata "real-time" RPS |
