@@ -13,7 +13,7 @@ Panduan kerja untuk AI coding agent di repo materi perkuliahan **Pemrograman Mob
 | `moodle/` | [RENCANA] Question bank XML + generator script | ✅ (belum ada, buat baru) |
 | `Ujian/` | UTS/UAS (live coding, rubrik demo) | ✅ |
 | `modul-SA/` | Referensi paket remedial (struktur penugasan, aset Moodle) | ❌ Hanya baca |
-| `Standar Pengembangan Materi PPB.md` | Standar proses lama — **terlalu rumit, akan disederhanakan** | ⚠️ Jangan tambah kompleksitas |
+| `Standar Pengembangan Materi PPB.md` | Prinsip + alur kerja revisi, satu halaman | ⚠️ Jangan tambah kompleksitas |
 | `Standar Tutorial Koding PPB.md` | Standar aktif untuk format tutorial | Baca sebelum menulis modul |
 
 ## 2. Kebijakan Revisi Modul
@@ -31,7 +31,7 @@ Saat menulis/merevisi konten, urutan kepatuhan:
 
 1. **RPS** — topik, Sub-CPMK, praktikum, dan batasan AI per pertemuan harus konsisten dengan RPS.
 2. **Standar Tutorial Koding** (Progressive Checkpoint pattern).
-3. **Standar Pengembangan Materi** — ambil prinsipnya saja (alignment RPS, kode teruji, kompleksitas progresif); abaikan pipeline outline→handout→modul 3-file yang berat. Buku multi-bab di `modul-buku/` menggantikan pipeline itu.
+3. **Standar Pengembangan Materi** — lima prinsip + alur kerja revisi + definisi selesai.
 4. Konvensi di file ini.
 
 Konflik antar dokumen? Ikuti yang lebih tinggi, lalu sebutkan konfliknya ke user.
@@ -140,7 +140,7 @@ Konsekuensi untuk penulisan materi:
 
 - [x] Audit gap modul vs RPS — hasil di `AUDIT-Gap-Modul-vs-RPS.md` (tindak lanjutnya kerjakan dari tabel prioritas di sana, bukan dari tabel gap README yang sudah usang)
 - [ ] Commit hasil konversi `.mdx` → `.md` + dokumen repo
-- [ ] Sederhanakan `Standar Pengembangan Materi PPB.md` jadi satu halaman ringkas
+- [x] Sederhanakan `Standar Pengembangan Materi PPB.md` jadi satu halaman ringkas
 - [ ] Setup `starter-code/` (template StudyTracker per bab)
 - [x] Kalender penugasan + pemetaan bobot RPS (`penugasan/README.md`)
 - [x] Paket penugasan lengkap: `capstone/` (panduan + G1–G4), `individu/` (P02–P03), `peer-review/`
