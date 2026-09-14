@@ -26,7 +26,7 @@ Siap copas. Tiap file = satu pertemuan: summary section + daftar aktivitas denga
 ## Konvensi
 
 - Satu section Moodle per minggu; summary dari tiap file.
-- Materi: link ke web kelas `https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/<slug>`.
+- Materi: link ke web kelas `https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/<slug>/`.
 - Starter: **File zip** hasil `python3 ../pack_starters.py`, bukan URL GitHub. Restrict: quiz pertemuan sebelumnya ≥80% (P01 terbuka; P09 dibuka Quiz P07).
 - Quiz: bank `../build/Moodle-Question-Bank.xml`, kategori `PPB/P0N`, 10 soal, config standar (lihat `../README.md`).
 - Assignment hanya di minggu beraudit; brief lengkap di `../../penugasan/` dilampirkan ke assignment.

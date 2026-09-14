@@ -9,7 +9,7 @@ Aturan AI untuk tugas ini: AI hanya untuk sintaks, konsep, dan menafsirkan error
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Dart Deep Dive** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/02-dart-deep-dive
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/02-dart-deep-dive/
 
 **2. Starter P02** (File)
 Berkas: `starter-p02-dart-oop.zip`. Terbuka setelah Quiz P01 lulus (≥80%).

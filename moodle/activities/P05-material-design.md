@@ -7,7 +7,7 @@ Material Design 3 di Flutter: tema terpusat, color scheme, typography, dan form 
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Material Design Implementation** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/05-material-design-implementation
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/05-material-design-implementation/
 
 **2. Starter P05** (File)
 Berkas: `starter-p05-material-form.zip`. Terbuka setelah Quiz P04 lulus (≥80%).

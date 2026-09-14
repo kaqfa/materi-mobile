@@ -7,7 +7,7 @@ Selamat datang di Pemrograman Mobile! Minggu ini: bedah paradigma web vs mobile,
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Dart Fundamentals** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/01-dart-fundamentals
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/01-dart-fundamentals/
 
 **2. Starter P01** (File)
 Berkas: `starter-p01-hello-flutter.zip`. Terbuka sejak awal — tanpa syarat.

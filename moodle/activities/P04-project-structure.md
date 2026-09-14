@@ -9,7 +9,7 @@ Rezim AI berubah: sejak capstone, AI bebas dipakai tapi wajib dideklarasikan di 
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Build System & Project Structure** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/04-build-system-project-structure
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/04-build-system-project-structure/
 
 **2. Starter P04** (File)
 Berkas: `starter-p04-project-structure.zip`. Terbuka setelah Quiz P03 lulus (≥80%).

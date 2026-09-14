@@ -9,7 +9,7 @@ Aturan AI masih rezim pembatasan: AI untuk penjelasan error saja; kode app ditul
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Flutter Fundamentals** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/03-flutter-fundamentals
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/03-flutter-fundamentals/
 
 **2. Starter P03** (File)
 Berkas: `starter-p03-widget-navigation.zip`. Terbuka setelah Quiz P02 lulus (≥80%).

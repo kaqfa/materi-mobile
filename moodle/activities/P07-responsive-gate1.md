@@ -7,7 +7,7 @@ Layout adaptif: MediaQuery, LayoutBuilder, breakpoint terpusat, satu-kolom → d
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Responsive & Adaptive** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/05-material-design-implementation
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/05-material-design-implementation/
 
 **2. Starter P07** (File)
 Berkas: `starter-p07-responsive.zip`. Terbuka setelah Quiz P06 lulus (≥80%).

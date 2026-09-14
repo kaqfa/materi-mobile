@@ -7,7 +7,7 @@ Kode yang tidak teruji adalah tebakan. Unit test untuk logika murni, widget test
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Testing & Quality Assurance** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/11-testing-quality-assurance
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/11-testing-quality-assurance/
 
 **2. Starter P12** (File)
 Berkas: `starter-p12-testing.zip`. Terbuka setelah Quiz P11 lulus (≥80%).

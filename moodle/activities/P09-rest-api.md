@@ -7,7 +7,7 @@ App berbicara dengan dunia luar: REST API dengan package `http` — CRUD, header
 ## Aktivitas (urutan tampil)
 
 **1. Materi — REST API Integration** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/09-rest-api-integration
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/09-rest-api-integration/
 
 **2. Starter P09** (File)
 Berkas: `starter-p09-rest-api.zip`. Terbuka setelah Quiz P07 lulus (≥80%) — P08 UTS tanpa quiz.

@@ -7,7 +7,7 @@ Ukur, jangan menebak: profiling dengan DevTools (mode profile), diagnosis jank, 
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Performance Optimization** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/13-performance-optimization
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/13-performance-optimization/
 
 **2. Starter P14** (File)
 Berkas: `starter-p14-performance.zip`. Terbuka setelah Quiz P13 lulus (≥80%).

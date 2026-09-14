@@ -7,7 +7,7 @@ Offline-first: SQLite lokal sebagai sumber utama, sinkronisasi dua arah, resolus
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Offline-First & SQLite** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/10-offline-first-sqlite
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/10-offline-first-sqlite/
 
 **2. Starter P10** (File)
 Berkas: `starter-p10-offline-sync.zip`. Terbuka setelah Quiz P09 lulus (≥80%).

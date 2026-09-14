@@ -7,7 +7,7 @@ Dari memakai widget ke membuat widget: custom widget reusable (parameter + callb
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Advanced UI & Custom Widgets** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/06-advanced-ui-custom-widgets
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/06-advanced-ui-custom-widgets/
 
 **2. Starter P06** (File)
 Berkas: `starter-p06-custom-widgets.zip`. Terbuka setelah Quiz P05 lulus (≥80%).

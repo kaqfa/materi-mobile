@@ -7,7 +7,7 @@ Dari project menjadi produk: build rilis, signing keystore, obfuscation, version
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Deployment & Distribution** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/14-deployment-distribution
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/14-deployment-distribution/
 
 **2. Starter P15** (File)
 Berkas: `starter-p15-release-prep.zip`. Terbuka setelah Quiz P14 lulus (≥80%).

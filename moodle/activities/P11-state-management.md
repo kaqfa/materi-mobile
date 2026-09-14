@@ -7,7 +7,7 @@ Saat app membesar, state tersebar jadi utang. Refactor dari `setState` ke state 
 ## Aktivitas (urutan tampil)
 
 **1. Materi — State Management** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/07-state-management-shared-preferences
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/07-state-management-shared-preferences/
 
 **2. Starter P11** (File)
 Berkas: `starter-p11-provider-state.zip`. Terbuka setelah Quiz P10 lulus (≥80%).

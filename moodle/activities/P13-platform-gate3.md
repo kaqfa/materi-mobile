@@ -7,7 +7,7 @@ Fitur native: kamera/galeri (image_picker), lokasi (geolocator), dan penanganan 
 ## Aktivitas (urutan tampil)
 
 **1. Materi — Platform Features & Device Integration** (URL)
-https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/12-platform-features-device
+https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/12-platform-features-device/
 
 **2. Starter P13** (File)
 Berkas: `starter-p13-device-features.zip`. Terbuka setelah Quiz P12 lulus (≥80%).
