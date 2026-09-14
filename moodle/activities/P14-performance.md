@@ -17,11 +17,6 @@ Deskripsi:
 
 > 10 soal: builder lazy, itemExtent, const reuse, mode profile, budget 16 ms. Unlimited attempt, lulus 8/10.
 
-**4. Forum — Sebelum & Sesudah** (Forum)
-Deskripsi:
-
-> Post screenshot overlay/frame chart sebelum dan sesudah satu optimasi + satu kalimat apa yang berubah.
-
 ## Catatan dosen
 
 - Target capstone: laporan singkat sebelum vs sesudah (angka dari DevTools) — commit ke repo, dipakai di video G4.

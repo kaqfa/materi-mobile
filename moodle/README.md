@@ -96,7 +96,7 @@ Course `id=21`, audit penuh di `.kanban-evidence/task-009/` (matrix 69/69 aktivi
 - [x] 16 section P01–P16 + summary per `activities/PXX-*.md`; duplikat/section kosong dibersihkan (17 section final)
 - [x] Import 140 soal ber-tag (14 kategori `PPB/PXX`) — versi lama tanpa tag sudah dihapus dulu
 - [x] 14 quiz P0N + config standar (unlimited/highest/pass 8/shuffle/no time limit/1 halaman)
-- [x] Aktivitas non-quiz: 14 URL materi, 14 File starter zip, Forum, Choice, Feedback P16
+- [x] Aktivitas non-quiz: 14 URL materi, 14 File starter zip, Choice, Feedback P16 (12 forum dihapus 2026-09-14 — keputusan dosen; activities PXX sudah disinkronkan)
 - [x] Assignment: Tugas P02/P03/P04, gate G1–G4, UTS, UAS (brief penugasan terlampir)
 - [x] Peer review P07 & P13 (format tiga butir) + attach form
 - [x] Restrict access berantai 13/13 (quiz → starter minggu berikutnya)

@@ -17,11 +17,6 @@ Deskripsi:
 
 > 10 soal: header POST JSON, status 201/401/403, FutureBuilder, dart-define. Unlimited attempt, lulus 8/10.
 
-**4. Forum — Postman & 401 Club** (Forum)
-Deskripsi:
-
-> Tempel satu tangkapan request yang gagal (401/403/422) + bagaimana kamu menyelesaikannya.
-
 ## Catatan dosen
 
 - Target capstone: satu resource CRUD penuh via API — commit ke repo, dinilai di G2 (minggu depan).

@@ -56,21 +56,25 @@ Lalu **hapus soal lama kategori terkait** (bulk delete UI) dan **import ulang** 
 
 ## 3. Ubah intro/deskripsi aktivitas (assign, forum, dll)
 
-Editor teks = Atto di iframe. Via UI Playwright:
+Editor teks = TinyMCE 6 di iframe `id_introeditor_ifr`. Via UI Playwright:
 
 ```python
 page.goto(f"{BASE}/course/modedit.php?update={cmid}")
 page.wait_for_selector("#id_introeditor", state="attached")
-page.wait_for_timeout(2500)   # tunggu iframe editor init — value muncul belakangan
-page.evaluate("""() => {
+page.wait_for_timeout(1800)   # tunggu iframe editor init
+page.evaluate("""([html]) => {
     const fr = document.querySelector('iframe[id$="introeditor_ifr"]');
-    fr.contentDocument.body.innerHTML = html_baru;
-    document.querySelector('#id_introeditor').value = html_baru;
-}""")
+    fr.contentDocument.body.innerHTML = html;        // tampilan editor
+    const ta = document.querySelector('#id_introeditor');
+    ta.value = html;                                  // nilai yang disubmit
+    ta.dispatchEvent(new Event('change', {bubbles: true}));
+}""", [html_baru])
 page.click("#id_submitbutton")   # WAJIB klik tombol asli; JS form.submit() TIDAK menyimpan editor
 ```
 
-Pitfall terbukti: `form.submit()` via JS melewati event editor → konten Atto tidak tertulis (quiz/checkbox aman, rich-text TIDAK).
+Konversi Markdown→HTML: `markdown-it-py` (`MarkdownIt("commonmark")`), subset yang dipakai
+(bold/italic/link/list/inline-code/blockquote) aman untuk TinyMCE. Sumber kebenaran tetap
+Markdown di repo; konversi satu arah saat push ke Moodle.
 
 ## 4. Ubah konfigurasi quiz (review options, attempts, dll)
 

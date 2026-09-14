@@ -22,11 +22,6 @@ Deskripsi:
 
 > 10 soal: version di openDatabase, whereArgs, last-write-wins, ConflictAlgorithm. Unlimited attempt, lulus 8/10.
 
-**5. Forum — Uji Pesawat Mode** (Forum)
-Deskripsi:
-
-> Ceritakan hasil uji offline-mu: airplane mode → aksi → koneksi pulih → sync. Termasuk bug yang ditemukan.
-
 ## Catatan dosen
 
 - Syarat masuk G2: G1 graded + quiz P09–P10 lulus.

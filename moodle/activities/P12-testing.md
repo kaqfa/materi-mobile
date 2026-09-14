@@ -17,11 +17,6 @@ Deskripsi:
 
 > 10 soal: pumpWidget, find.byKey, urutan TDD, mock, coverage. Unlimited attempt, lulus 8/10.
 
-**4. Forum — Bug Yang Tertangkap Test** (Forum)
-Deskripsi:
-
-> Satu bug nyata yang ketahuan karena test: gejala, test yang menangkap, perbaikannya.
-
 ## Catatan dosen
 
 - Target capstone: minimal 5 test bermakna + tangkapan layar coverage — commit ke repo, dinilai di G3 (minggu depan).

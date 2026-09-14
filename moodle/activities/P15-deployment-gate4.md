@@ -22,11 +22,6 @@ Deskripsi:
 
 > 10 soal: versioning, AAB vs APK, obfuscate, keystore, kReleaseMode. Unlimited attempt, lulus 8/10.
 
-**5. Forum — Store Listing Peer Check** (Forum)
-Deskripsi:
-
-> Tempel draf listing app-mu (nama, deskripsi, 2 screenshot). Review satu teman: apakah orang awam paham dalam 10 detik?
-
 ## Catatan dosen
 
 - Syarat masuk G4: G3 graded + quiz P09–P15 lulus.

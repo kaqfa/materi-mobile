@@ -22,11 +22,6 @@ Deskripsi:
 
 > Centang butir yang sudah berfungsi di mesinmu: `flutter --version` jalan, `flutter doctor` bersih, emulator/device terdeteksi, project pertama bisa `flutter run`. Bukan penilaian — peta posisi kelas.
 
-**5. Forum — Perkenalan & Error Wall** (Forum)
-Deskripsi:
-
-> Perkenalkan diri, lalu tempel satu error yang kamu temui saat setup — dan bantu satu teman menyelesaikan error-nya.
-
 ## Catatan dosen
 
 - Quiz: config standar (unlimited/highest/lulus 8). Membuka section P02.

@@ -17,11 +17,6 @@ Deskripsi:
 
 > 10 soal dari kode starter: callback child→parent, AnimatedOpacity, Dismissible, showDialog. Unlimited attempt, lulus 8/10.
 
-**4. Forum — Widget Autopsi** (Forum)
-Deskripsi:
-
-> Bedah satu custom widget-mu: potongan kode 10–30 baris + kenapa parameternya begitu. Komentari bedah satu teman.
-
 ## Catatan dosen
 
 - Target capstone: minimal 3 custom widget yang terpakai ulang — commit ke repo, dinilai di G1 (minggu depan).

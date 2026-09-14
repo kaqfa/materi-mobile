@@ -24,11 +24,6 @@ Deskripsi:
 
 > 10 soal: constraint versi pubspec, pub add/get, lock file, named routes, deklarasi aset. Unlimited attempt, lulus 8/10.
 
-**5. Forum — Pitch 60 Detik** (Forum)
-Deskripsi:
-
-> Tulis pitch 60 detik capstone-mu: untuk siapa, masalah apa, fitur inti apa. Komentari dua pitch teman.
-
 ## Catatan dosen
 
 - Catat link repo mahasiswa (dipakai cek commit ≥3 minggu untuk gate).

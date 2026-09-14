@@ -24,11 +24,6 @@ Deskripsi:
 
 > 10 soal membaca kode Flutter: setState, ListView.builder, Expanded, Navigator, FutureBuilder. Unlimited attempt, lulus 8/10.
 
-**5. Forum — Screenshot Jalan Pertama** (Forum)
-Deskripsi:
-
-> Unggah screenshot app-mu jalan. Sebutkan satu hal yang mulai kamu pahami dan satu yang masih membingungkan.
-
 ## Catatan dosen
 
 - Tugas: rubrik manual. Quiz membuka section P04.

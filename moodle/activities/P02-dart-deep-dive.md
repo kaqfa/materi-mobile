@@ -24,11 +24,6 @@ Deskripsi:
 
 > 10 soal membaca kode Dart: constructor, `?.`, `??`, mixin, async, try-catch-finally. Unlimited attempt, lulus 8/10.
 
-**5. Forum — Error Wall** (Forum)
-Deskripsi:
-
-> Tempel satu error null safety / async + potongan kode + analisis pertamamu. Balas satu thread teman.
-
 ## Catatan dosen
 
 - Tugas: grading rubrik manual; verifikasi perubahan di kelas P04.

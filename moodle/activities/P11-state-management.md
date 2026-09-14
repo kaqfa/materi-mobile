@@ -17,11 +17,6 @@ Deskripsi:
 
 > 10 soal: notifyListeners, read vs watch, Consumer, Selector. Unlimited attempt, lulus 8/10.
 
-**4. Forum — Prop Drilling Horror Story** (Forum)
-Deskripsi:
-
-> Ceritakan rantai prop drilling terparah yang pernah kamu tulis — dan bagian yang sekarang digantikan provider.
-
 ## Catatan dosen
 
 - Target capstone: satu alur data penting lewat state terpusat — commit ke repo, dinilai di G3.

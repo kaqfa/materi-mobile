@@ -17,11 +17,6 @@ Deskripsi:
 
 > 10 soal: fromSeed, validator, formKey, showDatePicker, dropdown. Unlimited attempt, lulus 8/10.
 
-**4. Forum — Design Critique** (Forum)
-Deskripsi:
-
-> Unggah 3 screenshot UI capstone-mu (kosong, berisi, form). Komentari dua teman dengan istilah Material (kontras, spacing, elevation).
-
 ## Catatan dosen
 
 - Tidak ada assignment minggu ini — progres capstone cukup di-commit ke repo; dinilai di G1.
