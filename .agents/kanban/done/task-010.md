@@ -1,7 +1,7 @@
 ---
 id: task-010
 title: "Update README moodle/ + commit"
-status: review
+status: done
 priority: 50
 assignee: pi
 created_at: 2026-09-13
@@ -57,3 +57,4 @@ curl -s https://kulino.dinus.ac.id/webservice/rest/server.php \
 - Tests: `git status --porcelain` kosong (clean); scan secret (32-hex token / literal sesskey/cookie/password) di file ter-commit → 0 temuan; semua kredensial dibaca runtime dari `~/.kulino-admin/*` (tidak ada di repo).
 - Decisions: skrip sekali-pakai dotfile di-gitignore (bukan di-commit) karena tidak dinamai scope & berisiko noise; hanya `kulino_client.py` + `probe_lib.py` (reusable, dinamai scope) yang di-commit. `.moodle_plan.json` di-gitignore — turunan `activities/*.md`. Push tidak dilakukan (Excluded, manual user).
 - Open: langkah manual dosen tercatat di README (kalender, gradebook bobot, buka section mingguan); push GitHub oleh user.
+- 2026-09-13 Prisa: Verifikasi independen — 4 commit (ef544bf..a35bd33) ada, git status clean, scan secret wstoken/sesskey/MoodleSession di HEAD = 0 temuan. Push dibiarkan manual oleh user. → done.
