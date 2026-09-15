@@ -38,3 +38,4 @@ moodle/build/
 /.probe_kulino.py
 /.ws_test.py
 /.moodle_plan.json
+starter-code/env-check/android/local.properties

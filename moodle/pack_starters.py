@@ -17,12 +17,17 @@ OUT_DIR = ROOT / "build" / "starter-zips"
 
 EXCLUDE_DIRS = {".dart_tool", "build", ".idea", ".git", "__pycache__"}
 EXCLUDE_FILE_PREFIXES = (".flutter-plugins", ".DS_Store")
+# pubspec.lock di-exclude: starter di-resolve mahasiswa di mesin masing-masing
+# (lab pakai Flutter 3.27/Dart 3.6 — lock hasil mesin lain bikin pub get gagal).
+EXCLUDE_FILES = {"pubspec.lock", "local.properties"}
 
 
 def should_include(path: Path) -> bool:
     if any(part in EXCLUDE_DIRS for part in path.parts):
         return False
     if any(path.name.startswith(p) for p in EXCLUDE_FILE_PREFIXES):
+        return False
+    if path.name in EXCLUDE_FILES:
         return False
     return True
 
