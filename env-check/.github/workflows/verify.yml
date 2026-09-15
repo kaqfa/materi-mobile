@@ -1,0 +1,48 @@
+name: Verifikasi Lingkungan
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Sekali sepekan: menangkap paket yang rusak oleh rilis Flutter baru
+    # sebelum mahasiswa yang menemukannya.
+    - cron: '0 1 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  host-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - run: flutter --version
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+  android-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      # Folder android/ dan ios/ tidak disimpan di repo kecuali
+      # AndroidManifest.xml; create ulang mengisi sisanya dari template.
+      - run: flutter create --platforms=android,ios .
+      - run: flutter pub get
+      - run: flutter build apk --debug

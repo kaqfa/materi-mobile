@@ -1,0 +1,15 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    - prefer_const_constructors
+    - prefer_final_locals
+    - avoid_print
+    - unawaited_futures
+
+analyzer:
+  errors:
+    # Kesalahan yang sering muncul di kelas dinaikkan jadi error agar
+    # `flutter analyze` di CI benar-benar menahan kode yang bermasalah.
+    missing_required_param: error
+    missing_return: error

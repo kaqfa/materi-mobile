@@ -1,0 +1,29 @@
+.dart_tool/
+.packages
+build/
+pubspec.lock
+
+# Folder host dibuat ulang oleh `flutter create`; hanya berkas yang memang
+# kita sunting yang dilacak (lihat android/app/src/main/AndroidManifest.xml).
+android/*
+!android/app
+android/app/*
+!android/app/src
+android/app/src/*
+!android/app/src/main
+android/app/src/main/*
+!android/app/src/main/AndroidManifest.xml
+
+ios/*
+!ios/Runner
+ios/Runner/*
+!ios/Runner/Info.plist.additions
+
+linux/
+macos/
+windows/
+web/
+
+*.iml
+.idea/
+.vscode/

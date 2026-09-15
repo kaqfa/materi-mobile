@@ -1,0 +1,51 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--
+      Permission ditulis hanya untuk fitur yang benar-benar diperiksa proyek
+      ini, sesuai aturan bab 4.
+
+      INTERNET  : dibutuhkan probe http (bab 9). Tanpa baris ini, build
+                  release gagal memanggil API meskipun debug build jalan,
+                  karena manifest debug/ punya deklarasinya sendiri.
+      LOKASI    : dibutuhkan probe geolocator (bab 12).
+
+      Yang sengaja TIDAK ada: READ_EXTERNAL_STORAGE, READ_MEDIA_IMAGES, dan
+      CAMERA. Photo picker Android berjalan di proses sistem dan image_picker
+      membuka kamera lewat intent, jadi ketiganya tidak diperlukan.
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:label="Env Check"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <meta-data
+              android:name="io.flutter.embedding.android.NormalTheme"
+              android:resource="@style/NormalTheme" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
+</manifest>

@@ -1,0 +1,13 @@
+<!--
+  Tambahkan kunci berikut ke ios/Runner/Info.plist setelah `flutter create`
+  membuat ulang folder ios/. Tanpa kunci ini aplikasi iOS CRASH saat fitur
+  pertama kali dipakai, bukan saat build, sesuai peringatan bab 12.
+-->
+<key>NSCameraUsageDescription</key>
+<string>Aplikasi memakai kamera untuk memverifikasi bahwa plugin kamera berfungsi.</string>
+
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Aplikasi membaca galeri untuk memverifikasi bahwa photo picker berfungsi.</string>
+
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Aplikasi membaca lokasi untuk memverifikasi bahwa layanan lokasi berfungsi.</string>
