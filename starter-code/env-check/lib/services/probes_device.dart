@@ -40,13 +40,13 @@ class ImagePickerProbe extends Probe {
       final lost = response.isEmpty ? 'tidak ada berkas tertinggal' : 'ada berkas tertinggal';
       return 'channel hidup, $lost';
     } on UnimplementedError {
-      return 'channel hidup (retrieveLost khusus Android)';
+      return 'channel hidup (retrieveLostData khusus Android)';
     } catch (e) {
       // MissingPluginException berarti plugin benar-benar tidak terpasang.
       if (e.toString().contains('MissingPlugin')) {
         throw StateError('plugin image_picker tidak ter-register: $e');
       }
-      return 'channel hidup (platform menolak retrieveLost: $e)';
+      return 'channel hidup (platform menolak retrieveLostData: $e)';
     }
   }
 }

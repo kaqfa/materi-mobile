@@ -13,3 +13,7 @@ analyzer:
     # `flutter analyze` di CI benar-benar menahan kode yang bermasalah.
     missing_required_param: error
     missing_return: error
+  exclude:
+    - build/**
+    - android/**
+    - ios/**

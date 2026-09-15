@@ -49,3 +49,16 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+# Kunci sementara, bukan pilihan desain.
+#
+# path_provider_foundation (implementasi iOS/macOS) menarik objective_c, dan
+# versi 9.6.1 punya hook build yang merujuk Architecture.arm64e, nama yang
+# belum ada di Dart 3.13.3. Akibatnya `flutter test` GAGAL DI LINUX karena
+# hook itu tetap dikompilasi meski kodenya tidak pernah dipakai di sini.
+#
+# 9.4.1 adalah versi terakhir yang hook-nya kompilasi bersih. Hapus override
+# ini begitu objective_c merilis perbaikannya; cek dengan:
+#   flutter pub outdated
+dependency_overrides:
+  objective_c: 9.4.1

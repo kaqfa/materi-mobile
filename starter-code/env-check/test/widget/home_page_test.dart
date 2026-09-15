@@ -14,8 +14,8 @@ class _StubProbe extends Probe {
   final String id;
   final bool fails;
 
-  /// Menunda hasil agar tes bisa mengamati keadaan "sedang berjalan".
-  /// Tanpa jeda, probe selesai di microtask yang sama dengan pump pertama.
+  /// Menunda penyelesaian probe agar keadaan "sedang berjalan" sempat
+  /// teramati oleh test; tanpa ini probe selesai dalam microtask yang sama.
   final Duration delay;
 
   @override
@@ -85,7 +85,9 @@ void main() {
 
   testWidgets('tombol jalankan ulang memulai pemeriksaan lagi', (tester) async {
     final report = EnvironmentReport(
-      probes: const [_StubProbe('a', delay: Duration(milliseconds: 50))],
+      probes: const [
+        _StubProbe('a', delay: Duration(milliseconds: 50)),
+      ],
     );
 
     await tester.pumpWidget(_app(report));

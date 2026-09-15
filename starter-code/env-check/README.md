@@ -13,6 +13,10 @@ buku, lalu melaporkan mana yang hidup dan mana yang tidak.
 Prasyarat: Flutter stable **3.47 atau lebih baru** sudah terpasang dan ada di
 PATH. Kalau belum, ikuti https://docs.flutter.dev/get-started/install dulu.
 
+> Terverifikasi pada Flutter **3.47.4** / Dart **3.13.3** (Linux x86_64,
+> 15 September 2026): `flutter pub get`, `flutter analyze` (0 issue), dan
+> `flutter test` (21 test) semuanya hijau.
+
 ```bash
 cd env-check
 
@@ -128,6 +132,10 @@ Baca kolom bab pada probe yang gagal, lalu buka bab itu. Beberapa pola umum:
   emulator dengan API level yang lebih baru.
 - **`integration_test` tidak jalan** — pastikan `flutter devices` menampilkan
   setidaknya satu perangkat sebelum menjalankannya.
+- **`flutter test` gagal dengan `Member not found: 'arm64e'`** — ini bug
+  `objective_c` 9.6.1 di Dart 3.13.x, ditarik masuk oleh `path_provider`
+  untuk iOS/macOS. `pubspec.yaml` sudah mengunci versinya ke 9.4.1 lewat
+  `dependency_overrides`; kunci itu boleh dihapus begitu paketnya diperbaiki.
 
 ## Struktur
 
