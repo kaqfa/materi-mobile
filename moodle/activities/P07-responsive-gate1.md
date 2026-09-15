@@ -6,6 +6,8 @@ Layout adaptif: MediaQuery, LayoutBuilder, breakpoint terpusat, satu-kolom → d
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 05 — Material 3 dan Antarmuka yang Adaptif (bagian responsif)
+
 **1. Materi — Responsive & Adaptive** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/05-material-design-implementation/
 

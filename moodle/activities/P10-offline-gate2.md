@@ -1,10 +1,12 @@
-# P10 — Real-time Features & Advanced API Integration + Gate G2
+# P10 — Real-time & Advanced API + Gate G2
 
 ## Summary section (copas ke *Summary* minggu ini)
 
 Offline-first: SQLite lokal sebagai sumber utama, sinkronisasi dua arah, resolusi konflik, dan status pending. Minggu ini juga **Gate 2 capstone**: REST + lokal + offline.
 
 ## Aktivitas (urutan tampil)
+
+**Bacaan:** Bab 10 — Offline-First: Sinkronisasi yang Benar
 
 **1. Materi — Offline-First & SQLite** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/10-offline-first-sqlite/

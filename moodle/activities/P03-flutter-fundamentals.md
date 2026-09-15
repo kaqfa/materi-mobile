@@ -1,4 +1,4 @@
-# P03 — Flutter Fundamentals & Widget System
+# P03 — Flutter Fundamentals: Widget & Navigation
 
 ## Summary section (copas ke *Summary* minggu ini)
 
@@ -7,6 +7,8 @@ Masuk ke Flutter: widget tree, stateless vs stateful, ListView, dan navigasi ant
 Aturan AI masih rezim pembatasan: AI untuk penjelasan error saja; kode app ditulis sendiri.
 
 ## Aktivitas (urutan tampil)
+
+**Bacaan:** Bab 03 — Flutter Fundamental
 
 **1. Materi — Flutter Fundamentals** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/03-flutter-fundamentals/

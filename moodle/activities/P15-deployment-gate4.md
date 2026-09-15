@@ -6,6 +6,8 @@ Dari project menjadi produk: build rilis, signing keystore, obfuscation, version
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 14 — Deployment & Distribution
+
 **1. Materi — Deployment & Distribution** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/14-deployment-distribution/
 

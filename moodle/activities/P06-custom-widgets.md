@@ -6,6 +6,8 @@ Dari memakai widget ke membuat widget: custom widget reusable (parameter + callb
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 06 — Custom Widget, Form, dan Animasi
+
 **1. Materi — Advanced UI & Custom Widgets** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/06-advanced-ui-custom-widgets/
 

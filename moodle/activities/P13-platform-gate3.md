@@ -6,6 +6,8 @@ Fitur native: kamera/galeri (image_picker), lokasi (geolocator), dan penanganan 
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 12 — Platform Features & Device Integration
+
 **1. Materi — Platform Features & Device Integration** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/12-platform-features-device/
 

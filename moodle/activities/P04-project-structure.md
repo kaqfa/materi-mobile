@@ -8,6 +8,8 @@ Rezim AI berubah: sejak capstone, AI bebas dipakai tapi wajib dideklarasikan di 
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 04 — Build System dan Struktur Proyek
+
 **1. Materi — Build System & Project Structure** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/04-build-system-project-structure/
 

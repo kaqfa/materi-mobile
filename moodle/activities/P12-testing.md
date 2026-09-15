@@ -6,6 +6,8 @@ Kode yang tidak teruji adalah tebakan. Unit test untuk logika murni, widget test
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 11 — Testing & Quality Assurance
+
 **1. Materi — Testing & Quality Assurance** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/11-testing-quality-assurance/
 

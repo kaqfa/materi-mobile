@@ -6,6 +6,8 @@ Saat app membesar, state tersebar jadi utang. Refactor dari `setState` ke state 
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 07 — State Management (bagian 'Arah Setelah Provider')
+
 **1. Materi — State Management** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/07-state-management-shared-preferences/
 

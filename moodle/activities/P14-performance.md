@@ -6,6 +6,8 @@ Ukur, jangan menebak: profiling dengan DevTools (mode profile), diagnosis jank, 
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 13 — Performance Optimization
+
 **1. Materi — Performance Optimization** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/13-performance-optimization/
 

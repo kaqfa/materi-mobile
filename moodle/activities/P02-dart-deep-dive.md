@@ -8,6 +8,8 @@ Aturan AI untuk tugas ini: AI hanya untuk sintaks, konsep, dan menafsirkan error
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 02 — Dart Lanjutan: Pemodelan Data
+
 **1. Materi — Dart Deep Dive** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/02-dart-deep-dive/
 

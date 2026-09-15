@@ -6,6 +6,8 @@ Material Design 3 di Flutter: tema terpusat, color scheme, typography, dan form 
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 05 — Material 3 dan Antarmuka yang Adaptif
+
 **1. Materi — Material Design Implementation** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/05-material-design-implementation/
 

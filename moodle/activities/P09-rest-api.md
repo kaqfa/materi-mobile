@@ -6,6 +6,8 @@ App berbicara dengan dunia luar: REST API dengan package `http` — CRUD, header
 
 ## Aktivitas (urutan tampil)
 
+**Bacaan:** Bab 09 — REST API dan Autentikasi yang Aman
+
 **1. Materi — REST API Integration** (URL)
 https://classroom.fahrifirdaus.my.id/book/pemrograman-flutter/chapter/09-rest-api-integration/
 
