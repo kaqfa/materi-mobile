@@ -115,6 +115,14 @@ Form `modedit.php` — **assign WAJIB via UI Playwright** (raw POST kena bug ser
 dengan hidden fields wajib: `pageurl`, `context`, `summary_editor[itemid]`, plus
 `clientvalues` & `availabilityconditionsjson` kosong — tanpa itu 404.
 
+## 7b. Geser due date assignment / tanggal course
+
+- **Assignment**: modedit → set `id_duedate_{day,month,year}` (pastikan `id_duedate_enabled`
+  tercentang). **Pitfall**: bila `gradingduedate` lama > due baru, form reject **diam-diam**
+  (tampilan sukses, DB tak berubah) — matikan `id_gradingduedate_enabled` dulu.
+- **Tanggal course**: `course/edit.php?id=<id>` (bukan editsettings.php), tombol submit =
+  `#id_saveanddisplay` (bukan `#id_submitbutton`).
+
 ## 8. Upload ulang starter zip
 
 ```bash
