@@ -29,7 +29,10 @@ class HttpProbe extends Probe {
   @override
   Future<String> probe() async {
     final c = client ?? http.Client();
-    final url = endpoint ?? Uri.parse('https://api.dart.dev/stable/index.json');
+    final url = endpoint ??
+        Uri.parse(
+          'https://storage.googleapis.com/dart-archive/channels/stable/release/latest/VERSION',
+        );
     try {
       final response = await c
           .get(url, headers: {'Accept': 'application/json'})

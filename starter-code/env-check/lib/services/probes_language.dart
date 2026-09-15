@@ -20,7 +20,7 @@ class DartLanguageProbe extends Probe {
   @override
   Future<String> probe() async {
     // Null safety dan promosi tipe.
-    String? maybe = DateTime.now().isUtc ? null : 'ada';
+    final String? maybe = DateTime.now().isUtc ? null : 'ada';
     final promoted = maybe == null ? 'kosong' : maybe.toUpperCase();
     if (promoted != 'ADA') {
       throw StateError('promosi tipe null safety tidak seperti yang diduga');

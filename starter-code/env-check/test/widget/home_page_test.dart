@@ -8,11 +8,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 
 class _StubProbe extends Probe {
-  const _StubProbe(this.id, {this.fails = false});
+  const _StubProbe(this.id, {this.fails = false, this.delay = Duration.zero});
 
   @override
   final String id;
   final bool fails;
+
+  /// Menunda hasil agar tes bisa mengamati keadaan "sedang berjalan".
+  /// Tanpa jeda, probe selesai di microtask yang sama dengan pump pertama.
+  final Duration delay;
 
   @override
   String get label => 'Stub $id';
@@ -22,6 +26,7 @@ class _StubProbe extends Probe {
 
   @override
   Future<String> probe() async {
+    if (delay > Duration.zero) await Future<void>.delayed(delay);
     if (fails) throw StateError('gagal terkendali');
     return 'baik';
   }
@@ -79,7 +84,9 @@ void main() {
   });
 
   testWidgets('tombol jalankan ulang memulai pemeriksaan lagi', (tester) async {
-    final report = EnvironmentReport(probes: const [_StubProbe('a')]);
+    final report = EnvironmentReport(
+      probes: const [_StubProbe('a', delay: Duration(milliseconds: 50))],
+    );
 
     await tester.pumpWidget(_app(report));
     await tester.pumpAndSettle();

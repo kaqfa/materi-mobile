@@ -36,7 +36,7 @@ class ImagePickerProbe extends Probe {
       // Android-only: mengembalikan berkas yang tertinggal saat proses mati.
       // Di iOS memanggil ini melempar MissingPluginException/UnimplementedError,
       // dan itu tetap membuktikan plugin terpasang, bukan channel yang putus.
-      final response = await picker.retrieveLost();
+      final response = await picker.retrieveLostData();
       final lost = response.isEmpty ? 'tidak ada berkas tertinggal' : 'ada berkas tertinggal';
       return 'channel hidup, $lost';
     } on UnimplementedError {
