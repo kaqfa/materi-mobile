@@ -14,7 +14,7 @@ class StudyTrackerApp extends StatelessWidget {
     return const MaterialApp(
       title: 'StudyTracker P03',
       debugShowCheckedModeBanner: false,
-      home: const TaskListScreen(),
+      home: TaskListScreen(),
     );
   }
 }

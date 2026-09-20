@@ -29,7 +29,7 @@ void main() {
         dueDate: DateTime.now().subtract(const Duration(days: 1)),
       );
       final terlambatTapiSelesai = terlambat.copyWith(completed: true);
-      final tanpaDeadline = Task(id: 'b', title: 'Bebas');
+      const tanpaDeadline = Task(id: 'b', title: 'Bebas');
 
       expect(terlambat.isOverdue, isTrue);
       expect(terlambatTapiSelesai.isOverdue, isFalse);
@@ -37,7 +37,7 @@ void main() {
     });
 
     test('P02-4 copyWith mengganti field terpilih saja', () {
-      final task = const Task(id: 'c', title: 'Awal', category: 'Umum');
+      const task = Task(id: 'c', title: 'Awal', category: 'Umum');
       final salinan = task.copyWith(title: 'Baru', completed: true);
 
       expect(salinan.title, 'Baru');
@@ -47,12 +47,12 @@ void main() {
     });
 
     test('toJson round-trip: fromJson(toJson(x)) == x (field utama)', () {
-      final task = const Task(
+      const task = Task(
         id: 'd',
         title: 'Round trip',
         category: 'Tugas',
         priority: Priority.high,
-        tags: const ['p02'],
+        tags: ['p02'],
       );
       final hasil = Task.fromJson(task.toJson());
 

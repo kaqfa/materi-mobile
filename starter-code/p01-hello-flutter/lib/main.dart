@@ -13,7 +13,7 @@ class StudyTrackerApp extends StatelessWidget {
     return const MaterialApp(
       title: 'StudyTracker',
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }
