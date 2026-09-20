@@ -17,7 +17,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
   final _descCtrl = TextEditingController();
 
   String _category = categories.first;
-  Priority _priority = Priority.medium;
+  final Priority _priority = Priority.medium;
   DateTime? _dueDate;
 
   @override
@@ -80,7 +80,7 @@ class _TaskFormScreenState extends State<TaskFormScreen> {
             ),
             const SizedBox(height: 12),
             DropdownButtonFormField<String>(
-              initialValue: _category,
+              value: _category,
               items: [
                 for (final c in categories)
                   DropdownMenuItem(value: c, child: Text(c)),

@@ -11,7 +11,7 @@ class StudyTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'StudyTracker P12',
       home: const HomeScreen(),
     );

@@ -10,7 +10,7 @@ class StudyTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'StudyTracker',
       debugShowCheckedModeBanner: false,
       home: const HomeScreen(),

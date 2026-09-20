@@ -1,7 +1,7 @@
-/// Konstanta visual terpusat — contoh isi folder `utils/`.
-///
-/// Tujuan: satu sumber kebenaran untuk nilai yang dipakai di banyak
-/// tempat, sehingga konsistensi terjaga tanpa magic number tersebar.
+// Konstanta visual terpusat — contoh isi folder `utils/`.
+//
+// Tujuan: satu sumber kebenaran untuk nilai yang dipakai di banyak
+// tempat, sehingga konsistensi terjaga tanpa magic number tersebar.
 import 'package:flutter/material.dart';
 
 abstract final class AppColors {

@@ -37,7 +37,7 @@ void main() {
     });
 
     test('P02-4 copyWith mengganti field terpilih saja', () {
-      final task = Task(id: 'c', title: 'Awal', category: 'Umum');
+      final task = const Task(id: 'c', title: 'Awal', category: 'Umum');
       final salinan = task.copyWith(title: 'Baru', completed: true);
 
       expect(salinan.title, 'Baru');
@@ -47,7 +47,7 @@ void main() {
     });
 
     test('toJson round-trip: fromJson(toJson(x)) == x (field utama)', () {
-      final task = Task(
+      final task = const Task(
         id: 'd',
         title: 'Round trip',
         category: 'Tugas',
