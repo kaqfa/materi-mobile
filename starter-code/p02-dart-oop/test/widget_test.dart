@@ -6,6 +6,7 @@ import 'package:study_tracker_p02/main.dart';
 void main() {
   testWidgets('smoke test: aplikasi ter-render', (WidgetTester tester) async {
     await tester.pumpWidget(const StudyTrackerApp());
+    await tester.pump(const Duration(seconds: 1)); // lewati delay mock (600ms)
     expect(find.byType(MaterialApp), findsOneWidget);
   });
 }

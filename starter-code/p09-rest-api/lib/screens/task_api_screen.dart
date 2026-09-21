@@ -22,7 +22,11 @@ class _TaskApiScreenState extends State<TaskApiScreen> {
     _load();
   }
 
-  void _load() => setState(() => _future = widget.api.fetchTasks());
+  void _load() {
+    setState(() {
+      _future = widget.api.fetchTasks();
+    });
+  }
 
   Future<void> _addTask() async {
     final title = await showDialog<String>(
