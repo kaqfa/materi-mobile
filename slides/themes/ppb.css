@@ -1,0 +1,194 @@
+/* @theme ppb */
+/* Theme slide kuliah Pemrograman Perangkat Bergerak — Universitas Dian Nuswantoro.
+   Kanvas 4:3 (1024x768) menyesuaikan proyektor lab.
+   Dirancang untuk konten padat: narasi + potongan kode Dart, terbaca dari
+   bangku belakang (kode minimum 16px). */
+
+@import 'default';
+
+:root {
+  /* Warna diambil dari logo Udinus: biru korporat + aksen kuning */
+  --ppb-primary: #14529c;
+  --ppb-accent: #f2b736;
+  --ppb-ink: #1a1a1a;
+  --ppb-muted: #5f6b7a;
+  --ppb-rule: #d9e2ec;
+  --ppb-code-bg: #f6f8fa;
+  --ppb-code-border: #c8d6e5;
+  --ppb-warn: #c62828;
+  --ppb-ok: #2e7d32;
+
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 21px;
+  color: var(--ppb-ink);
+}
+
+section {
+  width: 1024px;
+  height: 768px;
+  padding: 44px 48px 62px;
+  background: #fff;
+  /* Tema default memasang `place-content: safe center center`; tanpa override ini
+     slide berkonten sedikit ter-center vertikal, tidak sejajar dengan slide padat. */
+  display: block;
+  place-content: start;
+  line-height: 1.45;
+
+  /* Logo Udinus sebagai penanda institusi di tiap slide. Ukurannya tidak boleh
+     turun di bawah ~50px: lingkaran teks pada logo jadi tak terbaca. */
+  background-image: url('assets/logo-udinus.png');
+  background-repeat: no-repeat;
+  background-position: right 48px bottom 12px;
+  background-size: 52px 52px;
+}
+
+section h1 {
+  font-size: 34px;
+  color: var(--ppb-primary);
+  margin: 0 0 16px;
+}
+
+section h2 {
+  font-size: 27px;
+  color: var(--ppb-primary);
+  margin: 0 0 14px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid var(--ppb-rule);
+}
+
+section h3 {
+  font-size: 21px;
+  color: var(--ppb-ink);
+  margin: 0 0 7px;
+}
+
+section p { margin: 0 0 11px; }
+section ul, section ol { margin: 0 0 11px; padding-left: 1.15em; }
+section li { margin-bottom: 5px; }
+section li > ul { margin-top: 5px; }
+
+strong { color: var(--ppb-primary); }
+em { color: var(--ppb-muted); font-style: normal; }
+
+/* --- Kode: light theme, kontras tinggi untuk proyektor lama --- */
+section pre {
+  /* color-scheme: light mengunci palet highlight ke varian terang, supaya
+     kontrasnya konsisten walau perangkat penyaji sedang dark mode. */
+  color-scheme: light;
+  background: var(--ppb-code-bg);
+  border: 1px solid var(--ppb-code-border);
+  border-left: 4px solid var(--ppb-primary);
+  border-radius: 5px;
+  padding: 12px 15px;
+  margin: 0 0 11px;
+  font-size: 16px;
+  line-height: 1.42;
+  overflow: visible;
+}
+
+section pre code {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  background: none;
+  color: #1f2328;
+}
+
+section code {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  background: #eaf1f9;
+  color: #0b4a86;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 0.92em;
+}
+
+/* Diagram: SVG hasil pre-render oleh tools/render_diagrams.py, dipasang sebagai
+   <img>. Sengaja <img> dan bukan SVG inline — sebagai gambar, CSS halaman ini
+   tidak bisa bocor ke dalamnya dan merusak ukuran label. */
+section p.diagram { text-align: center; margin: 4px 0 14px; }
+section p.diagram img { max-width: 100%; height: auto; }
+
+/* Kode panjang: turunkan sedikit agar tetap satu layar */
+section.code-dense pre { font-size: 14px; line-height: 1.34; }
+
+/* --- Layout dua kolom: kode kiri, anotasi kanan --- */
+section.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  column-gap: 22px;
+  align-content: start;
+}
+section.split h2 { grid-column: 1 / -1; }
+section.split > *:nth-child(n+2) { min-width: 0; }
+
+/* Rasio 3:2 untuk kode yang lebih lebar dari anotasinya */
+section.split-wide { grid-template-columns: 3fr 2fr; }
+
+/* Kolom 4:3 sempit: kode di split perlu font lebih kecil.
+   align-self: start mencegah blok kode diregangkan setinggi baris grid. */
+section.split pre { font-size: 14px; line-height: 1.36; align-self: start; }
+
+/* --- Slide judul & pembatas segmen --- */
+section.title,
+section.section-break {
+  display: flex;
+  flex-direction: column;
+  place-content: safe center center;
+  text-align: left;
+  background-color: #0f4589;
+  background-image:
+    url('assets/logo-udinus.png'),
+    linear-gradient(135deg, #0b3468 0%, #1a63b8 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: right 48px top 44px, center;
+  background-size: 128px 128px, cover;
+  color: #fff;
+}
+
+/* Footer disembunyikan di slide bergaris latar gelap: warnanya abu-abu redup,
+   dan di atas biru tua praktis tidak terbaca. */
+section.title footer,
+section.section-break footer { display: none; }
+section.title h1,
+section.section-break h1 { color: #fff; font-size: 44px; border: none; }
+section.title h2,
+section.section-break h2 { color: #ffd98a; border: none; font-size: 23px; }
+section.title code,
+section.section-break code { background: rgba(255,255,255,.15); color: #fff; }
+section.title strong,
+section.section-break strong { color: #fff; }
+
+/* Baris identitas pengajar di slide judul */
+.pengajar {
+  margin-top: 26px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.35);
+  font-size: 19px;
+  line-height: 1.5;
+}
+.pengajar strong { color: var(--ppb-accent) !important; }
+
+/* --- Kotak penanda --- */
+.note, .warn, .ok {
+  border-left: 4px solid var(--ppb-primary);
+  background: #f2f6fb;
+  padding: 9px 14px;
+  margin: 0 0 11px;
+  font-size: 0.95em;
+}
+.warn { border-left-color: var(--ppb-warn); background: #fdf1f1; }
+.ok   { border-left-color: var(--ppb-ok);   background: #f1f8f2; }
+
+/* --- Tabel --- */
+section table { font-size: 0.88em; border-collapse: collapse; margin-bottom: 11px; }
+section th { background: #eaf1f9; color: var(--ppb-primary); text-align: left; }
+section th, section td { border: 1px solid var(--ppb-rule); padding: 5px 10px; }
+
+/* --- Footer & nomor halaman --- */
+section footer { color: var(--ppb-muted); font-size: 13px; }
+section::after {
+  color: var(--ppb-muted);
+  font-size: 14px;
+  right: 112px;   /* beri ruang untuk logo di pojok kanan bawah */
+  bottom: 24px;
+}
