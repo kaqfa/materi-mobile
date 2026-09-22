@@ -35,7 +35,7 @@ import xml.dom.minidom
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIAGRAMS = os.path.join(HERE, 'diagrams')
-CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+CHROME = os.environ.get('CHROME_PATH', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome')
 FENCE = re.compile(r'^```mermaid\n(.*?)^```', re.M | re.S)
 
 PAGE = """<!DOCTYPE html>
