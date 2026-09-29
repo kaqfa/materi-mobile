@@ -119,6 +119,32 @@ Semua plugin yang dipakai buku ini — `sqflite`, `shared_preferences`, `image_p
 
 <!-- _class: split -->
 
+## Plugin adalah pembungkus channel
+
+**Plugin Flutter** menyembunyikan percakapan Android/iOS di balik API Dart yang lebih nyaman.
+
+```dart
+final file = await ImagePicker().pickImage(
+  source: ImageSource.camera,
+);
+```
+
+Contoh ini mengasumsikan package `image_picker` sudah ditambahkan; konfigurasi izin dan jalur gagal dibahas setelah ini.
+
+Satu pemanggilan itu sebenarnya:
+
+1. meminta sistem operasi membuka kamera,
+2. menunggu pengguna selesai,
+3. menerima jalur file kembali ke Flutter.
+
+<div class="note">
+
+API-nya ringkas, tetapi izin, lifecycle, dan kegagalannya tetap mengikuti aturan perangkat.
+
+</div>
+
+---
+
 ## PhotoService — tipis, tapi tiga keputusan di dalamnya
 
 ```dart

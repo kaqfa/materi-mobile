@@ -45,7 +45,24 @@ Estimasi: baca sekitar 50 menit, praktik sekitar 100 menit, terbagi dalam tiga c
 
 ## API Custom Widget: Kontrak Kecil yang Bisa Dipegang
 
-Setiap custom widget yang Anda tulis adalah API kecil bagi pemakainya, biasanya diri sendiri tiga bulan kemudian. Tiga keputusan membentuk kualitas API itu:
+**Custom widget** adalah widget buatan sendiri yang membungkus susunan widget lain menjadi komponen bernama. Tujuannya bukan membuat jenis UI yang terpisah dari Flutter, tetapi memberi nama dan batas yang jelas pada pola yang sering dipakai.
+
+```dart
+class CategoryChip extends StatelessWidget {
+  const CategoryChip({super.key, required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Chip(label: Text(label));
+  }
+}
+```
+
+Setelah diberi nama, komponen itu dipakai seperti widget bawaan: `const CategoryChip(label: 'Kuliah')`. Ini berguna ketika Tracker mulai mengulang chip kategori, label tenggat, kartu tugas, dan pemilih prioritas di beberapa layar. Begitu komponen diberi nama, ia menjadi API kecil: pemakai cukup mengetahui data yang masuk dan kejadian yang keluar.
+
+Kualitas API widget itu akan dirasakan pemakainya, biasanya diri sendiri tiga bulan kemudian. Tiga keputusan membentuk kualitas API itu:
 
 **Wajib atau opsional.** Parameter wajib (`required`) untuk data yang membuat widget tidak bermakna tanpanya: `TaskCard` tanpa `task` bukan apa-apa. Parameter opsional dengan nilai bawaan untuk variasi yang punya default yang masuk akal. Callback umumnya opsional, widget tetap bisa menampilkan apa pun tanpa handler, seperti kartu di layar preview.
 

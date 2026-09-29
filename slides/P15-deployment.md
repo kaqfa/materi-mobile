@@ -68,6 +68,22 @@ Dari `flutter run` ke AAB tertandatangani
 
 ---
 
+## Deployment, distribution, signing
+
+- **Deployment**: menyiapkan build rilis yang layak dipasang pengguna.
+- **Distribution**: menyalurkannya lewat internal test, closed test, atau store.
+- **Signing**: tanda tangan digital yang membuktikan pembaruan berasal dari pemilik aplikasi yang sama.
+
+Contoh: versi `1.0.1` hanya bisa menggantikan `1.0.0` jika package name sama, nomor versi naik, dan tanda tangannya cocok.
+
+<div class="warn">
+
+File `.aab` yang berhasil dibuat belum tentu dapat diperbarui, dipercaya perangkat, atau diterima Play Console.
+
+</div>
+
+---
+
 ## Tiga mode build, satu tabel
 
 | Aspek | Debug | Profile | Release |

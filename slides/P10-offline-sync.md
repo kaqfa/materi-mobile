@@ -13,6 +13,8 @@ footer: 'PPB 20251 · Universitas Dian Nuswantoro — P10: Real-time Features & 
 
 Offline-first · SQLite lokal · Sinkronisasi & konflik · CAPSTONE G2: Data
 
+<div class="note">"Advanced API" pada sesi ini berarti sinkronisasi lokal–remote yang tahan gangguan, bukan real-time streaming.</div>
+
 **Sub-CPMK53.2** — mampu mengintegrasikan data persistence dan layanan API eksternal
 Bacaan: modul-buku bab 10 · Praktikum: `starter-code/p10-offline-sync`
 
@@ -69,6 +71,28 @@ Tiga penyakit klasik dan obatnya yang bukan trik
 
 ---
 
+## Offline-first dalam satu kalimat
+
+**Offline-first** berarti aplikasi membaca dan menulis ke penyimpanan lokal lebih dahulu. Jaringan menyamakan data setelahnya.
+
+Contoh di StudyTracker:
+
+```text
+mode pesawat aktif
+→ tambah tugas
+→ tugas langsung muncul
+→ tutup dan buka aplikasi: tugas tetap ada
+→ koneksi pulih: perubahan dikirim ke server
+```
+
+<div class="ok">
+
+Pengguna tetap bisa bekerja tanpa jaringan dan tidak perlu mengulang pekerjaannya saat koneksi kembali.
+
+</div>
+
+---
+
 ## Tiga penyakit penggabungan yang dilakukan asal
 
 Bab 8 punya `SqliteTaskRepository`, bab 9 punya `ApiTaskRepository`. Menggabungkannya dengan asal melahirkan tiga penyakit yang semuanya pernah hidup di versi lama:
@@ -85,7 +109,7 @@ Bab 8 punya `SqliteTaskRepository`, bab 9 punya `ApiTaskRepository`. Menggabungk
 
 <div class="warn">
 
-Penyakit ketiga paling licik: `getUnsyncedTasks()` ada di codebase tapi tak pernah dipanggil — replay tidak pernah terjadi, dan indikator tersinkron berbohota.
+Penyakit ketiga paling licik: `getUnsyncedTasks()` ada di codebase tapi tak pernah dipanggil — replay tidak pernah terjadi, dan indikator tersinkron berbohong.
 
 </div>
 
@@ -143,6 +167,27 @@ Niat mengirim tidak boleh terpisah dari datanya
 ---
 
 <!-- _class: code-dense -->
+
+## Outbox dan tombstone: mencatat niat pengguna
+
+Dua catatan kecil menjaga niat pengguna:
+
+- **Outbox**: operasi lokal yang sudah terjadi tetapi belum diterima server.
+- **Tombstone**: penanda id yang sudah dihapus agar tidak hidup lagi saat pull.
+
+```text
+offline: tambah T1 → tasks: T1, outbox: upsert T1
+offline: hapus T1  → tasks: kosong, tombstone: T1, outbox: delete T1
+online: sinkron    → kirim antrean, baru tarik data server
+```
+
+<div class="note">
+
+Outbox menyimpan "belum terkirim"; tombstone menyimpan "memang sudah dihapus".
+
+</div>
+
+---
 
 ## Skema v3: tiga tabel baru, migrasi tambah-saja
 

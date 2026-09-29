@@ -90,6 +90,26 @@ flowchart LR
 
 ---
 
+## Frame dan jank
+
+**Frame** adalah satu gambar UI yang dikirim ke layar.
+
+**Jank** terjadi ketika frame terlambat, sehingga scroll atau animasi terasa tersendat.
+
+```text
+frame daftar tugas terlambat jauh dari ritme layar
+→ beberapa kesempatan menggambar terlewat
+→ pengguna melihat hentakan
+```
+
+<div class="ok">
+
+Tugas profiling adalah menemukan pekerjaan yang membuat frame terlambat, bukan menebak widget mana yang terlihat mahal. Angka anggarannya kita hitung setelah ini.
+
+</div>
+
+---
+
 ## Mode profile, bukan debug, bukan emulator
 
 ```bash

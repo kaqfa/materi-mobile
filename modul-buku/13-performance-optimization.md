@@ -79,6 +79,12 @@ Setelah menyelesaikan bab ini, Anda bisa:
 - **Ukur ukuran APK dan tree-shake icon**: milik bab 14 tentang deployment.
 - **Latihan bernilai dan tugas terstruktur**: ranah LMS, bukan buku.
 
+## Frame dan Jank
+
+Satu **frame** adalah satu gambar UI yang harus disiapkan aplikasi sebelum layar meminta gambar berikutnya. **Jank** terjadi ketika frame terlambat, sehingga scroll, animasi, atau respons sentuhan terasa tersendat.
+
+Bayangkan daftar tugas sedang digulir dan satu frame terlambat jauh dari ritme layar. Pengguna melihat hentakan karena beberapa kesempatan menggambar terlewat. Tugas profiling adalah menemukan pekerjaan yang membuat frame itu terlambat, bukan menebak widget mana yang kelihatannya mahal.
+
 ## Frame Budget: 16 ms Bukan Angka Suci
 
 Angka yang paling sering dikutip: layar 60 Hz menyegarkan gambar tiap 1/60 detik, jadi semua pekerjaan untuk satu frame harus selesai dalam **sekitar 16,67 ms**, umum dibulatkan jadi "16 ms". Benar untuk 60 Hz. Tapi angka itu bukan konstanta universal: layar 90 Hz memberi 11,1 ms, layar 120 Hz memberi 8,3 ms. Ponsel menengah ke atas yang beredar sekarang banyak yang berjalan di 90-120 Hz, jadi aplikasi yang "mulus di emulator 60 Hz" bisa jank di perangkat target sesungguhnya.

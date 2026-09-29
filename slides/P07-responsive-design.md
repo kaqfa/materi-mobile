@@ -93,7 +93,37 @@ Flutter tidak menyediakan API `isTablet()`. Pertanyaan yang benar bukan "ini lay
 
 ---
 
-<!-- _class: split -->
+## Satu kartu, dua jenis penyesuaian
+
+<div class="two-col">
+<div>
+
+### Responsif
+
+Komponennya tetap `TaskCard`. Lebar, padding, dan jumlah baris teks mengikuti ruang.
+
+```text
+TaskCard
+└─ dibatasi maxWidth 600
+```
+
+</div>
+<div>
+
+### Adaptif
+
+Struktur layar berubah. Pada layar lebar, daftar dan detail tampil berdampingan.
+
+```text
+isWide ? twoPane : taskList
+```
+
+</div>
+</div>
+
+<div class="note">Responsif mengubah ukuran; adaptif dapat mengubah struktur.</div>
+
+---
 
 ## `MediaQuery` — jendela ke fakta layar
 

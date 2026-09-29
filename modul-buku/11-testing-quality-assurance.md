@@ -41,7 +41,15 @@ Bab-bab sebelumnya menutup dengan janji yang sama: "semua lapisan ini diuji tanp
 
 Testing yang buruk punya dua penyakit yang berkebalikan. Penyakit pertama: **semua diuji dengan semuanya**. Setiap test menyalakan emulator, memakai preferences sungguhan, memanggil server betulan, suite jujur tapi lambat, rapuh, dan lama-lama dihentikan orang. Penyakit kedua: **semua dimock**. Setiap test mengganti dependensi dengan tiruan yang menjawab apa saja, suite cepat tapi berhenti menguji hal yang penting, sampai-sampai test "persistence" berjalan di atas data yang tidak pernah menyinggah disk.
 
-Obatnya bukan alat baru, tapi disiplin klasifikasi: kenali jenis test dari **tujuan dan biayanya**, lalu bayar biaya itu hanya ketika ada yang dibelinya. Setelah menyelesaikan bab ini, Anda bisa:
+Obatnya bukan alat baru, tapi disiplin klasifikasi: kenali jenis test dari **tujuan dan biayanya**, lalu bayar biaya itu hanya ketika ada yang dibelinya. Bentuk paling kecil dari test adalah menjalankan satu perilaku lalu membandingkan hasilnya dengan harapan. Misalnya:
+
+```dart
+expect(BmiService().determineCategory(18.5), 'Normal');
+```
+
+Kalimat kodenya sederhana: "BMI 18,5 masuk kategori Normal." Aturan itu sekarang menjadi spesifikasi yang bisa dijalankan ulang setiap kali kode berubah. Seluruh bab ini memperluas ide yang sama ke widget, penyimpanan, tampilan visual, dan perangkat, sambil memilih lingkungan uji yang biayanya sepadan dengan klaim yang dibuktikan.
+
+Setelah menyelesaikan bab ini, Anda bisa:
 
 1. Memilih antara unit, widget, golden, integration, dan platform test dengan alasan yang bisa dipertahankan, bukan karena nama kedengarannya serius.
 2. Membuat logika murni yang bisa diuji tanpa Flutter, dan mengujinya dalam hitungan detik.

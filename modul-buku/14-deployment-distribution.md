@@ -41,6 +41,10 @@ prevChapter: '13-performance-optimization'
 
 Bab-bab sebelumnya membangun Tracker sampai utuh: arsitektur dan build system (bab 4), antarmuka (bab 5-6), state dan storage (bab 7-8), REST dan sesi (bab 9), offline-first (bab 10), pengujian (bab 11), fitur perangkat (bab 12), dan performa yang terukur (bab 13). Semua itu berjalan di atas `flutter run` dan `flutter test`. Bab ini memindahkan aplikasi itu ke tempat pengguna menemukannya: Google Play Store.
 
+Tiga istilah dipakai sepanjang bab ini. **Deployment** berarti menyiapkan build rilis yang layak dipasang pengguna. **Distribution** berarti menyalurkan build itu melalui jalur yang benar, misalnya internal testing, closed testing, atau production. **Signing** adalah tanda tangan digital yang membuktikan bahwa pembaruan berasal dari pemilik aplikasi yang sama.
+
+Ketiganya terhubung. File `.aab` yang berhasil dibuat belum tentu bisa menjadi pembaruan: package name harus sama, versi harus naik, dan tanda tangannya harus cocok dengan versi yang sudah terpasang. Definisi ini menjadi peta untuk pembahasan build, kunci, Play Console, dan rollout berikutnya.
+
 Deployment sering diajarkan sebagai resep langkah, salin blok Gradle, jalankan tiga perintah, unggah. Resep jenis itu cepat basi karena dua hal yang terus bergerak: kebijakan store dan versi toolchain. Karena itu bab ini disusun di sekitar keputusan yang harus Anda pahami, bukan sekadar perintah yang harus Anda hafal:
 
 1. **Kebijakan store bergerak per tanggal.** Google Play menetapkan target API minimum yang naik rutin. Konfigurasi yang menulis angka secara manual akan ditolak berbulan-bulan kemudian tanpa ada yang menyentuhnya.

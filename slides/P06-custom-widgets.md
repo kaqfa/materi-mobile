@@ -68,6 +68,28 @@ Custom widget sebagai API kecil yang bisa dipegang
 
 ---
 
+## Custom widget = komponen bernama
+
+**Custom widget** menggabungkan widget bawaan menjadi komponen bernama dengan parameter sendiri.
+
+```dart
+class CategoryChip extends StatelessWidget {
+  const CategoryChip({super.key, required this.label});
+  final String label;
+
+  @override
+  Widget build(BuildContext context) => Chip(
+    label: Text(label),
+  );
+}
+```
+
+Pemakainya cukup menulis `const CategoryChip(label: 'Kuliah')`.
+
+<div class="note">Satu nama, satu tempat untuk mengubah tampilan.</div>
+
+---
+
 ## Custom widget adalah API kecil
 
 Setiap custom widget yang Anda tulis adalah API kecil bagi pemakainya — biasanya **diri sendiri tiga bulan kemudian**. Tiga keputusan membentuk kualitas API itu:

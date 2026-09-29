@@ -68,6 +68,30 @@ graph TD
 
 Layar daftar memegang daftar, menyalin satu tugas ke layar detail lewat constructor, lalu detail melaporkan kembali hasil interaksinya lewat nilai balik `Navigator.pop`, kontrak pop-bool yang dibangun di bab 3. Pola ini jujur dan bekerja, tetapi perhatikan harga yang dibayarnya: setiap layar baru yang butuh data yang sama butuh salinan dan protokol pelaporannya sendiri. Dua salinan data berarti dua tempat yang bisa tidak sinkron; setiap protokol pelaporan adalah satu kontrak yang harus dijaga. Aplikasi tiga layar masih tertangani. Sepuluh layar, dengan lima jenis perubahan data, tidak lagi.
 
+Sebelum melihat implementasinya, definisikan dua peran yang akan dipakai. **`ChangeNotifier`** adalah objek yang menyimpan state dan mengirim pemberitahuan setelah state berubah. **Provider** menaruh objek itu di widget tree sehingga beberapa widget bisa menemukannya lewat `BuildContext`.
+
+```dart
+class CounterState extends ChangeNotifier {
+  int value = 0;
+
+  void increment() {
+    value++;
+    notifyListeners();
+  }
+}
+```
+
+Objek itu harus dipasang lebih dahulu di widget tree:
+
+```dart
+ChangeNotifierProvider(
+  create: (_) => CounterState(),
+  child: const CounterScreen(),
+)
+```
+
+Setelah itu, widget anak memakai `context.watch<CounterState>()` untuk membaca sekaligus mendengarkan perubahan, atau `context.read<CounterState>()` untuk menjalankan aksi tanpa ikut mendengarkan. Contoh kecil ini belum menyelesaikan Tracker, tetapi menunjukkan pembagian tugasnya: notifier menyimpan dan memberi tahu; Provider menyebarkan aksesnya.
+
 Solusinya strukturnya sederhana diucapkan: pindahkan kepemilikan data ke satu tempat di luar semua layar, beri tahu siapa pun yang peduli saat data berubah, dan biarkan layar menjadi pembaca murni. Flutter menyediakan mekanisme penyebaran data ke bawah widget tree sejak lama: `InheritedWidget`, widget yang bisa ditemukan lewat `context` oleh semua keturunannya, dan itulah fondasi yang dipakai `Theme.of(context)` sejak bab 5. Yang tidak disediakan adalah mekanisme pemberitahuan yang nyaman: `InheritedWidget` menyebarkan data, tetapi mendeteksi perubahan dan membangun ulang pendengar tetap pekerjaan manual. Paket `provider` mengisi kekosongan itu dengan menggabungkan `InheritedWidget` (penyebaran) dan `ChangeNotifier` (pemberitahuan) menjadi satu pola yang bisa ditulis dalam hitungan baris.
 
 Buku ini memakai `provider` sebagai satu-satunya pustaka state management inti. Riverpod dan BLoC adalah arah pengembangan yang sah setelahnya, keduanya menyelesaikan masalah yang lebih besar (dependency graph, event streaming), tetapi keduanya dibangun di atas keputusan yang sama: state terpusat, perubahan diberitahukan, UI bereaksi. Kuasai polanya di sini; bagian "Arah Setelah Provider" di akhir bab ini menunjukkan controller yang sama ditulis ulang dalam keduanya, supaya Anda bisa menilai sendiri apa yang Anda dapat dan apa yang Anda bayar.

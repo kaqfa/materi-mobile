@@ -105,6 +105,24 @@ Obatnya bukan alat baru, tapi **disiplin klasifikasi**: kenali jenis test dari t
 
 ---
 
+## Test pertama: satu perilaku, satu harapan
+
+**Test** menjalankan satu perilaku lalu membandingkan hasilnya dengan harapan. Contoh ini berasal dari starter P12:
+
+```dart
+expect(Task.isTitleValid('ab'), isFalse);
+```
+
+Kalimatnya: "judul dua karakter tidak valid". Modul bab 11 memakai bentuk yang sama pada studi kasus BMI.
+
+<div class="note">
+
+Model, widget, plugin, dan perangkat membutuhkan biaya pengujian yang berbeda. Setelah bentuk kecil ini jelas, kita memilih jenis test berdasarkan klaim yang ingin dibuktikan.
+
+</div>
+
+---
+
 ## Lima jenis test: satu tabel untuk memutuskan
 
 | Jenis | Tujuan tunggal | Lingkungan | Runtime kasar |

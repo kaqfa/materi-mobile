@@ -145,6 +145,37 @@ Satu sumber kebenaran di luar widget tree
 
 ---
 
+## Provider dalam contoh paling kecil
+
+`ChangeNotifier` menyimpan state dan mengirim pemberitahuan:
+
+```dart
+class CounterState extends ChangeNotifier {
+  int value = 0;
+
+  void increment() {
+    value++;
+    notifyListeners();
+  }
+}
+```
+
+Pasang objeknya di widget tree, lalu anak-anaknya bisa membaca:
+
+```dart
+ChangeNotifierProvider(
+  create: (_) => CounterState(),
+  child: const CounterScreen(),
+)
+
+context.watch<CounterState>().value; // baca + dengarkan
+context.read<CounterState>().increment(); // jalankan aksi
+```
+
+<div class="ok">Notifier menyimpan dan memberi tahu; Provider menyebarkan aksesnya.</div>
+
+---
+
 ## Solusi strukturnya: pisahkan penyebaran dan pemberitahuan
 
 Solusinya sederhana diucapkan: pindahkan kepemilikan data ke **satu tempat di luar semua layar**, beri tahu siapa pun yang peduli saat data berubah, dan biarkan layar menjadi pembaca murni.
@@ -567,6 +598,27 @@ Bandingkan dengan `debugPrint` di dalam `Consumer`: ia muncul pada **setiap** pe
 # 4 · BLoC & Riverpod
 
 Controller yang sama, ditulis ulang
+
+---
+
+## Kenapa ada pustaka lain?
+
+Provider cukup untuk StudyTracker hari ini. Masalah baru muncul ketika state saling bergantung:
+
+```text
+TaskProvider butuh user aktif dari AuthProvider
+SyncProvider butuh antrean dari TaskProvider
+SettingsProvider memengaruhi banyak layar
+```
+
+- **Riverpod** membuat dependency graph lebih eksplisit dan mudah ditukar saat test.
+- **BLoC** memodelkan perubahan sebagai peristiwa, misalnya `TaskToggled` dan `SyncRequested`.
+
+<div class="note">
+
+Ini bukan tanda Provider buruk. Alat yang lebih berat baru layak dipakai ketika masalahnya ikut membesar.
+
+</div>
 
 ---
 

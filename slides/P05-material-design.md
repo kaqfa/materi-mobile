@@ -67,6 +67,27 @@ Peran warna dari satu benih, bukan katalog warna
 
 ---
 
+## Desain antarmuka dan Material Design
+
+**Desain antarmuka (UI design)** membantu pengguna memahami:
+
+- apa yang penting,
+- aksi apa yang tersedia,
+- dan apa yang sedang terjadi.
+
+**Material Design** memberi aturan bersama untuk warna, teks, bentuk, komponen, gerak, dan aksesibilitas.
+
+```dart
+FilledButton(
+  onPressed: saveTask,
+  child: const Text('Simpan'),
+)
+```
+
+Tombol ini sudah membawa ukuran sentuh, state saat ditekan, semantik dasar, dan warna dari tema.
+
+---
+
 ## Material 3: sistem, bukan katalog warna
 
 Material 3 (M3) aktif sebagai tampilan bawaan Flutter sejak versi 3.16 — `ThemeData()` sekarang berarti Material 3. Yang berubah dibanding tulisan tutorial era sebelumnya adalah cara berpikirnya: M3 tidak menyuruh Anda memilih warna, melainkan memilih **peran** warna. `primary` untuk tombol utama, `surface` untuk latar kartu, `error` untuk keadaan gagal. Nilai pasti tiap peran diturunkan dari satu warna benih:

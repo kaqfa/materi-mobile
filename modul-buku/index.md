@@ -4,7 +4,7 @@ description: 'Pengantar bertahap pengembangan aplikasi mobile lintas platform de
 author: 'Kaqfa'
 coverImage: '/flutter-book-cover.png'
 publishDate: 2024-09-18
-updateDate: 2026-09-13
+updateDate: 2026-09-29
 category: 'Programming'
 difficulty: 'intermediate'
 tags: ['flutter', 'dart', 'mobile', 'programming']

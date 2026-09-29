@@ -100,6 +100,8 @@ Tiga jenis channel, dibedakan oleh arah datanya:
 
 Semua plugin yang dipakai buku ini, `sqflite`, `shared_preferences`, `image_picker`, `geolocator`, adalah platform channel yang dikemas rapi. Anda menulis channel sendiri bukan karena ingin menggantikan mereka, tetapi karena dua alasan lain: plugin yang Anda butuhkan kadang belum ada, dan memahami channel membuat perilaku plugin berhenti terasa seperti sihir.
 
+Contohnya, ketika kode memanggil `ImagePicker().pickImage(...)`, kamera bukan dijalankan oleh Flutter. Plugin meminta Android atau iOS membuka alur kamera atau galeri, menunggu hasil sistem operasi, lalu mengembalikan jalur file ke Dart. API plugin terlihat sederhana, tetapi izin, lifecycle, dan kemungkinan gagal tetap mengikuti aturan perangkat.
+
 ### Studi kasus: level baterai
 
 Skenario: di layar detail tugas, Tracker menampilkan sisa baterai perangkat saat tugas diselesaikan, konteks yang berguna untuk tugas lapangan yang mencatat GPS. Tidak ada plugin yang perlu dipasang; ini pekerjaan beberapa puluh baris.

@@ -68,6 +68,28 @@ Deskripsi immutable, bukan objek yang digambar
 
 ---
 
+## Widget dalam satu menit
+
+**Widget** adalah deskripsi bagian UI: teks, tombol, jarak, daftar, bahkan satu layar penuh.
+
+```dart
+Text('Baca bab 3')
+```
+
+Ketika data berubah, kita membuat deskripsi baru:
+
+```dart
+Text(task.done ? 'Selesai' : task.title)
+```
+
+<div class="note">
+
+Flutter menyelaraskan deskripsi baru itu dengan tampilan. Inilah dasar gaya deklaratif yang kita bandingkan setelah ini.
+
+</div>
+
+---
+
 ## Imperatif vs deklaratif
 
 Android native bersifat **imperatif**: Anda menahan referensi ke `TextView`, lalu memanggil `textView.setText(...)` setiap kali data berubah. Kode UI dan kode pembaruan data tersebar di banyak tempat — satu kondisi terlewat, tampilan tidak sinkron dengan data.

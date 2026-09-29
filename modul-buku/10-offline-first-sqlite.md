@@ -37,6 +37,10 @@ prevChapter: '09-rest-api-integration'
 
 Bab 8 menutup dengan `SqliteTaskRepository`: tugas bertahan antar-restart, dan sebuah janji bahwa bab 10 akan memakai ulang lapisan itu untuk sinkronisasi. Bab 9 menutup dengan `ApiTaskRepository`: Tracker bisa bicara dengan Supabase, lengkap dengan sesi di penyimpanan aman dan hierarki error yang berarti. Bab ini menggabungkan keduanya, dan pekerjaannya bukan "panggil keduanya bergantian".
 
+**Offline-first** berarti aplikasi membaca dan menulis ke penyimpanan lokal lebih dahulu, lalu memakai jaringan untuk menyamakan data. Ini berbeda dari sekadar menyimpan cache hasil unduhan: pengguna tetap boleh membuat, mengubah, dan menghapus data ketika jaringan tidak tersedia.
+
+Contoh perilakunya mudah diamati. Saat mode pesawat aktif, pengguna menambah tugas. Tugas langsung muncul dan tetap ada setelah aplikasi dibuka ulang. Ketika koneksi pulih, aplikasi mengirim perubahan itu ke server tanpa meminta pengguna mengulang pekerjaannya. Janji sederhana inilah yang menuntut mekanisme sinkronisasi di sepanjang bab ini.
+
 Penggabungan yang dilakukan dengan asal punya tiga penyakit klasik, dan ketiganya pernah hidup di versi lama bab ini. Penyakit pertama: **refresh yang menimpa**. Aplikasi menarik seluruh data server lalu mengosongkan tabel lokal dan mengisinya ulang, setiap tugas yang dibuat saat offline lenyap pada sinkronisasi pertama. Penyakit kedua: **hapus yang tidak berpesan**. Delete dijalankan di tabel lokal saja; server tidak pernah tahu; pull berikutnya memuat baris itu kembali, data yang dihapus pengguna hidup lagi. Penyakit ketiga: **semua kegagalan dianggap offline**. Token kedaluwarsa, payload ditolak, balasan rusak, dan jaringan putus masuk ke satu `catch` yang sama berlabel "mode offline", sementara fungsi `getUnsyncedTasks()` ada di codebase tapi tidak pernah dipanggil oleh siapa pun, replay tidak pernah terjadi.
 
 Obat ketiganya bukan satu trik, tapi empat keputusan arsitektural yang saling menopang:
@@ -85,6 +89,18 @@ flowchart TD
 ```
 
 Satu konsekuensi arsitektural penting: **UI tidak pernah menunggu jaringan**. `all()` membaca SQLite dan selesai dalam hitungan milidetik; sinkronisasi berjalan di belakang dan hasilnya muncul sebagai pembaruan state berikutnya. Ini kebalikan dari aplikasi online-only bab 9, dan justru itulah arti offline-first: jaringan adalah penundaan yang diurus diam-diam, bukan gerbang di depan setiap layar.
+
+## Outbox dan Tombstone: Mencatat Niat Pengguna
+
+Dua dari empat keputusan tadi perlu catatan sendiri karena keduanya menyimpan niat pengguna, bukan sekadar data. **Outbox** adalah daftar operasi lokal yang sudah terjadi tetapi belum diterima server. **Tombstone** adalah penanda bahwa sebuah id sudah dihapus, supaya data lama dari server tidak menghidupkannya kembali.
+
+```text
+offline: tambah T1  -> tasks memuat T1, outbox memuat upsert T1
+offline: hapus T1   -> tasks kosong, tombstone memuat T1, outbox memuat delete T1
+online:  sinkron     -> kirim outbox, lalu tarik dan gabungkan data server
+```
+
+Outbox menyimpan niat "perubahan ini belum terkirim"; tombstone menyimpan niat "data ini memang sudah dihapus". Setelah arti keduanya jelas, tabel baru pada checkpoint berikutnya tidak lagi terlihat sebagai tambahan skema tanpa alasan.
 
 ## Checkpoint 1: Skema v3 dan OutboxStore
 

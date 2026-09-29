@@ -50,6 +50,19 @@ Estimasi: baca sekitar 60 menit, praktik sekitar 130 menit, terbagi dalam empat 
 
 ## Material 3: Sistem, Bukan Katalog Warna
 
+**Desain antarmuka (UI design)** mengatur tampilan agar pengguna memahami prioritas, aksi yang tersedia, dan keadaan aplikasi. **Material Design** adalah sistem desain dari Google yang memberi aturan bersama untuk warna, tipografi, bentuk, komponen, gerak, dan aksesibilitas. Di Flutter, aturan itu hadir melalui widget Material dan tema aplikasi.
+
+Contoh paling sederhana adalah tombol simpan:
+
+```dart
+FilledButton(
+  onPressed: saveTask,
+  child: const Text('Simpan'),
+)
+```
+
+Tombol itu sudah membawa ukuran sentuh, state saat ditekan, semantik dasar, dan warna dari tema. Karena itu pembahasan Material 3 dimulai dari sistem yang mengatur komponen, bukan dari memilih warna satu per satu.
+
 Material 3 (M3) aktif sebagai tampilan bawaan Flutter sejak versi 3.16. Anda tidak perlu menyalakan apa pun, `ThemeData()` sekarang berarti Material 3. Yang berubah dibanding tulisan tutorial era sebelumnya adalah cara berpikirnya: M3 tidak menyuruh Anda memilih warna, melainkan memilih **peran** warna. `primary` untuk tombol utama, `surface` untuk latar kartu, `error` untuk keadaan gagal. Nilai pasti setiap peran diturunkan dari satu warna benih:
 
 ```dart
@@ -350,6 +363,25 @@ class TrackerApp extends StatelessWidget {
 - Aplikasi berjalan; kartu tugas menampilkan judul, chip prioritas berwarna tonal, dan tenggat berwarna merah untuk tugas yang lewat.
 - Mengetuk kartu membuka detail; checkbox tetap berfungsi.
 - Mengganti `seedColor` di `theme.dart` mengubah nuansa seluruh aplikasi, bukti satu sumber kebenaran bekerja.
+
+Setelah kartu dan tema rapi pada satu ukuran layar, masalah berikutnya adalah ruang: tampilan yang enak di ponsel belum tentu enak di tablet.
+
+## Responsif dan Adaptif: Mulai dari Ruang yang Tersedia
+
+**Layout responsif** mempertahankan susunan dasar sambil menyesuaikan ukuran, jarak, atau jumlah kolom terhadap ruang yang tersedia. **Layout adaptif** mengubah struktur interaksi ketika ruangnya cukup berbeda. Pada ponsel, detail tugas dapat dibuka sebagai layar baru; pada tablet, daftar dan detail dapat tampil berdampingan.
+
+```dart
+// Responsif: komponen sama, lebarnya dibatasi.
+ConstrainedBox(
+  constraints: const BoxConstraints(maxWidth: 600),
+  child: TaskCard(task: task),
+)
+
+// Adaptif: struktur layar berubah.
+return isWide ? const TaskTwoPane() : const TaskListScreen();
+```
+
+Pegangan untuk dua checkpoint berikutnya: responsif mengubah ukuran dan susunan kecil; adaptif dapat mengubah struktur layar. Keduanya dimulai dari pertanyaan yang sama, berapa ruang yang benar-benar diterima widget?
 
 ## Checkpoint 2: Layout yang Mengikuti Ruang
 

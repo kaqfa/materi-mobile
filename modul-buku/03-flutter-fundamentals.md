@@ -39,6 +39,14 @@ Estimasi: baca sekitar 45 menit, praktik contoh kode sekitar 120 menit.
 
 ## Dari Model ke Layar
 
+Sebelum membandingkan cara Flutter dan Android native menyusun UI, pegang definisi paling sederhananya: **widget adalah deskripsi tampilan**. `Text('Baca bab 3')` berarti "tampilkan teks ini", bukan objek layar yang kita ubah manual. Seluruh antarmuka Flutter dibangun dengan menyusun deskripsi kecil seperti ini menjadi widget tree. Ketika data berubah, Flutter meminta deskripsi baru dan menyelaraskan tampilan di layar.
+
+```dart
+Text(task.done ? 'Selesai' : task.title)
+```
+
+Contoh kecil itu juga menjelaskan mengapa pembahasan berikutnya memakai istilah *deklaratif*: kode menyatakan tampilan yang diinginkan dari data saat ini.
+
 Cara klasik membangun UI di Android native bersifat imperatif: Anda menahan referensi ke `TextView`, lalu memanggil `textView.setText(...)` setiap kali data berubah. Kode UI dan kode pembaruan data tersebar di banyak tempat, dan satu kondisi yang terlewat membuat tampilan tidak sinkron dengan data. Flutter membalik pendekatannya: Anda menulis fungsi yang memetakan data menjadi deskripsi tampilan, dan framework yang menghitung apa yang harus digambar ulang.
 
 ```dart
