@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head><meta charset="utf-8"/><title>UJIAN MINI CRM</title><link href="uts.css" rel="stylesheet"/></head>
+<body>
+<header class="page-header">
+<img alt="Kop Universitas Dian Nuswantoro" class="letterhead" src="../../header-docs.png"/>
+<div class="document-label">LEMBAR SOAL UJIAN</div>
+</header>
+<div class="submission">Soal Dikumpulkan</div>
+<div class="exam-title">UJIAN TENGAH SEMESTER GANJIL 2026/2027</div>
+<table aria-label="Informasi ujian" class="exam-meta">
+<colgroup><col style="width:24mm"/><col style="width:3mm"/><col style="width:67mm"/><col style="width:14mm"/><col style="width:3mm"/><col style="width:68.9mm"/></colgroup>
+<tr><td>Mata Kuliah</td><td class="colon">:</td><td>Pemrograman Mobile (Flutter)</td><td>Sifat</td><td class="colon">:</td><td>Praktikum (Tutup Buku)</td></tr>
+<tr><td>Hari/tanggal</td><td class="colon">:</td><td>______________________</td><td>Waktu</td><td class="colon">:</td><td>60 menit</td></tr>
+<tr><td>Kelompok</td><td class="colon">:</td><td>______________________</td><td>Dosen</td><td class="colon">:</td><td>Fahri Firdausillah, S.Kom, M.CS</td></tr>
+</table>
+<div class="section-heading">Rancangan Penilaian Pembelajaran</div>
+<table aria-label="Mapping Sub-CPMK terhadap CPL Prodi" class="mapping-table">
+<colgroup><col style="width:33.33%"/><col style="width:33.33%"/><col style="width:33.34%"/></colgroup>
+<tr><th class="caption" colspan="3">Tabel 1. Mapping Sub-CPMK terhadap CPL Prodi</th></tr>
+<tr><th>Sub-CPMK</th><th>CPL05 (%)</th><th>CPL09 (%)</th></tr>
+<tr><td>Sub-CPMK53.1</td><td class="center">55%</td><td class="center">–</td></tr>
+<tr><td>Sub-CPMK92.1</td><td class="center">–</td><td class="center">45%</td></tr>
+<tr class="total"><td>Total</td><td class="center">55%</td><td class="center">45%</td></tr>
+</table>
+<table aria-label="Deskripsi CPL dan Sub-CPMK" class="mapping-table description-table">
+<colgroup><col style="width:40mm"/><col style="width:5mm"/><col style="width:134.9mm"/></colgroup>
+<tr><th colspan="2">CPL dan Sub-CPMK</th><th>Deskripsi CPL dan Sub-CPMK</th></tr>
+<tr><td>CPL05</td><td class="separator">:</td><td>Mampu menjelaskan konsep teoritis bidang pengetahuan Informatika dalam mendesain, implementasi dan mengevaluasi aplikasi teknologi multi-platform yang relevan dengan kebutuhan industri dan masyarakat</td></tr><tr><td>CPL09</td><td class="separator">:</td><td>Mampu menganalisis, merancang, membuat dan mengevaluasi <i>user interface</i> dan aplikasi interaktif dengan mempertimbangkan kebutuhan pengguna dan perkembangan ilmu transdisiplin.</td></tr><tr><td>CPMK53</td><td class="separator">:</td><td>Mampu mengimplementasi aplikasi teknologi multi-platform yang relevan dengan kebutuhan industri dan masyarakat</td></tr><tr><td>CPMK92</td><td class="separator">:</td><td>Mampu merancang <i>user interface</i> dan aplikasi interaktif perkembangan ilmu transdisiplin.</td></tr><tr><td>Sub-CPMK53.1</td><td class="separator">:</td><td>Mampu mengimplementasikan aplikasi <i>mobile</i> fungsional menggunakan bahasa Dart dan Flutter <i>framework</i> dengan menerapkan konsep OOP, <i>widget system</i>, dan <i>state management</i>.</td></tr><tr><td>Sub-CPMK92.1</td><td class="separator">:</td><td>Mampu merancang arsitektur UI aplikasi <i>mobile</i> yang konsisten dan responsif menggunakan Material Design dan <i>adaptive layout</i> berdasarkan kebutuhan pengguna.</td></tr>
+</table>
+<table aria-label="Mapping Soal terhadap Sub-CPMK" class="mapping-table question-table">
+<colgroup><col style="width:15mm"/><col style="width:26mm"/><col style="width:63.9mm"/><col style="width:30mm"/><col style="width:30mm"/><col style="width:15mm"/></colgroup>
+<tr><th class="caption" colspan="6">Tabel 2. Mapping Soal terhadap Sub-CPMK</th></tr>
+<tr><th rowspan="2">Soal No.</th><th rowspan="2">Bentuk Soal</th><th rowspan="2">Materi Pembelajaran</th><th colspan="2">Mapping Soal terhadap Sub-CPMK</th><th rowspan="2">Bobot Soal<br/>[%]</th></tr>
+<tr><th>Sub-<br/>CPMK53.1</th><th>Sub-<br/>CPMK92.1</th></tr>
+<tr><td class="center">1</td><td>Praktikum</td><td>Dart OOP, state, widget</td><td class="center">✓</td><td class="center">✓</td><td class="center">35%</td></tr><tr><td class="center">2</td><td>Praktikum</td><td>Widget, state, Material Design</td><td class="center">✓</td><td class="center">✓</td><td class="center">40%</td></tr><tr><td class="center">3</td><td>Praktikum</td><td>Dart OOP, agregasi data</td><td class="center">✓</td><td class="center">✓</td><td class="center">25%</td></tr>
+</table>
+<section class="content"><h1 class="document-topic" id="ujian-praktik-uts-mini-crm--sales-pipeline">Ujian Praktik UTS:
+Mini CRM — Sales Pipeline</h1>
+<h2 id="informasi-ujian">Informasi Ujian</h2>
+<ul>
+<li><strong>Waktu Pengerjaan</strong>: 60 menit</li>
+<li><strong>Tingkat Kesulitan</strong>: Medium</li>
+<li><strong>Bobot</strong>: 100 poin</li>
+<li><strong>Starter Code</strong>:
+<code>Ujian/20261/starter-code/mini_crm/</code></li>
+<li><strong>Environment</strong>: Flutter stable 3.47.x · Dart 3.13.x ·
+platform <strong>web</strong> &amp; <strong>android</strong> (sudah
+dibuat) · tanpa package pihak ketiga</li>
+<li><strong>Fokus Pengerjaan</strong>:
+<code>lib/screens/lead_list_screen.dart</code> dan
+<code>lib/widgets/lead_card.dart</code></li>
+</ul>
+<h2 id="studi-kasus">Studi Kasus</h2>
+<p>Anda adalah developer baru di tim penjualan PT Nusantara Digital.
+Perusahaan memakai aplikasi internal <strong>Mini CRM</strong> untuk
+mengelola calon nasabah (<em>lead</em>) mulai dari kontak pertama sampai
+penutupan kontrak (<em>closing</em>).</p>
+<p>Setiap lead memiliki tahap (<em>stage</em>): <strong>Baru → Dihubungi
+→ Qualified → Closing</strong>, beserta nilai estimasi kontrak dan
+prioritasnya.</p>
+<p>Aplikasi saat ini baru bisa <strong>menampilkan</strong> daftar lead.
+Tim sales mengeluh karena:</p>
+<ol type="1">
+<li>Tidak ada cara untuk <strong>memajukan stage</strong> lead ketika
+progres berubah.</li>
+<li>Tidak bisa <strong>memfilter</strong> lead berdasarkan stage atau
+prioritas.</li>
+<li>Tidak ada <strong>ringkasan nilai</strong> per stage untuk melihat
+pipeline secara cepat.</li>
+</ol>
+<p>Tugas Anda: lengkapi aplikasi ini dengan ketiga fitur tersebut.</p>
+<h2 id="starter-code">Starter Code</h2>
+<p>Aplikasi starter sudah berjalan, lolos <code>flutter analyze</code>
+(0 issue), dan <code>flutter test</code> (1 test hijau). Struktur yang
+relevan:</p>
+<pre><code>lib/
+├── main.dart                      # entry point + MiniCrmApp
+├── theme/app_theme.dart           # tema Material 3 (tidak perlu diubah)
+├── models/lead.dart               # model Lead + enum LeadStage, LeadPriority + mockLeads
+├── screens/lead_list_screen.dart  # layar daftar lead (fokus pengerjaan)
+└── widgets/
+    ├── lead_card.dart             # kartu lead (fokus pengerjaan)
+    ├── stage_chip.dart            # chip stage reusable
+    └── priority_indicator.dart    # indikator prioritas reusable</code></pre>
+<p>Yang sudah berfungsi: daftar <code>mockLeads</code> (8 lead)
+ditampilkan sebagai <code>LeadCard</code>, masing-masing menampilkan
+perusahaan, kontak, prioritas, stage (chip), dan nilai kontrak
+(<code>Rp X jt</code>).</p>
+<h2 id="tugas-yang-harus-dikerjakan">Tugas yang Harus Dikerjakan</h2>
+<h3 id="tugas-1--advance-stage-35-poin">Tugas 1 — Advance Stage (35
+poin)</h3>
+<p>Tambahkan cara untuk <strong>memajukan stage</strong> sebuah lead
+satu langkah:</p>
+<ul>
+<li>Urutan: <code>Baru → Dihubungi → Qualified → Closing</code>.</li>
+<li>Lead yang sudah <code>Closing</code> adalah stage terakhir,
+<strong>tidak bisa</strong> dimajukan lagi.</li>
+<li>Aksi bisa berupa tombol di kartu, tap pada kartu, atau elemen
+interaktif lain yang jelas.</li>
+<li>Setelah stage berubah, <code>StageChip</code> harus menampilkan
+label &amp; warna stage yang baru.</li>
+<li>Perubahan harus langsung terlihat di UI (gunakan
+<code>setState</code>).</li>
+</ul>
+<h3 id="tugas-2--filter-stage--prioritas-40-poin">Tugas 2 — Filter Stage
+&amp; Prioritas (40 poin)</h3>
+<p>Tambahkan <strong>filter chips</strong> di bagian atas daftar:</p>
+<ul>
+<li>Filter <strong>stage</strong>: <code>Semua</code>,
+<code>Baru</code>, <code>Dihubungi</code>, <code>Qualified</code>,
+<code>Closing</code>.</li>
+<li>Filter <strong>prioritas</strong>: <code>Semua</code>,
+<code>Rendah</code>, <code>Sedang</code>, <code>Tinggi</code>.</li>
+<li>Kedua filter bisa <strong>dikombinasikan</strong> (logika AND).</li>
+<li>Chip yang aktif harus punya indikator visual yang jelas.</li>
+<li>Jika hasil filter kosong, tampilkan empty state yang
+informatif.</li>
+<li>Gunakan <code>FilterChip</code>/<code>ChoiceChip</code> atau
+komponen Material lain yang sesuai.</li>
+</ul>
+<h3 id="tugas-3--ringkasan-nilai-per-stage-25-poin">Tugas 3 — Ringkasan
+Nilai per Stage (25 poin)</h3>
+<p>Tambahkan <strong>ringkasan total nilai kontrak</strong> untuk tiap
+stage:</p>
+<ul>
+<li>Hitung total <code>value</code> (dalam juta rupiah) untuk setiap
+<code>LeadStage</code>.</li>
+<li>Tampilkan di atas daftar (di bawah/atas filter) atau posisi lain
+yang mudah dibaca.</li>
+<li>Ringkasan harus <strong>update otomatis</strong> ketika sebuah lead
+dimajukan stage-nya.</li>
+<li>Bentuk bebas (kartu, baris, grid, atau chip), asal jelas dan
+rapi.</li>
+</ul>
+<div class="keep-section"><h2 id="batasan-dan-ketentuan">Batasan dan Ketentuan</h2><h3 id="-yang-boleh-dilakukan">Yang Boleh Dilakukan</h3><ul>
+<li>Menambah state variables, helper methods, dan widget methods di
+<code>_LeadListScreenState</code>.</li>
+<li>Menambah callback parameter di <code>LeadCard</code> (mis.
+<code>onAdvance</code>).</li>
+<li>Membuat widget baru di <code>lib/widgets/</code> atau
+<code>lib/screens/</code>.</li>
+<li>Menggunakan <code>setState</code>, <code>ListView</code>,
+<code>Wrap</code>, <code>FilterChip</code>/<code>ChoiceChip</code>, dan
+widget Material lainnya.</li>
+<li>Menggunakan <code>switch</code> expression untuk memetakan
+stage/prioritas.</li>
+</ul><h3 id="-yang-tidak-boleh-dilakukan">Yang Tidak Boleh Dilakukan</h3><ul>
+<li>Mengubah class <code>Lead</code>, enum <code>LeadStage</code>, atau
+enum <code>LeadPriority</code>.</li>
+<li>Menambah package/library baru (tetap tanpa dependency pihak
+ketiga).</li>
+<li>Mengubah struktur data <code>_leads</code> menjadi tipe lain selain
+<code>List&lt;Lead&gt;</code>.</li>
+<li>Hardcode nilai ringkasan (harus dihitung dari data saat itu).</li>
+</ul></div>
+<h2 id="kriteria-penilaian">Kriteria Penilaian</h2>
+<table class="mapping-table content-table">
+<thead>
+<tr class="header">
+<th>No</th>
+<th>Aspek</th>
+<th>Poin</th>
+<th>Deskripsi</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>Advance stage</strong></td>
+<td>35</td>
+<td>Stage berubah sesuai urutan, berhenti di <code>Closing</code>,
+visual chip update</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>Filter stage</strong></td>
+<td>15</td>
+<td>Filter stage bekerja benar untuk semua nilai</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>Filter prioritas</strong></td>
+<td>15</td>
+<td>Filter prioritas bekerja benar, bisa dikombinasikan dengan
+stage</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>Empty state</strong></td>
+<td>10</td>
+<td>Menampilkan empty state informatif saat hasil filter kosong</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><strong>Ringkasan nilai</strong></td>
+<td>15</td>
+<td>Total <code>value</code> per stage dihitung benar dan update saat
+stage berubah</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><strong>Code quality</strong></td>
+<td>10</td>
+<td>Clean, readable, pakai enum &amp; helper, tidak ada hardcode</td>
+</tr>
+<tr class="total">
+<td><strong>TOTAL</strong></td>
+<td></td>
+<td><strong>100</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="expected-result">Expected Result</h2>
+<h3 id="behavior">Behavior</h3>
+<ol type="1">
+<li>Buka aplikasi → semua 8 lead tampil, filter "Semua" aktif di kedua
+baris.</li>
+<li>Tekan tombol advance pada "PT Nusantara Logistik" → stage berubah
+<code>Baru → Dihubungi</code>, chip berubah warna.</li>
+<li>Pilih filter stage "Qualified" → hanya lead dengan stage
+<code>Qualified</code> yang tampil.</li>
+<li>Kombinasikan filter stage "Qualified" + prioritas "Tinggi" → hanya
+lead <code>Qualified</code> <strong>dan</strong>
+<code>Tinggi</code>.</li>
+<li>Lead ber-stage <code>Closing</code> yang ditekan advance
+<strong>tidak berubah</strong> (sudah tahap akhir).</li>
+<li>Ringkasan nilai per stage menampilkan total yang benar dan ikut
+berubah saat ada lead dimajukan.</li>
+</ol>
+<blockquote>
+<p>Data awal (untuk self-check): <code>Baru</code> 180 jt ·
+<code>Dihubungi</code> 195 jt · <code>Qualified</code> 510 jt ·
+<code>Closing</code> 175 jt.</p>
+</blockquote>
+<h3 id="visual-contoh">Visual (contoh)</h3>
+<pre class="visual-block"><code>┌──────────────────────────────────────────────┐
+│ Mini CRM — Sales Pipeline                    │
+├──────────────────────────────────────────────┤
+│ Stage: [Semua] Baru Dihubungi Qual. Closing  │
+│ Prioritas: [Semua] Rendah Sedang Tinggi      │
+│ ┌────────────────────────────────────────────┐│
+│ │ Closing 175 jt · Qualified 510 jt · ...    ││
+│ └────────────────────────────────────────────┘│
+│ ┌───────────────────────────────┐  Rp 120 jt │
+│ │ PT Nusantara Logistik         │            │
+│ │ Budi Santoso                  │            │
+│ │ ● Tinggi  [Baru]              │  [Advance] │
+│ └───────────────────────────────┘            │
+└──────────────────────────────────────────────┘</code></pre>
+<div class="keep-section"><h2 id="hints--tips">Hints &amp; Tips</h2><ol type="1">
+<li><strong>Advance stage</strong>: gunakan
+<code>LeadStage.values</code> untuk mencari stage berikutnya, atau tulis
+getter/<code>switch</code>. Jaga index agar tidak melewati
+<code>Closing</code>.</li>
+<li><strong>copyWith</strong>: <code>Lead</code> immutable — gunakan
+<code>lead.copyWith(stage: next)</code> lalu perbarui list.</li>
+<li><strong>Filter</strong>: simpan <code>LeadStage? _stageFilter</code>
+dan <code>LeadPriority? _priorityFilter</code>, lalu filter dengan
+<code>.where(...)</code> di <code>build</code>.</li>
+<li><strong>Ringkasan</strong>: hitung dengan <code>fold</code> atau
+loop, dan selalu hitung di <code>build</code> supaya otomatis
+update.</li>
+<li><strong>Empty state</strong>: cek apakah hasil filter kosong sebelum
+render <code>ListView</code>.</li>
+<li><strong>Chip aktif</strong>: <code>ChoiceChip</code> punya properti
+<code>selected</code>; <code>FilterChip</code> juga punya state terpilih
+bawaan.</li>
+</ol></div>
+<h2 id="cara-menjalankan-starter-code">Cara Menjalankan Starter
+Code</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> Ujian/20261/starter-code/mini_crm</span>
+<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a><span class="ex">flutter</span> pub get</span>
+<span id="cb3-3"><a aria-hidden="true" href="#cb3-3" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> chrome        <span class="co"># mode web</span></span>
+<span id="cb3-4"><a aria-hidden="true" href="#cb3-4" tabindex="-1"></a><span class="co"># atau (Android emulator):</span></span>
+<span id="cb3-5"><a aria-hidden="true" href="#cb3-5" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> <span class="op">&lt;</span>device-id<span class="op">&gt;</span></span></code></pre></div>
+<p>Verifikasi awal yang diharapkan:</p>
+<ul>
+<li><code>flutter analyze</code> → <strong>No issues
+found!</strong></li>
+<li><code>flutter test</code> → <strong>All tests passed!</strong></li>
+</ul>
+<h2 id="submission">Submission</h2>
+<p>Pastikan sebelum mengumpulkan:</p>
+<ul class="checklist">
+<li>☐ Aplikasi bisa di-run tanpa error (web/emulator)</li>
+<li>☐ Advance stage bekerja dan berhenti di <code>Closing</code></li>
+<li>☐ Filter stage &amp; prioritas bekerja, bisa dikombinasikan</li>
+<li>☐ Empty state muncul saat tidak ada hasil</li>
+<li>☐ Ringkasan nilai per stage akurat dan update dinamis</li>
+<li>☐ <code>flutter analyze</code> bersih, tidak ada hardcode nilai
+ringkasan</li>
+</ul>
+</section>
+<div class="approval-block">
+<div class="closing">====== <b>Selamat Mengerjakan</b> ======</div>
+<table aria-label="Pengesahan" class="signature-table">
+<tr><td class="role">Koordinator Mata Kuliah<br/>Pemrograman Mobile</td><td class="role">Ketua Program Studi<br/>Teknik Informatika S1</td></tr>
+<tr><td class="signature-space"></td><td class="signature-space"></td></tr>
+<tr><td>Fahri Firdausillah, S.Kom, M.CS</td><td>__________________________</td></tr>
+</table>
+</div>
+</body>
+</html>
