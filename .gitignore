@@ -21,21 +21,17 @@ build/
 # Python
 __pycache__/
 
+# Command Code — state lokal agen (allowlist permission, taste terpelajari)
+.commandcode/
+
 # Moodle XML hasil build (sumber: generator script)
 moodle/build/
 .kanban-evidence/
 .pi-status/
 .pi-logs/
 
-# Skrip otomasi Kulino sekali-pakai (lokal; yang reusable: kulino_client.py, probe_lib.py)
-/.tmp_*
-/.stage*/
-/.stage*.*
-/.fix_*
-/.cleanup_*
-/.import_*
-/.make_board.py
-/.probe_kulino.py
-/.ws_test.py
+# Skrip Python: tooling otomasi repo ada di scripts/ (reusable, di-commit).
+# Skrip sekali-pakai dipisah di scripts/local/ — lokal, tidak di-commit.
+/scripts/local/
 /.moodle_plan.json
 starter-code/env-check/android/local.properties

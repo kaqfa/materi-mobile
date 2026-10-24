@@ -12,6 +12,7 @@ Panduan kerja untuk AI coding agent di repo materi perkuliahan **Pemrograman Mob
 | `penugasan/` | Kalender, pemetaan bobot, brief capstone G1–G4, tugas individu P02–P03, peer review | ✅ |
 | `moodle/` | Generator bank soal (140 soal, kategori `PPB/PXX`) + kunci dosen + aktivitas Moodle per pertemuan | ✅ |
 | `Ujian/` | UTS/UAS (live coding, rubrik demo) | ✅ |
+| `scripts/` | Tooling otomasi repo (klien Kulino, sincron modul/slide). Sekali-pakai di `scripts/local/` (gitignored) | ✅ |
 | `modul-SA/` | Referensi paket remedial (struktur penugasan, aset Moodle) | ❌ Hanya baca |
 | `Standar Pengembangan Materi PPB.md` | Prinsip + alur kerja revisi, satu halaman | ⚠️ Jangan tambah kompleksitas |
 | `Standar Tutorial Koding PPB.md` | Standar aktif untuk format tutorial | Baca sebelum menulis modul |
@@ -136,7 +137,16 @@ Konsekuensi untuk penulisan materi:
 - **Git**: commit kecil, pesan deskriptif (boleh Bahasa Indonesia). Jangan commit `.DS_Store`, `node_modules/`, hasil build (sudah di `.gitignore`).
 - **Done definition modul**: frontmatter valid, checkpoint semua bisa di-run, checklist ada, summary + troubleshooting ada, contoh kode lolos analyze, mapping Sub-CPMK jelas, dan (bila ada tugas) brief di `penugasan/` + quiz di `moodle/` sudah dibuat.
 
-## 10. Todo Repo
+## 10. Script Python (Otomasi Repo)
+
+- **Semua script otomasi repo wajib di `scripts/`** — root harus bersih, jangan taruh berkas `.py` di root.
+- **Sekali-pakai** (eksperimen, migrasi, fix sementara, dump/evidence) → `scripts/local/`, yang di-`.gitignore` (tidak dikomit). **Reusable** (mis. `kulino_client.py`, `probe_lib.py`, `.sync_*.py`) → langsung di `scripts/`, boleh dikomit.
+- Generator yang **bagian dari build sebuah modul** tetap di folder modulnya, bukan di `scripts/`: `moodle/bank_soal.py`, `moodle/build_moodle_xml.py`, `moodle/pack_starters.py`, `slides/tools/render_diagrams.py`.
+- Jalankan dari **root repo**: `python3 scripts/<nama>.py`. Script boleh `import kulino_client` tanpa path hack — Python menambahkan `scripts/` ke `sys.path`.
+- Skrip di `scripts/local/` yang mengimpor `kulino_client`/`probe_lib` jalankan dengan path-nya disetel: `PYTHONPATH=scripts python3 scripts/local/<nama>.py`.
+- Butuh path repo di dalam script? Hitung dari lokasi berkas: `Path(__file__).resolve().parent.parent` (script berada satu level di bawah root), jangan `Path(__file__).parent`.
+
+## 11. Todo Repo
 
 - [x] Audit gap modul vs RPS — hasil di `AUDIT-Gap-Modul-vs-RPS.md` (tindak lanjutnya kerjakan dari tabel prioritas di sana, bukan dari tabel gap README yang sudah usang)
 - [ ] Commit hasil konversi `.mdx` → `.md` + dokumen repo
@@ -148,3 +158,4 @@ Konsekuensi untuk penulisan materi:
 - [x] RPS diselaraskan: Firebase/WorkManager dihapus, AI Strategy jadi dua rezim
 - [x] Generator bank soal `moodle/` — 140 soal (14 × 10), kategori `PPB/PXX`, + kunci dosen + aktivitas Moodle P01–P16
 - [x] Soal UTS live coding (5 berkas di `Ujian/UTS/`)
+- [x] Rapikan script Python: otomasi repo di `scripts/`, sekali-pakai di `scripts/local/` (gitignored), root bersih

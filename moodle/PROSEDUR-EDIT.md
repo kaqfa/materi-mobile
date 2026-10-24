@@ -1,10 +1,10 @@
 # Prosedur Edit Konten Moodle — PPB 20251 (Kulino, course id=21)
 
 > Runbook untuk mengubah konten course setelah deployment awal (2026-09-13).
-> Semua contoh memakai tooling di repo ini: `kulino_client.py` (WS read-only + form POST)
+> Semua contoh memakai tooling di repo ini: `scripts/kulino_client.py` (WS read-only + form POST)
 > dan Playwright dengan session admin `~/.kulino-admin/session.txt`.
 > Prinsip: **mutasi via UI/form (Playwright) atau WS resmi, JANGAN akses DB langsung**;
-> DB hanya untuk audit read-only (`probe_lib.py`).
+> DB hanya untuk audit read-only (`scripts/probe_lib.py`).
 
 ## Persiapan (sekali per sesi edit)
 
@@ -12,7 +12,7 @@
 cd /home/kaqfa/Data-Kerja/Kuliah/materi-mobile
 # cek session masih hidup — kalau redirect ke login, minta session baru ke dosen
 python3 -c "
-import sys; sys.path.insert(0,'.')
+import sys; sys.path.insert(0, 'scripts')
 from kulino_client import ws
 print(ws('core_course_get_contents', courseid=21)[0]['name'])"
 ```
@@ -133,7 +133,7 @@ Lalu ganti file di modul File terkait via UI (manage files), atau buat ulang mod
 ## Verifikasi bawaan (setiap operasi)
 
 - Re-read WS `core_course_get_contents` / `mod_quiz_get_quizzes_by_courses` / `mod_assign_get_assignments` — pastikan state pasca-save sesuai.
-- Audit DB read-only hanya bila WS tak menyediakan datanya (contoh: referensi bank per quiz) — `probe_lib.py connect()`.
+- Audit DB read-only hanya bila WS tak menyediakan datanya (contoh: referensi bank per quiz) — `scripts/probe_lib.py connect()`.
 - Evidence screenshot → `.kanban-evidence/` (gitignored).
 
 ## Yang masih manual (non-script)

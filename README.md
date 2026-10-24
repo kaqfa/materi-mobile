@@ -40,6 +40,7 @@ Semua konten materi disusun **di repo ini** sebagai sumber kebenaran, lalu dipub
 ├── starter-code/                  # [AKTIF] Starter & sample code Flutter per pertemuan (14 project)
 ├── penugasan/                     # [AKTIF] Kalender penugasan + brief assignment, rubrik, capstone (publikasi via Moodle)
 ├── moodle/                        # [AKTIF] Generator bank soal (140 soal) + kunci dosen + aktivitas Moodle per pertemuan
+├── scripts/                       # [AKTIF] Tooling otomasi repo (klien Kulino, sync modul/slide); sekali-pakai di scripts/local/
 │
 └── modul-SA/                      # [REFERENSI] Paket remedial 7 pertemuan — acuan struktur penugasan & aset Moodle
 ```
@@ -125,6 +126,7 @@ Aturan AI: pembatasan hanya di tugas individu P02–P03; di capstone AI bebas di
 - **Bahasa**: konten Indonesia, istilah teknis Inggris dibiarkan (widget, state, dsb.).
 - **Penamaan berkas**: bab buku `NN-slug.md` (kebab-case, `NN` = nomor bab); aset penilaian pakai prefiks `P0X_`. Saat publish ke web Astro, script publish me-rename ke `.mdx`.
 - **Contoh kode Flutter**: harus lolos `flutter analyze`, null safety aktif.
+- **Script Python**: otomasi repo di `scripts/` (reusable, di-commit) atau `scripts/local/` (sekali-pakai, gitignored) — jangan taruh `.py` di root. Generator yang bagian dari modul tetap di folder modulnya (mis. `moodle/`).
 - **Git**: commit kecil dengan pesan deskriptif; hasil build, `node_modules/`, `.DS_Store` tidak di-commit (lihat `.gitignore`).
 
 ## referensi cepat
