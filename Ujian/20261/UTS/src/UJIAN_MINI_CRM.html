@@ -5,15 +5,14 @@
 <body>
 <header class="page-header">
 <img alt="Kop Universitas Dian Nuswantoro" class="letterhead" src="../../header-docs.png"/>
-<div class="document-label">LEMBAR SOAL UJIAN</div>
 </header>
 <div class="submission">Soal Dikumpulkan</div>
 <div class="exam-title">UJIAN TENGAH SEMESTER GANJIL 2026/2027</div>
 <table aria-label="Informasi ujian" class="exam-meta">
-<colgroup><col style="width:24mm"/><col style="width:3mm"/><col style="width:67mm"/><col style="width:14mm"/><col style="width:3mm"/><col style="width:68.9mm"/></colgroup>
-<tr><td>Mata Kuliah</td><td class="colon">:</td><td>Pemrograman Mobile (Flutter)</td><td>Sifat</td><td class="colon">:</td><td>Praktikum (Tutup Buku)</td></tr>
-<tr><td>Hari/tanggal</td><td class="colon">:</td><td>______________________</td><td>Waktu</td><td class="colon">:</td><td>60 menit</td></tr>
-<tr><td>Kelompok</td><td class="colon">:</td><td>______________________</td><td>Dosen</td><td class="colon">:</td><td>Fahri Firdausillah, S.Kom, M.CS</td></tr>
+<colgroup><col style="width:27mm"/><col style="width:3mm"/><col style="width:67mm"/><col style="width:14mm"/><col style="width:3mm"/><col style="width:65.9mm"/></colgroup>
+<tr><td>Mata Kuliah</td><td class="colon">:</td><td>Pemrograman Perangkat Bergerak</td><td>Sifat</td><td class="colon">:</td><td>Praktikum (Buka Buku)</td></tr>
+<tr><td>Hari/tanggal</td><td class="colon">:</td><td>Selasa, 27 Okt 2026</td><td>Waktu</td><td class="colon">:</td><td>09.30 - 11.00 (100 menit)</td></tr>
+<tr><td>Kelompok</td><td class="colon">:</td><td>A11.4704</td><td>Dosen</td><td class="colon">:</td><td>Fahri Firdausillah, S.Kom, M.CS</td></tr>
 </table>
 <div class="section-heading">Rancangan Penilaian Pembelajaran</div>
 <table aria-label="Mapping Sub-CPMK terhadap CPL Prodi" class="mapping-table">
@@ -40,14 +39,15 @@
 Mini CRM — Sales Pipeline</h1>
 <h2 id="informasi-ujian">Informasi Ujian</h2>
 <ul>
-<li><strong>Waktu Pengerjaan</strong>: 60 menit</li>
+<li><strong>Waktu Pengerjaan</strong>: 100 menit</li>
 <li><strong>Tingkat Kesulitan</strong>: Medium</li>
 <li><strong>Bobot</strong>: 100 poin</li>
 <li><strong>Starter Code</strong>:
 <code>Ujian/20261/starter-code/mini_crm/</code></li>
 <li><strong>Environment</strong>: Flutter stable 3.47.x · Dart 3.13.x ·
-platform <strong>web</strong> &amp; <strong>android</strong> (sudah
-dibuat) · tanpa package pihak ketiga</li>
+platform <strong>android</strong> &amp; <strong>web</strong> (dibuat lewat
+<code>flutter create</code>, lihat langkah di bawah) · tanpa package
+pihak ketiga</li>
 <li><strong>Fokus Pengerjaan</strong>:
 <code>lib/screens/lead_list_screen.dart</code> dan
 <code>lib/widgets/lead_card.dart</code></li>
@@ -75,15 +75,15 @@ pipeline secara cepat.</li>
 <p>Aplikasi starter sudah berjalan, lolos <code>flutter analyze</code>
 (0 issue), dan <code>flutter test</code> (1 test hijau). Struktur yang
 relevan:</p>
-<pre><code>lib/
-├── main.dart                      # entry point + MiniCrmApp
-├── theme/app_theme.dart           # tema Material 3 (tidak perlu diubah)
-├── models/lead.dart               # model Lead + enum LeadStage, LeadPriority + mockLeads
-├── screens/lead_list_screen.dart  # layar daftar lead (fokus pengerjaan)
+<pre class="tree"><code>lib/
+├── main.dart
+├── theme/app_theme.dart
+├── models/lead.dart
+├── screens/lead_list_screen.dart
 └── widgets/
-    ├── lead_card.dart             # kartu lead (fokus pengerjaan)
-    ├── stage_chip.dart            # chip stage reusable
-    └── priority_indicator.dart    # indikator prioritas reusable</code></pre>
+    ├── lead_card.dart
+    ├── stage_chip.dart
+    └── priority_indicator.dart</code></pre>
 <p>Yang sudah berfungsi: daftar <code>mockLeads</code> (8 lead)
 ditampilkan sebagai <code>LeadCard</code>, masing-masing menampilkan
 perusahaan, kontak, prioritas, stage (chip), dan nilai kontrak
@@ -272,10 +272,11 @@ bawaan.</li>
 <h2 id="cara-menjalankan-starter-code">Cara Menjalankan Starter
 Code</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> Ujian/20261/starter-code/mini_crm</span>
-<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a><span class="ex">flutter</span> pub get</span>
-<span id="cb3-3"><a aria-hidden="true" href="#cb3-3" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> chrome        <span class="co"># mode web</span></span>
-<span id="cb3-4"><a aria-hidden="true" href="#cb3-4" tabindex="-1"></a><span class="co"># atau (Android emulator):</span></span>
-<span id="cb3-5"><a aria-hidden="true" href="#cb3-5" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> <span class="op">&lt;</span>device-id<span class="op">&gt;</span></span></code></pre></div>
+<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a><span class="ex">flutter</span> create <span class="at">.</span> <span class="at">--platforms</span><span class="op">=</span>android,web   <span class="co"># sekali saja, membuat folder platform</span></span>
+<span id="cb3-3"><a aria-hidden="true" href="#cb3-3" tabindex="-1"></a><span class="ex">flutter</span> pub get</span>
+<span id="cb3-4"><a aria-hidden="true" href="#cb3-4" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> chrome        <span class="co"># mode web</span></span>
+<span id="cb3-5"><a aria-hidden="true" href="#cb3-5" tabindex="-1"></a><span class="co"># atau (Android emulator):</span></span>
+<span id="cb3-6"><a aria-hidden="true" href="#cb3-6" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> <span class="op">&lt;</span>device-id<span class="op">&gt;</span></span></code></pre></div>
 <p>Verifikasi awal yang diharapkan:</p>
 <ul>
 <li><code>flutter analyze</code> → <strong>No issues
@@ -299,7 +300,7 @@ ringkasan</li>
 <table aria-label="Pengesahan" class="signature-table">
 <tr><td class="role">Koordinator Mata Kuliah<br/>Pemrograman Mobile</td><td class="role">Ketua Program Studi<br/>Teknik Informatika S1</td></tr>
 <tr><td class="signature-space"></td><td class="signature-space"></td></tr>
-<tr><td>Fahri Firdausillah, S.Kom, M.CS</td><td>__________________________</td></tr>
+<tr><td>Fahri Firdausillah, S.Kom, M.CS</td><td>Dr. De Rosal Ignatius Moses Setiadi, M.Kom</td></tr>
 </table>
 </div>
 </body>

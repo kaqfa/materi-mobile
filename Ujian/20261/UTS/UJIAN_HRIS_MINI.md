@@ -1,11 +1,11 @@
 # Ujian Praktik UTS: HRIS Mini — Pengajuan Cuti
 
 ## Informasi Ujian
-- **Waktu Pengerjaan**: 60 menit
+- **Waktu Pengerjaan**: 100 menit
 - **Tingkat Kesulitan**: Medium
 - **Bobot**: 100 poin
 - **Starter Code**: `Ujian/20261/starter-code/hris_mini/`
-- **Environment**: Flutter stable 3.47.x · Dart 3.13.x · platform **web** & **android** (sudah dibuat) · tanpa package pihak ketiga
+- **Environment**: Flutter stable 3.47.x · Dart 3.13.x · platform **android** & **web** (dibuat lewat `flutter create`, lihat langkah di bawah) · tanpa package pihak ketiga
 - **Fokus Pengerjaan**: `lib/screens/leave_list_screen.dart` dan `lib/widgets/leave_card.dart`
 
 ---
@@ -31,13 +31,13 @@ Aplikasi starter sudah berjalan, lolos `flutter analyze` (0 issue), dan `flutter
 
 ```
 lib/
-├── main.dart                          # entry point + HrisApp
-├── theme/app_theme.dart               # tema Material 3 (tidak perlu diubah)
-├── models/leave_request.dart          # model LeaveRequest + enum LeaveType, LeaveStatus + mockLeaveRequests
-├── screens/leave_list_screen.dart     # layar daftar pengajuan (fokus pengerjaan)
+├── main.dart
+├── theme/app_theme.dart
+├── models/leave_request.dart
+├── screens/leave_list_screen.dart
 └── widgets/
-    ├── leave_card.dart                # kartu pengajuan (fokus pengerjaan)
-    └── status_chip.dart               # chip status reusable
+    ├── leave_card.dart
+    └── status_chip.dart
 ```
 
 Yang sudah berfungsi: daftar `mockLeaveRequests` (8 pengajuan) ditampilkan sebagai `LeaveCard`, masing-masing menampilkan nama karyawan, tipe cuti, rentang tanggal, dan status (chip).
@@ -155,6 +155,7 @@ Tambahkan **form** untuk menambah pengajuan baru:
 
 ```bash
 cd Ujian/20261/starter-code/hris_mini
+flutter create . --platforms=android,web   # sekali saja, membuat folder platform
 flutter pub get
 flutter run -d chrome        # mode web
 # atau (Android emulator):

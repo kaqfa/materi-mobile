@@ -76,6 +76,7 @@ html, body {
   font-size: 12pt;
   font-weight: 700;
   line-height: 1.15;
+  border: var(--border-table);
 }
 .exam-meta td {
   padding: 0.7mm 0;
@@ -83,6 +84,8 @@ html, body {
   vertical-align: top;
   white-space: nowrap;
 }
+.exam-meta td:first-child { padding-left: 2mm; }
+.exam-meta td:last-child { padding-right: 2mm; }
 .exam-meta .colon { text-align: center; }
 .section-heading {
   margin: 0 0 2.5mm;
@@ -193,6 +196,10 @@ pre code {
   font-size: 8pt;
   white-space: pre;
   overflow-wrap: normal;
+}
+pre.tree, pre.tree code {
+  font-size: 10.5pt;
+  font-weight: 700;
 }
 pre.visual-block {
   width: 100mm;

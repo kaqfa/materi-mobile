@@ -1,11 +1,11 @@
 # Ujian Praktik UTS: Mini CRM — Sales Pipeline
 
 ## Informasi Ujian
-- **Waktu Pengerjaan**: 60 menit
+- **Waktu Pengerjaan**: 100 menit
 - **Tingkat Kesulitan**: Medium
 - **Bobot**: 100 poin
 - **Starter Code**: `Ujian/20261/starter-code/mini_crm/`
-- **Environment**: Flutter stable 3.47.x · Dart 3.13.x · platform **web** & **android** (sudah dibuat) · tanpa package pihak ketiga
+- **Environment**: Flutter stable 3.47.x · Dart 3.13.x · platform **android** & **web** (dibuat lewat `flutter create`, lihat langkah di bawah) · tanpa package pihak ketiga
 - **Fokus Pengerjaan**: `lib/screens/lead_list_screen.dart` dan `lib/widgets/lead_card.dart`
 
 ---
@@ -31,14 +31,14 @@ Aplikasi starter sudah berjalan, lolos `flutter analyze` (0 issue), dan `flutter
 
 ```
 lib/
-├── main.dart                      # entry point + MiniCrmApp
-├── theme/app_theme.dart           # tema Material 3 (tidak perlu diubah)
-├── models/lead.dart               # model Lead + enum LeadStage, LeadPriority + mockLeads
-├── screens/lead_list_screen.dart  # layar daftar lead (fokus pengerjaan)
+├── main.dart
+├── theme/app_theme.dart
+├── models/lead.dart
+├── screens/lead_list_screen.dart
 └── widgets/
-    ├── lead_card.dart             # kartu lead (fokus pengerjaan)
-    ├── stage_chip.dart            # chip stage reusable
-    └── priority_indicator.dart    # indikator prioritas reusable
+    ├── lead_card.dart
+    ├── stage_chip.dart
+    └── priority_indicator.dart
 ```
 
 Yang sudah berfungsi: daftar `mockLeads` (8 lead) ditampilkan sebagai `LeadCard`, masing-masing menampilkan perusahaan, kontak, prioritas, stage (chip), dan nilai kontrak (`Rp X jt`).
@@ -151,6 +151,7 @@ Tambahkan **ringkasan total nilai kontrak** untuk tiap stage:
 
 ```bash
 cd Ujian/20261/starter-code/mini_crm
+flutter create . --platforms=android,web   # sekali saja, membuat folder platform
 flutter pub get
 flutter run -d chrome        # mode web
 # atau (Android emulator):
