@@ -1,4 +1,7 @@
 {
   "markdown.marp.enableHtml": true,
-  "markdown.marp.themes": ["slides/themes/ppb.css"]
+  "markdown.marp.themes": [
+    "slides/themes/ppb.css"
+  ],
+  "cmake.sourceDirectory": "/Users/kaqfa/Documents/Kuliah/Perangkat Bergerak/Materi-Mobile/starter-code/p09-rest-api/linux"
 }

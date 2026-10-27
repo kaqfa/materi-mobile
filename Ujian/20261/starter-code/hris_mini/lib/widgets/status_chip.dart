@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../models/leave_request.dart';
+import 'leave_visuals.dart';
 
-/// Chip status pengajuan cuti; warna membedakan status.
+/// Chip status pengajuan cuti; ikon & warna membedakan status.
 class StatusChip extends StatelessWidget {
   const StatusChip({super.key, required this.status});
 
@@ -10,30 +11,25 @@ class StatusChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
-    final (background, foreground) = switch (status) {
-      LeaveStatus.pending => (
-          scheme.surfaceContainerHighest,
-          scheme.onSurfaceVariant,
-        ),
-      LeaveStatus.approved => (
-          scheme.primaryContainer,
-          scheme.onPrimaryContainer,
-        ),
-      LeaveStatus.rejected => (scheme.errorContainer, scheme.onErrorContainer),
-    };
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.fromLTRB(8, 4, 10, 4),
       decoration: BoxDecoration(
-        color: background,
-        borderRadius: BorderRadius.circular(8),
+        color: status.background,
+        borderRadius: BorderRadius.circular(999),
       ),
-      child: Text(
-        status.label,
-        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: foreground,
-              fontWeight: FontWeight.w600,
-            ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(status.icon, size: 14, color: status.foreground),
+          const SizedBox(width: 4),
+          Text(
+            status.label,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                  color: status.foreground,
+                  fontWeight: FontWeight.w600,
+                ),
+          ),
+        ],
       ),
     );
   }

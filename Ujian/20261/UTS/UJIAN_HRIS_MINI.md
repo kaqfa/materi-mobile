@@ -6,7 +6,7 @@
 - **Bobot**: 100 poin
 - **Starter Code**: `Ujian/20261/starter-code/hris_mini/`
 - **Environment**: Flutter stable 3.47.x · Dart 3.13.x · platform **android** & **web** (dibuat lewat `flutter create`, lihat langkah di bawah) · tanpa package pihak ketiga
-- **Fokus Pengerjaan**: `lib/screens/leave_list_screen.dart` dan `lib/widgets/leave_card.dart`
+- **Fokus Pengerjaan**: `lib/screens/leave_list_screen.dart`, `lib/screens/leave_detail_screen.dart`, dan `lib/widgets/leave_card.dart`
 
 ---
 
@@ -16,12 +16,11 @@ Anda adalah developer di divisi HR PT Nusantara Digital. Perusahaan memakai apli
 
 Setiap pengajuan memiliki tipe cuti (**Cuti Tahunan / Sakit / Tanpa Gaji**), status (**Menunggu / Disetujui / Ditolak**), serta rentang tanggal mulai dan selesai.
 
-Aplikasi saat ini baru bisa **menampilkan** daftar pengajuan. Tim HR mengeluh karena:
+Aplikasi saat ini baru bisa **menampilkan** daftar pengajuan dan **detail** tiap pengajuan. Tim HR mengeluh karena:
 1. Tidak ada cara untuk **menyetujui / menolak** pengajuan.
 2. Tidak bisa **memfilter** pengajuan berdasarkan status atau tipe cuti.
-3. Tidak ada **form** untuk menambah pengajuan baru.
 
-Tugas Anda: lengkapi aplikasi ini dengan ketiga fitur tersebut.
+Tugas Anda: lengkapi aplikasi ini dengan kedua fitur tersebut.
 
 ---
 
@@ -34,27 +33,35 @@ lib/
 ├── main.dart
 ├── theme/app_theme.dart
 ├── models/leave_request.dart
-├── screens/leave_list_screen.dart
+├── utils/date_format.dart
+├── screens/
+│   ├── leave_list_screen.dart
+│   └── leave_detail_screen.dart
 └── widgets/
     ├── leave_card.dart
-    └── status_chip.dart
+    ├── status_chip.dart
+    ├── employee_avatar.dart
+    └── leave_visuals.dart
 ```
 
-Yang sudah berfungsi: daftar `mockLeaveRequests` (8 pengajuan) ditampilkan sebagai `LeaveCard`, masing-masing menampilkan nama karyawan, tipe cuti, rentang tanggal, dan status (chip).
+Yang sudah berfungsi:
+- Daftar `mockLeaveRequests` (8 pengajuan) ditampilkan sebagai `LeaveCard`: avatar inisial, nama karyawan, tipe cuti, rentang tanggal, durasi, dan status (chip).
+- **Tap kartu** → membuka `LeaveDetailScreen` (profil, periode cuti, info pengajuan) lewat `_openDetail()` di `leave_list_screen.dart`.
+- Tema (`AppTheme`) sudah mengatur bentuk `Card`, `Chip`, `FilledButton`, dan `OutlinedButton` — widget Material yang Anda tambahkan otomatis tampil seragam.
 
 ---
 
 ## Tugas yang Harus Dikerjakan
 
-### Tugas 1 — Approve / Reject (30 poin)
+### Tugas 1 — Approve / Reject (45 poin)
 Tambahkan aksi untuk mengubah status pengajuan:
 - Aksi **Setujui** → status berubah menjadi `Disetujui`.
 - Aksi **Tolak** → status berubah menjadi `Ditolak`.
-- Aksi bisa berupa tombol di kartu, tap pada kartu, atau elemen interaktif lain yang jelas.
-- Setelah status berubah, `StatusChip` harus menampilkan label & warna status yang baru.
-- Perubahan harus langsung terlihat di UI (gunakan `setState`).
+- Letak aksi bebas: tombol di **layar detail** (disarankan), tombol di kartu, atau elemen interaktif lain yang jelas.
+- Aksi hanya tersedia untuk pengajuan berstatus `Menunggu` (pengajuan yang sudah diputuskan tidak bisa diubah lagi).
+- Setelah status berubah, `StatusChip` di **kartu daftar** harus menampilkan label & warna status yang baru (gunakan `setState`). Bila aksi ada di layar detail, status baru harus terlihat di daftar setelah kembali.
 
-### Tugas 2 — Filter Status & Tipe (35 poin)
+### Tugas 2 — Filter Status & Tipe (45 poin)
 Tambahkan **filter chips** di bagian atas daftar:
 - Filter **status**: `Semua`, `Menunggu`, `Disetujui`, `Ditolak`.
 - Filter **tipe**: `Semua`, `Cuti Tahunan`, `Sakit`, `Tanpa Gaji`.
@@ -62,17 +69,7 @@ Tambahkan **filter chips** di bagian atas daftar:
 - Chip yang aktif harus punya indikator visual yang jelas.
 - Jika hasil filter kosong, tampilkan empty state yang informatif.
 
-### Tugas 3 — Form Pengajuan Cuti (35 poin)
-Tambahkan **form** untuk menambah pengajuan baru:
-- **Nama karyawan**: `TextFormField`, wajib diisi.
-- **Tipe cuti**: pilihan (`Cuti Tahunan` / `Sakit` / `Tanpa Gaji`), mis. dropdown atau selector.
-- **Tanggal mulai** dan **tanggal selesai**: pakai `showDatePicker`.
-- **Validasi**:
-  - Nama tidak boleh kosong.
-  - `tanggalSelesai >= tanggalMulai`.
-  - Tanggal tidak boleh di masa lalu (tidak sebelum hari ini).
-- Saat submit, pengajuan baru ditambahkan ke daftar dengan status awal `Menunggu`.
-- Bersihkan resource (`TextEditingController`/`FocusNode`) di `dispose`.
+> **Code quality (10 poin)** dinilai dari keseluruhan kode Tugas 1 & 2.
 
 ---
 
@@ -80,9 +77,9 @@ Tambahkan **form** untuk menambah pengajuan baru:
 
 ### ✅ Yang Boleh Dilakukan
 - Menambah state variables, helper methods, dan widget methods di `_LeaveListScreenState`.
-- Menambah callback parameter di `LeaveCard` (mis. `onApprove`, `onReject`).
-- Membuat screen/widget baru (mis. `lib/screens/add_leave_screen.dart`).
-- Menggunakan `setState`, `Navigator`, `showDatePicker`, `TextFormField`, `DropdownButton`, `FilterChip`/`ChoiceChip`, dan widget Material lainnya.
+- Menambah parameter (mis. callback `onApprove`, `onReject`) di `LeaveCard` atau `LeaveDetailScreen`.
+- Membuat widget baru (mis. `lib/widgets/empty_state.dart`).
+- Menggunakan `setState`, `Navigator` (push/pop dengan nilai balik), `FilterChip`/`ChoiceChip`, `FilledButton`, dan widget Material lainnya.
 - Menggunakan `copyWith` untuk membuat instance baru saat status berubah.
 
 ### ❌ Yang Tidak Boleh Dilakukan
@@ -97,57 +94,40 @@ Tambahkan **form** untuk menambah pengajuan baru:
 
 | No | Aspek | Poin | Deskripsi |
 |----|-------|------|-----------|
-| 1 | **Approve / Reject** | 30 | Setujui & tolak mengubah status dengan benar, chip update |
-| 2 | **Filter status** | 12 | Filter status bekerja benar untuk semua nilai |
-| 3 | **Filter tipe** | 12 | Filter tipe bekerja benar, bisa dikombinasikan dengan status |
-| 4 | **Empty state** | 11 | Menampilkan empty state informatif saat hasil filter kosong |
-| 5 | **Form & validasi** | 25 | Form lengkap, validasi nama/tanggal benar, data masuk ke daftar |
-| 6 | **Code quality** | 10 | Clean, readable, resource dibuang benar, tidak hardcode |
+| 1 | **Setujui & tolak** | 25 | Kedua aksi mengubah status dengan benar (`copyWith` + `setState`), chip di kartu ter-update |
+| 2 | **Sinkron detail & daftar** | 10 | Status baru konsisten di layar detail dan daftar (mis. via nilai balik `Navigator.pop`) |
+| 3 | **Aksi hanya untuk `Menunggu`** | 10 | Tombol aksi tidak tampil/nonaktif untuk pengajuan yang sudah diputuskan |
+| 4 | **Filter status** | 15 | Filter status bekerja benar untuk semua nilai |
+| 5 | **Filter tipe + kombinasi** | 15 | Filter tipe bekerja benar, bisa dikombinasikan (AND) dengan status |
+| 6 | **Chip aktif** | 5 | Chip yang terpilih punya indikator visual jelas di kedua baris filter |
+| 7 | **Empty state** | 10 | Menampilkan empty state informatif saat hasil filter kosong |
+| 8 | **Code quality** | 10 | Clean, readable, `flutter analyze` bersih, tidak hardcode |
 | **TOTAL** | | **100** | |
 
 ---
 
 ## Expected Result
 
-### Behavior
 1. Buka aplikasi → semua 8 pengajuan tampil, filter "Semua" aktif di kedua baris.
-2. Tekan "Setujui" pada pengajuan "Budi Santoso" → status berubah `Menunggu → Disetujui`, chip berubah warna hijau.
-3. Tekan "Tolak" pada pengajuan lain → status berubah `Ditolak`, chip berubah warna merah.
-4. Pilih filter status "Menunggu" → hanya pengajuan `Menunggu` yang tampil.
-5. Kombinasikan filter status "Menunggu" + tipe "Cuti Tahunan" → hanya pengajuan `Menunggu` **dan** `Cuti Tahunan`.
-6. Buka form, isi nama, pilih tipe & tanggal, submit → pengajuan baru muncul dengan status `Menunggu`.
-
-### Visual (contoh)
-```
-┌──────────────────────────────────────────────┐
-│ HRIS — Pengajuan Cuti                        │
-├──────────────────────────────────────────────┤
-│ Status: [Semua] Menunggu Disetujui Ditolak   │
-│ Tipe: [Semua] Tahunan Sakit Tanpa Gaji       │
-├──────────────────────────────────────────────┤
-│ ┌───────────────────────────────┐  [Menunggu]│
-│ │ Budi Santoso                  │            │
-│ │ Cuti Tahunan · 10/11 – 14/11  │  [✓] [✕]  │
-│ └───────────────────────────────┘            │
-│ ┌───────────────────────────────┐  [Disetujui]│
-│ │ Siti Aminah                   │            │
-│ │ Sakit · 20/10 – 21/10         │            │
-│ └───────────────────────────────┘            │
-│                              [+ Tambah Cuti] │
-└──────────────────────────────────────────────┘
-```
+2. Tap kartu "Budi Santoso" → layar detail terbuka, tombol **Setujui** & **Tolak** tampil.
+3. Tekan "Setujui" → kembali ke daftar, status Budi berubah `Menunggu → Disetujui`, chip berubah warna hijau.
+4. Buka pengajuan `Menunggu` lain, tekan "Tolak" → status berubah `Ditolak`, chip merah.
+5. Buka pengajuan yang sudah `Disetujui`/`Ditolak` → tombol aksi tidak tersedia.
+6. Pilih filter status "Menunggu" → hanya pengajuan `Menunggu` yang tampil.
+7. Kombinasikan filter status "Menunggu" + tipe "Cuti Tahunan" → hanya pengajuan `Menunggu` **dan** `Cuti Tahunan`.
+8. Kombinasi yang tidak punya hasil (mis. `Ditolak` + `Sakit`) → empty state tampil.
 
 ---
 
 ## Hints & Tips
 
-1. **Approve/Reject**: `LeaveRequest` immutable — gunakan `request.copyWith(status: ...)` lalu perbarui list.
-2. **Filter**: simpan `LeaveStatus? _statusFilter` dan `LeaveType? _typeFilter`, lalu filter dengan `.where(...)` di `build`.
-3. **Form**: gunakan `Form` + `GlobalKey<FormState>`, validator untuk nama, dan `showDatePicker` dengan `firstDate: DateTime.now()`.
-4. **Validasi tanggal**: bandingkan `endDate.isBefore(startDate)` dan `startDate.isBefore(DateTime.now())`.
-5. **Navigasi form**: buka form via `Navigator.push`, lalu kirim hasil balik (`pop`) dengan data pengajuan baru, atau kelola state di layar yang sama.
-6. **Resource**: `TextEditingController` dan `FocusNode` wajib di-`dispose()`.
-7. **Chip aktif**: `ChoiceChip` punya properti `selected`; `FilterChip` juga punya state terpilih bawaan.
+1. **Approve/Reject**: `LeaveRequest` immutable — gunakan `request.copyWith(status: ...)` lalu ganti elemen di `_requests` (cari index berdasarkan `id`) di dalam `setState`.
+2. **Aksi dari layar detail**: kirim keputusan balik dengan `Navigator.pop(context, LeaveStatus.approved)`, lalu di daftar tangkap hasilnya: `final status = await Navigator.push<LeaveStatus>(...)` dan cek `null` (user menekan tombol back).
+3. **Tempat tombol**: di `LeaveDetailScreen`, tombol bisa ditaruh di `bottomNavigationBar` (dibungkus `SafeArea` + `Padding`) atau ditambahkan sebagai child terakhir `ListView`.
+4. **Filter**: simpan `LeaveStatus? _statusFilter` dan `LeaveType? _typeFilter` (`null` = Semua), lalu filter dengan `.where(...)` di `build`.
+5. **Tempat filter chips**: `body` daftar sudah berupa `Column` — tambahkan baris chip sebelum `Expanded(ListView...)`. Bungkus dengan `SingleChildScrollView(scrollDirection: Axis.horizontal)` agar tidak overflow.
+6. **Chip aktif**: `ChoiceChip` punya properti `selected`; loop `LeaveStatus.values` / `LeaveType.values` dan pakai `.label` untuk teksnya.
+7. **Empty state**: bila list hasil filter kosong, tampilkan widget lain (mis. `Center` + `Icon` + `Text`) sebagai ganti `ListView`.
 
 ---
 
@@ -172,10 +152,10 @@ Verifikasi awal yang diharapkan:
 
 Pastikan sebelum mengumpulkan:
 - ✅ Aplikasi bisa di-run tanpa error (web/emulator)
-- ✅ Setujui & tolak mengubah status dengan benar, chip update
+- ✅ Setujui & tolak mengubah status dengan benar, chip di daftar ter-update
+- ✅ Aksi hanya tersedia untuk pengajuan `Menunggu`
 - ✅ Filter status & tipe bekerja, bisa dikombinasikan
 - ✅ Empty state muncul saat tidak ada hasil
-- ✅ Form menambah pengajuan baru dengan validasi tanggal yang benar
-- ✅ `flutter analyze` bersih, controller/focus node di-`dispose` dengan benar
+- ✅ `flutter analyze` bersih
 
 **Selamat Mengerjakan!** 🚀

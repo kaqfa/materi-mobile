@@ -1,46 +1,86 @@
 import 'package:flutter/material.dart';
 
 import '../models/leave_request.dart';
+import '../utils/date_format.dart';
+import 'employee_avatar.dart';
+import 'leave_visuals.dart';
 import 'status_chip.dart';
 
-/// Kartu pengajuan cuti: karyawan, tipe, rentang tanggal, dan status.
+/// Kartu pengajuan cuti: karyawan, tipe, rentang tanggal, durasi, dan status.
 class LeaveCard extends StatelessWidget {
-  const LeaveCard({super.key, required this.request});
+  const LeaveCard({super.key, required this.request, this.onTap});
 
   final LeaveRequest request;
-
-  String _format(DateTime d) => '${d.day}/${d.month}/${d.year}';
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final mutedColor = theme.colorScheme.onSurfaceVariant;
+    final days = leaveDurationInDays(request.startDate, request.endDate);
+
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 children: [
-                  Text(
-                    request.employee,
-                    style: theme.textTheme.titleMedium
-                        ?.copyWith(fontWeight: FontWeight.w600),
+                  EmployeeAvatar(request: request),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          request.employee,
+                          style: theme.textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w600),
+                        ),
+                        const SizedBox(height: 2),
+                        Row(
+                          children: [
+                            Icon(request.type.icon,
+                                size: 14, color: request.type.color),
+                            const SizedBox(width: 4),
+                            Text(
+                              request.type.label,
+                              style: theme.textTheme.bodySmall
+                                  ?.copyWith(color: mutedColor),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 2),
+                  StatusChip(status: request.status),
+                ],
+              ),
+              const SizedBox(height: 12),
+              const Divider(height: 1),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Icon(Icons.event_rounded, size: 16, color: mutedColor),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(
+                      '${formatShortDate(request.startDate)} – ${formatDate(request.endDate)}',
+                      style: theme.textTheme.bodyMedium,
+                    ),
+                  ),
                   Text(
-                    '${request.type.label} · ${_format(request.startDate)} – ${_format(request.endDate)}',
-                    style: theme.textTheme.bodySmall
-                        ?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                    '$days hari',
+                    style: theme.textTheme.labelLarge
+                        ?.copyWith(color: theme.colorScheme.primary),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(width: 12),
-            StatusChip(status: request.status),
-          ],
+            ],
+          ),
         ),
       ),
     );

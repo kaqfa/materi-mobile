@@ -33,7 +33,7 @@
 <tr><th class="caption" colspan="6">Tabel 2. Mapping Soal terhadap Sub-CPMK</th></tr>
 <tr><th rowspan="2">Soal No.</th><th rowspan="2">Bentuk Soal</th><th rowspan="2">Materi Pembelajaran</th><th colspan="2">Mapping Soal terhadap Sub-CPMK</th><th rowspan="2">Bobot Soal<br/>[%]</th></tr>
 <tr><th>Sub-<br/>CPMK53.1</th><th>Sub-<br/>CPMK92.1</th></tr>
-<tr><td class="center">1</td><td>Praktikum</td><td>Dart OOP, state, widget</td><td class="center">✓</td><td class="center">✓</td><td class="center">30%</td></tr><tr><td class="center">2</td><td>Praktikum</td><td>Widget, state, Material Design</td><td class="center">✓</td><td class="center">✓</td><td class="center">35%</td></tr><tr><td class="center">3</td><td>Praktikum</td><td>Form, validasi, navigasi</td><td class="center">✓</td><td class="center">✓</td><td class="center">35%</td></tr>
+<tr><td class="center">1</td><td>Praktikum</td><td>State, widget, navigasi (push/pop)</td><td class="center">✓</td><td class="center">✓</td><td class="center">50%</td></tr><tr><td class="center">2</td><td>Praktikum</td><td>Widget, state, Material Design</td><td class="center">✓</td><td class="center">✓</td><td class="center">50%</td></tr>
 </table>
 <section class="content"><h1 class="document-topic" id="ujian-praktik-uts-hris-mini--pengajuan-cuti">Ujian Praktik UTS:
 HRIS Mini — Pengajuan Cuti</h1>
@@ -45,11 +45,12 @@ HRIS Mini — Pengajuan Cuti</h1>
 <li><strong>Starter Code</strong>:
 <code>Ujian/20261/starter-code/hris_mini/</code></li>
 <li><strong>Environment</strong>: Flutter stable 3.47.x · Dart 3.13.x ·
-platform <strong>android</strong> &amp; <strong>web</strong> (dibuat lewat
-<code>flutter create</code>, lihat langkah di bawah) · tanpa package
-pihak ketiga</li>
+platform <strong>android</strong> &amp; <strong>web</strong> (dibuat
+lewat <code>flutter create</code>, lihat langkah di bawah) · tanpa
+package pihak ketiga</li>
 <li><strong>Fokus Pengerjaan</strong>:
-<code>lib/screens/leave_list_screen.dart</code> dan
+<code>lib/screens/leave_list_screen.dart</code>,
+<code>lib/screens/leave_detail_screen.dart</code>, dan
 <code>lib/widgets/leave_card.dart</code></li>
 </ul>
 <h2 id="studi-kasus">Studi Kasus</h2>
@@ -60,15 +61,15 @@ pengajuan cuti karyawan.</p>
 Tanpa Gaji</strong>), status (<strong>Menunggu / Disetujui /
 Ditolak</strong>), serta rentang tanggal mulai dan selesai.</p>
 <p>Aplikasi saat ini baru bisa <strong>menampilkan</strong> daftar
-pengajuan. Tim HR mengeluh karena:</p>
+pengajuan dan <strong>detail</strong> tiap pengajuan. Tim HR mengeluh
+karena:</p>
 <ol type="1">
 <li>Tidak ada cara untuk <strong>menyetujui / menolak</strong>
 pengajuan.</li>
 <li>Tidak bisa <strong>memfilter</strong> pengajuan berdasarkan status
 atau tipe cuti.</li>
-<li>Tidak ada <strong>form</strong> untuk menambah pengajuan baru.</li>
 </ol>
-<p>Tugas Anda: lengkapi aplikasi ini dengan ketiga fitur tersebut.</p>
+<p>Tugas Anda: lengkapi aplikasi ini dengan kedua fitur tersebut.</p>
 <h2 id="starter-code">Starter Code</h2>
 <p>Aplikasi starter sudah berjalan, lolos <code>flutter analyze</code>
 (0 issue), dan <code>flutter test</code> (1 test hijau). Struktur yang
@@ -77,16 +78,30 @@ relevan:</p>
 ├── main.dart
 ├── theme/app_theme.dart
 ├── models/leave_request.dart
-├── screens/leave_list_screen.dart
+├── utils/date_format.dart
+├── screens/
+│   ├── leave_list_screen.dart
+│   └── leave_detail_screen.dart
 └── widgets/
     ├── leave_card.dart
-    └── status_chip.dart</code></pre>
-<p>Yang sudah berfungsi: daftar <code>mockLeaveRequests</code> (8
-pengajuan) ditampilkan sebagai <code>LeaveCard</code>, masing-masing
-menampilkan nama karyawan, tipe cuti, rentang tanggal, dan status
-(chip).</p>
+    ├── status_chip.dart
+    ├── employee_avatar.dart
+    └── leave_visuals.dart</code></pre>
+<p>Yang sudah berfungsi:</p>
+<ul>
+<li>Daftar <code>mockLeaveRequests</code> (8 pengajuan) ditampilkan
+sebagai <code>LeaveCard</code>: avatar inisial, nama karyawan, tipe
+cuti, rentang tanggal, durasi, dan status (chip).</li>
+<li><strong>Tap kartu</strong> → membuka <code>LeaveDetailScreen</code>
+(profil, periode cuti, info pengajuan) lewat <code>_openDetail()</code>
+di <code>leave_list_screen.dart</code>.</li>
+<li>Tema (<code>AppTheme</code>) sudah mengatur bentuk
+<code>Card</code>, <code>Chip</code>, <code>FilledButton</code>, dan
+<code>OutlinedButton</code> — widget Material yang Anda tambahkan
+otomatis tampil seragam.</li>
+</ul>
 <h2 id="tugas-yang-harus-dikerjakan">Tugas yang Harus Dikerjakan</h2>
-<h3 id="tugas-1--approve--reject-30-poin">Tugas 1 — Approve / Reject (30
+<h3 id="tugas-1--approve--reject-45-poin">Tugas 1 — Approve / Reject (45
 poin)</h3>
 <p>Tambahkan aksi untuk mengubah status pengajuan:</p>
 <ul>
@@ -94,15 +109,18 @@ poin)</h3>
 <code>Disetujui</code>.</li>
 <li>Aksi <strong>Tolak</strong> → status berubah menjadi
 <code>Ditolak</code>.</li>
-<li>Aksi bisa berupa tombol di kartu, tap pada kartu, atau elemen
-interaktif lain yang jelas.</li>
-<li>Setelah status berubah, <code>StatusChip</code> harus menampilkan
-label &amp; warna status yang baru.</li>
-<li>Perubahan harus langsung terlihat di UI (gunakan
-<code>setState</code>).</li>
+<li>Letak aksi bebas: tombol di <strong>layar detail</strong>
+(disarankan), tombol di kartu, atau elemen interaktif lain yang
+jelas.</li>
+<li>Aksi hanya tersedia untuk pengajuan berstatus <code>Menunggu</code>
+(pengajuan yang sudah diputuskan tidak bisa diubah lagi).</li>
+<li>Setelah status berubah, <code>StatusChip</code> di <strong>kartu
+daftar</strong> harus menampilkan label &amp; warna status yang baru
+(gunakan <code>setState</code>). Bila aksi ada di layar detail, status
+baru harus terlihat di daftar setelah kembali.</li>
 </ul>
-<h3 id="tugas-2--filter-status--tipe-35-poin">Tugas 2 — Filter Status
-&amp; Tipe (35 poin)</h3>
+<h3 id="tugas-2--filter-status--tipe-45-poin">Tugas 2 — Filter Status
+&amp; Tipe (45 poin)</h3>
 <p>Tambahkan <strong>filter chips</strong> di bagian atas daftar:</p>
 <ul>
 <li>Filter <strong>status</strong>: <code>Semua</code>,
@@ -116,44 +134,29 @@ label &amp; warna status yang baru.</li>
 <li>Jika hasil filter kosong, tampilkan empty state yang
 informatif.</li>
 </ul>
-<h3 id="tugas-3--form-pengajuan-cuti-35-poin">Tugas 3 — Form Pengajuan
-Cuti (35 poin)</h3>
-<p>Tambahkan <strong>form</strong> untuk menambah pengajuan baru:</p>
+<blockquote>
+<p><strong>Code quality (10 poin)</strong> dinilai dari keseluruhan kode
+Tugas 1 &amp; 2.</p>
+</blockquote>
+<div class="keep-section"><h2 id="batasan-dan-ketentuan">Batasan dan Ketentuan</h2>
+<h3 id="white_check_mark-yang-boleh-dilakukan">Yang Boleh
+Dilakukan</h3>
 <ul>
-<li><strong>Nama karyawan</strong>: <code>TextFormField</code>, wajib
-diisi.</li>
-<li><strong>Tipe cuti</strong>: pilihan (<code>Cuti Tahunan</code> /
-<code>Sakit</code> / <code>Tanpa Gaji</code>), mis. dropdown atau
-selector.</li>
-<li><strong>Tanggal mulai</strong> dan <strong>tanggal selesai</strong>:
-pakai <code>showDatePicker</code>.</li>
-<li><strong>Validasi</strong>:
-<ul>
-<li>Nama tidak boleh kosong.</li>
-<li><code>tanggalSelesai &gt;= tanggalMulai</code>.</li>
-<li>Tanggal tidak boleh di masa lalu (tidak sebelum hari ini).</li>
-</ul></li>
-<li>Saat submit, pengajuan baru ditambahkan ke daftar dengan status awal
-<code>Menunggu</code>.</li>
-<li>Bersihkan resource
-(<code>TextEditingController</code>/<code>FocusNode</code>) di
-<code>dispose</code>.</li>
-</ul>
-<div class="keep-section"><h2 id="batasan-dan-ketentuan">Batasan dan Ketentuan</h2><h3 id="-yang-boleh-dilakukan">Yang Boleh Dilakukan</h3><ul>
 <li>Menambah state variables, helper methods, dan widget methods di
 <code>_LeaveListScreenState</code>.</li>
-<li>Menambah callback parameter di <code>LeaveCard</code> (mis.
-<code>onApprove</code>, <code>onReject</code>).</li>
-<li>Membuat screen/widget baru (mis.
-<code>lib/screens/add_leave_screen.dart</code>).</li>
-<li>Menggunakan <code>setState</code>, <code>Navigator</code>,
-<code>showDatePicker</code>, <code>TextFormField</code>,
-<code>DropdownButton</code>,
-<code>FilterChip</code>/<code>ChoiceChip</code>, dan widget Material
-lainnya.</li>
+<li>Menambah parameter (mis. callback <code>onApprove</code>,
+<code>onReject</code>) di <code>LeaveCard</code> atau
+<code>LeaveDetailScreen</code>.</li>
+<li>Membuat widget baru (mis.
+<code>lib/widgets/empty_state.dart</code>).</li>
+<li>Menggunakan <code>setState</code>, <code>Navigator</code> (push/pop
+dengan nilai balik), <code>FilterChip</code>/<code>ChoiceChip</code>,
+<code>FilledButton</code>, dan widget Material lainnya.</li>
 <li>Menggunakan <code>copyWith</code> untuk membuat instance baru saat
 status berubah.</li>
-</ul><h3 id="-yang-tidak-boleh-dilakukan">Yang Tidak Boleh Dilakukan</h3><ul>
+</ul>
+<h3 id="x-yang-tidak-boleh-dilakukan">Yang Tidak Boleh Dilakukan</h3>
+<ul>
 <li>Mengubah class <code>LeaveRequest</code>, enum
 <code>LeaveType</code>, atau enum <code>LeaveStatus</code>.</li>
 <li>Menambah package/library baru (tetap tanpa dependency pihak
@@ -166,7 +169,7 @@ user).</li>
 <h2 id="kriteria-penilaian">Kriteria Penilaian</h2>
 <table class="mapping-table content-table">
 <thead>
-<tr class="header">
+<tr>
 <th>No</th>
 <th>Aspek</th>
 <th>Poin</th>
@@ -174,41 +177,59 @@ user).</li>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>1</td>
-<td><strong>Approve / Reject</strong></td>
-<td>30</td>
-<td>Setujui &amp; tolak mengubah status dengan benar, chip update</td>
+<td><strong>Setujui &amp; tolak</strong></td>
+<td>25</td>
+<td>Kedua aksi mengubah status dengan benar (<code>copyWith</code> +
+<code>setState</code>), chip di kartu ter-update</td>
 </tr>
-<tr class="even">
+<tr>
 <td>2</td>
+<td><strong>Sinkron detail &amp; daftar</strong></td>
+<td>10</td>
+<td>Status baru konsisten di layar detail dan daftar (mis. via nilai
+balik <code>Navigator.pop</code>)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Aksi hanya untuk <code>Menunggu</code></strong></td>
+<td>10</td>
+<td>Tombol aksi tidak tampil/nonaktif untuk pengajuan yang sudah
+diputuskan</td>
+</tr>
+<tr>
+<td>4</td>
 <td><strong>Filter status</strong></td>
-<td>12</td>
+<td>15</td>
 <td>Filter status bekerja benar untuk semua nilai</td>
 </tr>
-<tr class="odd">
-<td>3</td>
-<td><strong>Filter tipe</strong></td>
-<td>12</td>
-<td>Filter tipe bekerja benar, bisa dikombinasikan dengan status</td>
+<tr>
+<td>5</td>
+<td><strong>Filter tipe + kombinasi</strong></td>
+<td>15</td>
+<td>Filter tipe bekerja benar, bisa dikombinasikan (AND) dengan
+status</td>
 </tr>
-<tr class="even">
-<td>4</td>
+<tr>
+<td>6</td>
+<td><strong>Chip aktif</strong></td>
+<td>5</td>
+<td>Chip yang terpilih punya indikator visual jelas di kedua baris
+filter</td>
+</tr>
+<tr>
+<td>7</td>
 <td><strong>Empty state</strong></td>
-<td>11</td>
+<td>10</td>
 <td>Menampilkan empty state informatif saat hasil filter kosong</td>
 </tr>
-<tr class="odd">
-<td>5</td>
-<td><strong>Form &amp; validasi</strong></td>
-<td>25</td>
-<td>Form lengkap, validasi nama/tanggal benar, data masuk ke daftar</td>
-</tr>
-<tr class="even">
-<td>6</td>
+<tr>
+<td>8</td>
 <td><strong>Code quality</strong></td>
 <td>10</td>
-<td>Clean, readable, resource dibuang benar, tidak hardcode</td>
+<td>Clean, readable, <code>flutter analyze</code> bersih, tidak
+hardcode</td>
 </tr>
 <tr class="total">
 <td><strong>TOTAL</strong></td>
@@ -219,71 +240,67 @@ user).</li>
 </tbody>
 </table>
 <h2 id="expected-result">Expected Result</h2>
-<h3 id="behavior">Behavior</h3>
 <ol type="1">
 <li>Buka aplikasi → semua 8 pengajuan tampil, filter "Semua" aktif di
 kedua baris.</li>
-<li>Tekan "Setujui" pada pengajuan "Budi Santoso" → status berubah
+<li>Tap kartu "Budi Santoso" → layar detail terbuka, tombol
+<strong>Setujui</strong> &amp; <strong>Tolak</strong> tampil.</li>
+<li>Tekan "Setujui" → kembali ke daftar, status Budi berubah
 <code>Menunggu → Disetujui</code>, chip berubah warna hijau.</li>
-<li>Tekan "Tolak" pada pengajuan lain → status berubah
-<code>Ditolak</code>, chip berubah warna merah.</li>
+<li>Buka pengajuan <code>Menunggu</code> lain, tekan "Tolak" → status
+berubah <code>Ditolak</code>, chip merah.</li>
+<li>Buka pengajuan yang sudah
+<code>Disetujui</code>/<code>Ditolak</code> → tombol aksi tidak
+tersedia.</li>
 <li>Pilih filter status "Menunggu" → hanya pengajuan
 <code>Menunggu</code> yang tampil.</li>
 <li>Kombinasikan filter status "Menunggu" + tipe "Cuti Tahunan" → hanya
 pengajuan <code>Menunggu</code> <strong>dan</strong>
 <code>Cuti Tahunan</code>.</li>
-<li>Buka form, isi nama, pilih tipe &amp; tanggal, submit → pengajuan
-baru muncul dengan status <code>Menunggu</code>.</li>
+<li>Kombinasi yang tidak punya hasil (mis. <code>Ditolak</code> +
+<code>Sakit</code>) → empty state tampil.</li>
 </ol>
-<h3 id="visual-contoh">Visual (contoh)</h3>
-<pre class="visual-block"><code>┌──────────────────────────────────────────────┐
-│ HRIS — Pengajuan Cuti                        │
-├──────────────────────────────────────────────┤
-│ Status: [Semua] Menunggu Disetujui Ditolak   │
-│ Tipe: [Semua] Tahunan Sakit Tanpa Gaji       │
-├──────────────────────────────────────────────┤
-│ ┌───────────────────────────────┐  [Menunggu]│
-│ │ Budi Santoso                  │            │
-│ │ Cuti Tahunan · 10/11 – 14/11  │  [✓] [✕]  │
-│ └───────────────────────────────┘            │
-│ ┌───────────────────────────────┐  [Disetujui]│
-│ │ Siti Aminah                   │            │
-│ │ Sakit · 20/10 – 21/10         │            │
-│ └───────────────────────────────┘            │
-│                              [+ Tambah Cuti] │
-└──────────────────────────────────────────────┘</code></pre>
-<div class="keep-section"><h2 id="hints--tips">Hints &amp; Tips</h2><ol type="1">
+<div class="keep-section"><h2 id="hints--tips">Hints &amp; Tips</h2>
+<ol type="1">
 <li><strong>Approve/Reject</strong>: <code>LeaveRequest</code> immutable
-— gunakan <code>request.copyWith(status: ...)</code> lalu perbarui
-list.</li>
+— gunakan <code>request.copyWith(status: ...)</code> lalu ganti elemen
+di <code>_requests</code> (cari index berdasarkan <code>id</code>) di
+dalam <code>setState</code>.</li>
+<li><strong>Aksi dari layar detail</strong>: kirim keputusan balik
+dengan <code>Navigator.pop(context, LeaveStatus.approved)</code>, lalu
+di daftar tangkap hasilnya:
+<code>final status = await Navigator.push&lt;LeaveStatus&gt;(...)</code>
+dan cek <code>null</code> (user menekan tombol back).</li>
+<li><strong>Tempat tombol</strong>: di <code>LeaveDetailScreen</code>,
+tombol bisa ditaruh di <code>bottomNavigationBar</code> (dibungkus
+<code>SafeArea</code> + <code>Padding</code>) atau ditambahkan sebagai
+child terakhir <code>ListView</code>.</li>
 <li><strong>Filter</strong>: simpan
 <code>LeaveStatus? _statusFilter</code> dan
-<code>LeaveType? _typeFilter</code>, lalu filter dengan
-<code>.where(...)</code> di <code>build</code>.</li>
-<li><strong>Form</strong>: gunakan <code>Form</code> +
-<code>GlobalKey&lt;FormState&gt;</code>, validator untuk nama, dan
-<code>showDatePicker</code> dengan
-<code>firstDate: DateTime.now()</code>.</li>
-<li><strong>Validasi tanggal</strong>: bandingkan
-<code>endDate.isBefore(startDate)</code> dan
-<code>startDate.isBefore(DateTime.now())</code>.</li>
-<li><strong>Navigasi form</strong>: buka form via
-<code>Navigator.push</code>, lalu kirim hasil balik (<code>pop</code>)
-dengan data pengajuan baru, atau kelola state di layar yang sama.</li>
-<li><strong>Resource</strong>: <code>TextEditingController</code> dan
-<code>FocusNode</code> wajib di-<code>dispose()</code>.</li>
+<code>LeaveType? _typeFilter</code> (<code>null</code> = Semua), lalu
+filter dengan <code>.where(...)</code> di <code>build</code>.</li>
+<li><strong>Tempat filter chips</strong>: <code>body</code> daftar sudah
+berupa <code>Column</code> — tambahkan baris chip sebelum
+<code>Expanded(ListView...)</code>. Bungkus dengan
+<code>SingleChildScrollView(scrollDirection: Axis.horizontal)</code>
+agar tidak overflow.</li>
 <li><strong>Chip aktif</strong>: <code>ChoiceChip</code> punya properti
-<code>selected</code>; <code>FilterChip</code> juga punya state terpilih
-bawaan.</li>
+<code>selected</code>; loop <code>LeaveStatus.values</code> /
+<code>LeaveType.values</code> dan pakai <code>.label</code> untuk
+teksnya.</li>
+<li><strong>Empty state</strong>: bila list hasil filter kosong,
+tampilkan widget lain (mis. <code>Center</code> + <code>Icon</code> +
+<code>Text</code>) sebagai ganti <code>ListView</code>.</li>
 </ol></div>
 <h2 id="cara-menjalankan-starter-code">Cara Menjalankan Starter
 Code</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a aria-hidden="true" href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> Ujian/20261/starter-code/hris_mini</span>
-<span id="cb3-2"><a aria-hidden="true" href="#cb3-2" tabindex="-1"></a><span class="ex">flutter</span> create <span class="at">.</span> <span class="at">--platforms</span><span class="op">=</span>android,web   <span class="co"># sekali saja, membuat folder platform</span></span>
-<span id="cb3-3"><a aria-hidden="true" href="#cb3-3" tabindex="-1"></a><span class="ex">flutter</span> pub get</span>
-<span id="cb3-4"><a aria-hidden="true" href="#cb3-4" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> chrome        <span class="co"># mode web</span></span>
-<span id="cb3-5"><a aria-hidden="true" href="#cb3-5" tabindex="-1"></a><span class="co"># atau (Android emulator):</span></span>
-<span id="cb3-6"><a aria-hidden="true" href="#cb3-6" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> <span class="op">&lt;</span>device-id<span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> Ujian/20261/starter-code/hris_mini</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">flutter</span> create . <span class="at">--platforms</span><span class="op">=</span>android,web   <span class="co"># sekali saja, membuat folder platform</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">flutter</span> pub get</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> chrome        <span class="co"># mode web</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># atau (Android emulator):</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">flutter</span> run <span class="at">-d</span> <span class="op">&lt;</span>device-id<span class="op">&gt;</span></span></code></pre></div>
 <p>Verifikasi awal yang diharapkan:</p>
 <ul>
 <li><code>flutter analyze</code> → <strong>No issues
@@ -294,14 +311,12 @@ found!</strong></li>
 <p>Pastikan sebelum mengumpulkan:</p>
 <ul class="checklist">
 <li>☐ Aplikasi bisa di-run tanpa error (web/emulator)</li>
-<li>☐ Setujui &amp; tolak mengubah status dengan benar, chip
-update</li>
+<li>☐ Setujui &amp; tolak mengubah status dengan benar, chip di daftar
+ter-update</li>
+<li>☐ Aksi hanya tersedia untuk pengajuan <code>Menunggu</code></li>
 <li>☐ Filter status &amp; tipe bekerja, bisa dikombinasikan</li>
 <li>☐ Empty state muncul saat tidak ada hasil</li>
-<li>☐ Form menambah pengajuan baru dengan validasi tanggal yang
-benar</li>
-<li>☐ <code>flutter analyze</code> bersih, controller/focus node
-di-<code>dispose</code> dengan benar</li>
+<li>☐ <code>flutter analyze</code> bersih</li>
 </ul>
 </section>
 <div class="approval-block">
